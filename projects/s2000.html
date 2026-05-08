@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S2000 Fabrication Program, Kai-Hung Chuang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.scroll-target { display: block; scroll-margin-top: 80px; }
+</style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#builds">Build Depth</a></li>
+      <li><a href="hunterdouglas.html">Case Study</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <span>S2000 Fabrication Program</span>
+      </div>
+      <div class="project-hero-tag">03 · Metal Shaping · Composites · Mold-Making · Commercial Production</div>
+      <h1>S2000<br>Fabrication<br>Program</h1>
+    </div>
+    <div>
+      <p class="project-hero-desc">
+        Not a car build. A multi-year fabrication program with a single operating principle: if the problem is hard enough and the constraints are tight enough, the solution reveals itself through the physics. The car was never the point. It was the problem generator.
+      </p>
+    </div>
+  </section>
+
+  <div style="max-width:85%;margin:2rem auto;">
+    <img src="../images/s2000-hero-00.webp"
+         loading="eager"
+         data-lightbox="s2000"
+         data-caption="Polyurethane foam constraint model shaped and fitted at the pinch point between hood and radiator support — physically mapping the available volume before any composite work began"
+         alt="S2000 Fabrication Program — foam constraint study fitted in engine bay at radiator support pinch point">
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-num accent">1.77 lb</span>
+      <span class="stat-label">CF trunk shell weight</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">5-part</span>
+      <span class="stat-label">Amuse bumper mold</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">200+</span>
+      <span class="stat-label">Commercial units sold</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">$0</span>
+      <span class="stat-label">Paint shop labor cost</span>
+    </div>
+  </div>
+
+  <div class="narrative">
+
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0 0 3rem;">
+      <a href="#fender-metal" class="tag-shortcut">Self-Taught Metal Shaping ↓</a>
+      <a href="#trunk-competitor" class="tag-shortcut">Competitor Trunk Analysis ↓</a>
+      <a href="#snorkel-foam" class="tag-shortcut">Foam Constraint Study ↓</a>
+      <a href="#diffuser-jig" class="tag-shortcut">Production Cutting Jig ↓</a>
+      <a href="#exhaust-iteration" class="tag-shortcut">Community Feedback Loop ↓</a>
+      <a href="#amuse-oncar" class="tag-shortcut">On-Car Mold Build ↓</a>
+    </div>
+
+    <!-- 01 / FENDER FLARING -->
+    <div class="chapter" id="ch01">
+      <div class="chapter-header">
+        <span class="chapter-num">01 /</span>
+        <h2 class="chapter-title">Fender Flaring, First Time Metal Shaping</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/S2000-0000006.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fusion 360 assembly, 3D scanned snorkel virtually test-fitted against scanned engine bay for geometry refinement"
+             alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>The AP1 S2000 was known for snap oversteer. Honda revised the AP2 with updated suspension geometry and larger rear tires to dial in more understeer. The separate pursuit, common in the JDM track scene, was fitting wider tires on lower-offset wheels front and rear to maximize grip and push the stance out. Getting a wider front tire under the factory fender on a low-offset wheel required reshaping the arch entirely: not rolling it, reshaping it. The vertical lip had to be hammered flat and transitioned smoothly back into the bumper line. US JDM shops charged around $2,000 total for both sides at the time, not including paint. Aftermarket fiberglass fenders existed but the fitment was poor enough that body shop correction costs erased any savings, and the fiberglass arch still had a vertical lip that would crack on tire contact rather than bend like factory steel.</p>
+      <p>Having watched enough fabrication television to understand the basic physics of metal shaping, the decision was to buy a hammer and dolly set and teach myself on a spare set of damaged factory fenders sourced from Craigslist. The previous owner had lowered his car without flaring, and the tires had caught the fender arch and bent it, exactly where the work needed to happen. The damage was the starting point, not a problem.</p>
+
+      <span id="fender-metal" class="scroll-target"></span>
+      <p>Process: wire wheel the area clean, flatten the existing damage first, cut the fender liner tabs that would interfere with the new arch shape, then use heat to gradually stretch the vertical lip outward and shape it into the natural curve of the wheel arch with a curved dolly. Where the flared arch met the front bumper, a stress-relief cut allowed the corner to pull cleanly, followed by a small transition triangle folded inward to blend the new flare angle back to the original bumper line. Tack-welded the cut closed afterward and ground smooth. <strong>First time ever doing metal shaping. The process came out clean.</strong></p>
+      <p>After the fenders were finished and fitted, a five-part fiberglass mold was pulled from them, the geometry had enough compound curves and draft complexity that a simpler approach wouldn't have released cleanly. Time and cost meant the mold was never used to replicate the fenders in composite, but building it taught lessons in large-panel parting line strategy that carried directly into every mold project that followed.</p>
+
+      <div class="photo-duo">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fender flaring in progress, hammer and dolly shaping the wheel arch"
+             alt="S2000, Fender flaring hammer and dolly work">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Transition triangle at bumper junction, stress relief cut welded closed"
+             alt="S2000, Fender transition triangle at bumper junction">
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Finished flared fenders, low-offset wheels and wide tires fitted"
+             alt="S2000, Finished fenders with wide tires at ride height"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- 02 / CARBON FIBER TRUNK -->
+    <div class="chapter" id="ch02">
+      <div class="chapter-header">
+        <span class="chapter-num">02 /</span>
+        <h2 class="chapter-title">Carbon Fiber Trunk, Full Carbon, 1.77 lb</h2>
+      </div>
+
+      <span id="trunk-competitor" class="scroll-target"></span>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/S2000-0000005.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fusion 360 assembly, 3D scanned snorkel virtually test-fitted against scanned engine bay for geometry refinement"
+             alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>Carbon fiber replacement trunks for the S2000 were available from Japan at $2,000 to $4,000. Before deciding to build one, the first step was inspecting the ones already in the community. At car meets, owners were asked to open their trunks so the layup could be examined at the cut edges and mounting holes. What became apparent quickly: most trunks sold as carbon fiber were not. The outer skin was carbon. The structural layers underneath were fiberglass, often chopped strand mat, the heaviest and cheapest option. The finished weights confirmed it. Real carbon fiber parts are only lightweight if you push the material to its actual limits. These weren't. They were fiberglass parts with carbon on the face.</p>
+      <p>The goal was to build a trunk that was actually carbon throughout. A donor trunk was sourced, and the only modification before molding was shaving the keyhole and Honda emblem mounting holes. S2000 owners rarely use the keyhole, and debadging the car for a cleaner look leaves two open holes where the emblem mounts. Neither had a place on a trunk built to be the lightest possible version of itself. The keyhole shape was traced onto sheet metal, a filler disc cut and welded in, the emblem holes tack-welded shut and ground smooth. The plug surface had to be exactly what the final part would be before the mold came off it. The prepared surface was sprayed in epoxy primer for molding.</p>
+      <p>Two separate molds: one for the outer skin, one for the inner skeleton frame. Both pulled cleanly. The layup was <strong>five layers of woven carbon fiber in alternating 45-degree orientations</strong> for the skin, seven layers for the structural skeleton, wet-laid and vacuum-bagged on each piece. The vacuum pump was a converted refrigerator compressor, nothing in this build was sourced off a shelf if it could be built from what was available.</p>
+      <p>Bonding the skin to the skeleton frame was done with the skeleton bolted to the car and the trunk in closed position, so all four panel gaps could be set simultaneously. Business cards were used as shim stacks at every critical gap point, add a card to close the gap, remove one to open it, until all four edges matched the factory panel gap exactly. Cured in place. Shell weight: <strong>1.77 lb.</strong> With trunk latch, third brake light, and all mounting hardware: under 3 lb. OEM steel trunk with hardware: approximately 18 lb.</p>
+
+      <div class="photo-trio">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="OEM trunk plug, keyhole welded and shaved, surface prepped for molding"
+             alt="S2000, OEM trunk plug with shaved keyhole">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Business card panel gap shim stacks, equal gap set on all four edges before bond cure"
+             alt="S2000, Business card shims for panel gap alignment">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Finished carbon trunk, on car, 1.77 lb shell"
+             alt="S2000, Finished carbon fiber trunk on car">
+      </div>
+    </div>
+
+    <!-- 03 / INTAKE SNORKEL -->
+
+    <div class="chapter" id="ch03">
+      <div class="chapter-header">
+        <span class="chapter-num">03 /</span>
+        <h2 class="chapter-title">Composite Intake Snorkel, Hollow Structure from Scratch</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/S2000-0000004.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fusion 360 assembly, 3D scanned snorkel virtually test-fitted against scanned engine bay for geometry refinement"
+             alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>Honda's engineers left a clue: the underside of the factory hood has an indentation shaped like an air path, positioned directly above the radiator support at the tightest pinch point in the engine bay. The intake airbox horn almost lines up with it. For reasons that were almost certainly water ingestion liability, a factory snorkel never made it into production. Every aftermarket option that existed required cutting that pinch area, a large hole in the hood structure, to fit a bulkier fiberglass tube. That was unacceptable.</p>
+
+      <span id="snorkel-foam" class="scroll-target"></span>
+      <p>Before designing anything, the constraint had to be physically mapped. A Ziploc bag was filled with polyurethane expanding foam and placed at the pinch point between hood and radiator support before closing the hood, sealing the bag to contain the expansion, letting it cure into the available geometry, then pulling it out. That gave a physical read on the critical width. From there, a full-size cardboard mold of the snorkel footprint was built and filled with foam, then shaped by hand until it sat cleanly under the closed hood at the tightest point. <strong>The same constraint-first methodology as the Hunter Douglas rescue, applied to automotive packaging.</strong> What the foam model made immediately clear was that the pinch point wasn't a flow bottleneck if you traded height for width: a flattened, laterally wider cross-section at the tightest point maintained the same flow area as the rest of the snorkel path. Consistent cross-section throughout, no cuts to the hood structure.</p>
+
+      <div class="photo-duo">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Full-size foam mockup shaped to fit under closed hood, showing snorkel path and cross-section at the pinch"
+             alt="S2000, Full-size foam snorkel mockup under hood">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Cardboard mold and foam form used to verify fit before any composite work began"
+             alt="S2000, Snorkel cardboard mold and foam constraint study">
+      </div>
+
+      <p>Learning composites from scratch presented its own problem: there was almost no useful information available at the time. Searched Google Maps for "fiberglass," called every result, and eventually found a family-owned boat repair yard near the coast with a small storefront selling to surfers and small-boat builders. The yard rotated its repairmen through the front counter, which meant every visit was a chance to show work, describe failures, and get direct feedback from people who built things with composites professionally. That shop became an informal development partner for the first year of composites work.</p>
+      <p>The intake snorkel was a deliberately difficult first project: long, thin, S-curved, and hollow. Most composite parts are solid or open-faced. A closed hollow tube requires continuous layup through the interior with no access once the mold closes. The first attempt used a pre-woven carbon fiber tube, the theory was that vacuum-bagging it against the inside of the mold, with the bag wrapping the entire closed mold in a donut shape, would press the tube uniformly against the surface. In practice the tube didn't have enough stretch to conform to the mold geometry. Expensive and documented failure. The vacuum pump at this stage was a bicycle pump modified to pull vacuum in reverse with a check valve inline, the refrigerator compressor conversion came later. The method that eventually worked was hand-laid fiberglass on both mold halves with a plastic-sheet inflatable bladder placed inside before closing, inflated after the mold bolted shut to press the wet layup against the surface while curing. That produced an 80-percent result on the first attempt, close enough to test-fit for hood clearance. Multiple further iterations got it to a production-ready geometry. The engineering boundary drawn from the start: <strong>nothing after the intake filter could be DIY composite.</strong> Any failure upstream gets stopped by the filter. Anything downstream goes straight into the engine.</p>
+
+      <div class="photo-duo">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Vacuum bag donut attempt on pre-woven CF tube, documented failure, tube couldn't conform to mold geometry"
+             alt="S2000, Failed vacuum bag donut attempt on snorkel mold">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Finished snorkel installed, hood closed with zero clearance cuts to hood structure"
+             alt="S2000, Finished composite intake snorkel installed">
+      </div>
+
+      <p>Years later, with early consumer 3D scanning becoming barely accessible through community-hacked Xbox Kinect software, the finished snorkel was scanned into a digital file and the S2000 engine bay was scanned separately. The two were assembled in Fusion 360 for a virtual test fit, which allowed further geometry refinements to increase cross-sectional area at the remaining bottlenecks. A fully optimized version was modeled in CAD but never fabricated. The scan, the model, and the virtual fit are documented on video.</p>
+      <p>A subsequent full intake enclosure was built to replace the factory airbox entirely: four-part mold, removable access door, larger volume than stock, organically shaped to interface with the snorkel. It was removed after completion. Too complex to replicate and incompatible with biennial California smog compliance. Sometimes the right outcome is a documented kill.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fusion 360 assembly, 3D scanned snorkel virtually test-fitted against scanned engine bay for geometry refinement"
+             alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- 04 / SIDE DIFFUSERS -->
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
+        <h2 class="chapter-title">Custom Side Diffusers, Production Jig System</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/S2000-0000003.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fusion 360 assembly, 3D scanned snorkel virtually test-fitted against scanned engine bay for geometry refinement"
+             alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>After fitting lower-offset wider tires, the car needed visual balance between the fender width and the side profile. Japanese aftermarket side diffusers for the S2000 ran close to $2,000. For what are, functionally, decorative trim panels. A pair of side diffusers is essentially a flat composite slab with a consistent cross-section, which meant the shape already existed at Home Depot for $3 a yard in baseboard molding.</p>
+      <p>The plug was built from wood: cut, shaped, glued, and sanded into the target profile, then sprayed in high-fill primer and block-sanded smooth. The key design decision was to build the plug as a single unified piece, both diffusers mirrored and joined, rather than as two separate halves. One plug, one mold, one pull produces both sides simultaneously. That decision created a repeatability constraint that needed solving: how to split one symmetrical part into two matching halves without introducing error from freehand cutting.</p>
+
+      <span id="diffuser-jig" class="scroll-target"></span>
+      <p>The solution was a purpose-built cutting jig. A section of the first test pull was trimmed, flipped, and hot-glued directly to the bandsaw table, form-fitted to the part, perfectly centered, stopping the blade exactly at the midpoint. That jig meant every subsequent pull could be split in under a minute with zero measuring and zero variation. A second jig handled the final thickness trim the same way: form-fitted, fixed to the table, repeatable to the same dimension on every piece. <strong>The jigs weren't planned for commercial production. The commercial production happened because the jigs made it effortless.</strong></p>
+      <p>The first version was revised after test fitting revealed the proportions wanted to be wider. A second plug and mold followed, along with refined versions of both jigs for the new geometry. Over 100 sets were sold to other S2000 owners, each with the Chilicoke logo embedded in the layup.</p>
+
+      <div class="photo-trio">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Unified double-width plug, both sides joined for simultaneous mirrored production"
+             alt="S2000, Side diffuser unified plug">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Center-split cutting jig fixed to bandsaw table, form fitted to part, splits every pull identically"
+             alt="S2000, Cutting jig on bandsaw for side diffusers">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Finished diffusers installed, Chilicoke logo embedded in layup"
+             alt="S2000, Finished side diffusers on car">
+      </div>
+    </div>
+
+    <!-- 05 / EXHAUST COVER -->
+    <div class="chapter" id="ch05">
+      <div class="chapter-header">
+        <span class="chapter-num">05 /</span>
+        <h2 class="chapter-title">Single Exhaust Cover, Community Iteration Loop</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/S2000-0000002.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fusion 360 assembly, 3D scanned snorkel virtually test-fitted against scanned engine bay for geometry refinement"
+             alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>The AP2 S2000's rear bumper integrates the dual exhaust tips into the bumper design. Converting to a single exhaust, a common weight-saving modification, left a large open hole on one side. No aftermarket cover existed for the AP2 bumper. The first design approach was logical: find an object with the right curvature, lay fiberglass over it, trim and bond into a bezel. A pool ball from Walmart matched the exhaust opening radius closely enough to work. The result fit correctly and covered the hole completely.</p>
+
+      <span id="exhaust-iteration" class="scroll-target"></span>
+      <p>The forum response was immediate and unanimous: it looked like the car was laying an egg. Which was, objectively, accurate. The round protrusion had no relationship to any line on the car. Rather than argue, the post was updated with the original photo, egg crack drawn over it. Then the design was scrapped entirely.</p>
+      <p>The second approach started with hobby clay instead of geometry. Sculpted directly against the bumper surface, working to the car's actual line language rather than to the nearest convenient geometry. When something read correctly, it was sprayed in rattle-can primer at rough color match and photographed back on the car. <strong>The photo went back to the forum before the mold was started.</strong> The community response reversed completely, approval on the shape, and unsolicited interest in buying one. Only then was the mold built. Over 100 covers were sold. The lesson was about sequencing: get external validation before committing to tooling, not after.</p>
+
+      <div class="photo-duo">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="V1 exhaust cover, pool ball curvature, geometrically correct, aesthetically wrong"
+             alt="S2000, V1 exhaust cover spherical design">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="V2 exhaust cover, clay-sculpted to car line language, community-approved before mold was built"
+             alt="S2000, V2 exhaust cover final design installed">
+      </div>
+    </div>
+
+    <!-- 06 / AMUSE BUMPER -->
+    <div class="chapter" id="ch06">
+      <div class="chapter-header">
+        <span class="chapter-num">06 /</span>
+        <h2 class="chapter-title">Amuse Bumper, Reduced 9-Part to 5</h2>
+      </div>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/S2000-0000001.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Fusion 360 assembly, 3D scanned snorkel virtually test-fitted against scanned engine bay for geometry refinement"
+             alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>A friend's Amuse front bumper, a $2,000 Japanese tuner unit, was damaged in an accident. Insurance covered a replacement, so the damaged one was passed over. First task was a proper fiberglass repair: grind the damaged area back to clean material, overlap fresh chopped strand mat and resin onto the existing structure, trim and sand to surface. Only after the repair was solid did the mold work begin.</p>
+      <p>Initial evaluation of the bumper's compound curves, undercuts, and surface transitions suggested nine mold sections would be needed to cover it without trapping geometry. After a more careful study of draft angles and flange placement, that was revised to five, with more aggressive angles and more ambitious parting line positioning. The risk was that sections might not release cleanly if draft angle or registration bump judgment was off, which means rebuilding the mold sections, not a quick fix. <strong>The five-part approach worked exactly as planned.</strong></p>
+
+      <span id="amuse-oncar" class="scroll-target"></span>
+      <p>The largest mold section, the main face of the bumper, was built with the bumper bolted to the car. The car was reverse-parked into the garage with the front end extending out, front jacked up for underside access, and the garage door opening masked with plastic sheeting to contain gelcoat overspray. Building the first section on the car ensured the bumper held its correct installed shape under its own weight, a bumper off the car flexes slightly and can pull a mold that no longer fits when reinstalled. After the first section cured, the bumper came off the car with the mold section still attached, moved to sawhorses, and the remaining four sections were completed. Two additional smaller molds covered the separate air guide inserts.</p>
+      <p>The first test pull came out nearly perfect and fit the car without correction work, because all the fitting had already been done on the repaired bumper before molding. The mold simply copied what was already correct. A carbon fiber version with honeycomb core would have brought the weight to roughly one-sixth of the original fiberglass unit. The raw material cost for that volume of carbon and honeycomb made the economics unattractive at the time, and it was never executed.</p>
+
+      <div class="photo-trio">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="First mold section built on car, bumper bolted in place, garage door masked for gelcoat"
+             alt="S2000, Amuse bumper first mold section built on car">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Five-part mold complete, all sections registered and assembled"
+             alt="S2000, Amuse bumper 5-part mold assembled">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="First test pull, near-perfect fitment, no correction work required"
+             alt="S2000, Amuse bumper first test pull installed">
+      </div>
+    </div>
+
+    <!-- 07 / PAINT BOOTH -->
+    <div class="chapter" id="ch07">
+      <div class="chapter-header">
+        <span class="chapter-num">07 /</span>
+        <h2 class="chapter-title">Backyard Paint Booth</h2>
+      </div>
+      <p>The rear bumper came off the truck on the way to lunch. Road rash across a panel that was going to need primer, color, and clear. Body shop labor on a single bumper runs several hundred dollars minimum. The alternative was to build a paint environment in the backyard.</p>
+      <p><strong>EZ-Up tent, plastic tarp walls, box fans as air movers, AC filters from Home Depot as intake filtration.</strong> The setup took under an hour. Bumper and all composite parts shot with rattle-can primer first, block-sanded, then color and clear with an HVLP gun. Zero orange peel. Wet look off the gun. Nobody could identify it as anything other than a professional booth job. The total cost of the booth hardware was less than one hour of body shop labor.</p>
+
+      <div class="photo-duo">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Backyard spray booth, EZ-Up, tarp walls, and box fan filtration"
+             alt="S2000, Backyard spray booth setup">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="Finished painted parts, bumper and composites, professional finish"
+             alt="S2000, Finished painted composite parts">
+      </div>
+    </div>
+
+  </div>
+
+<!--
+  <a href="#" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">Full Process Documentation</span>
+      <span class="album-link-title">S2000 Fabrication Program, Complete Build Archive</span>
+      <span class="album-link-count">~XX photos · Google Photos album</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+-->
+
+  <div class="project-nav">
+    <a href="mill.html" class="project-nav-item">
+      <span class="pni-label">← Previous</span>
+      <span class="pni-title">The Mill Trilogy</span>
+    </a>
+    <a href="tacoma.html" class="project-nav-item next">
+      <span class="pni-label">Next Project →</span>
+      <span class="pni-title">Suspension Geometry Correction</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="hunterdouglas.html">Case Study</a>
+    </div>
+  </footer>
+
+</main>
+<script src="../lightbox.js"></script>
+</body>
+</html>

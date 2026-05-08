@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPV Platforms + Goggle System — Kai-Hung Chuang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.scroll-target { display: block; scroll-margin-top: 80px; }
+</style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#builds">Build Depth</a></li>
+      <li><a href="hunterdouglas.html">Case Study</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <span>FPV Platforms + Goggle System</span>
+      </div>
+      <div class="project-hero-tag">05 · Airframe Design · Electronics Integration · Systems Build</div>
+      <h1>FPV Platforms<br>+ Goggle<br>System</h1>
+    </div>
+    <div>
+      <p class="project-hero-desc">
+        Five airframe configurations across full build-fly-evaluate cycles, each with a
+        specific design goal: modularity for crash recovery, aluminum crash-proof
+        structure, integrated camera packaging, dihedral FPV platform, final
+        integrated system. One complete FPV goggle built from a snowboarding goggle,
+        head-mounted magnifier optics, and stripped receiver electronics when
+        commercial options had inadequate field of view. A 3D-printed cloverleaf
+        antenna bending jig for consistent matched-pair production.
+      </p>
+    </div>
+  </section>
+
+  <div style="max-width:85%;margin:2rem auto;">
+    <img src="../images/fpv-drone-d1-01.webp"
+         loading="eager"
+         data-lightbox="fpv"
+         data-caption="The final integrated platform: Drone 5 equipped with integrated cameras and FPV goggle."
+         alt="Top-down view of Drone 5 showing the low-profile H-frame, carbon fiber motor arms, and the Sony Actioncam integrated flush into the chassis">
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-num accent">5</span>
+      <span class="stat-label">Airframe iterations, each a deliberate experiment</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">Scratch</span>
+      <span class="stat-label">FPV goggle system built from components</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">3D</span>
+      <span class="stat-label">Printed cloverleaf antenna bending jig</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">Full</span>
+      <span class="stat-label">Manual flight, no computer stabilization</span>
+    </div>
+  </div>
+
+
+  <div class="narrative">
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:-3rem 0 3rem;">
+    <a href="#fpv-goggle" class="tag-shortcut">Scratch-Built FPV Goggle ↓</a>
+    <a href="#antenna-jig" class="tag-shortcut">Cloverleaf Antenna Jig ↓</a>
+    <a href="#dihedral-experiment" class="tag-shortcut">Dihedral Stability Experiment ↓</a>
+    <a href="#weighted-dummy" class="tag-shortcut">Weighted Camera Dummy ↓</a>
+    <a href="#motor-wrench" class="tag-shortcut">Custom Motor Wrench ↓</a>
+  </div>
+  
+<!-- 01/ Drone 1: H-Frame from Scratch -->
+
+    <div class="chapter" id="ch01">
+      <div class="chapter-header">
+        <span class="chapter-num">01 /</span>
+        <h2 class="chapter-title">Drone 1: H-Frame from Scratch</h2>
+      </div>
+      <p>Racing quadcopters were just emerging. There were essentially no pre-built options. Individual components existed — motors, ESCs, open-source flight controllers, radio systems — but not complete platforms worth buying. The goal was to learn to fly completely manually with no computer stabilization, the opposite of what DJI locks you into. To do that well required understanding flight dynamics and airframe design from the component level. 3D printing was relatively new and I had access to a printer, so the answer was to design my own airframe from scratch rather than buy pre-designed frame parts.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/fpv-drone-d1-02.webp"
+         loading="lazy"
+         data-lightbox="fpv"
+         data-caption="Establishing the digital baseline: CAD design of the original H-frame used for initial flight platform testing."
+         alt="Technical CAD wireframe of Drone 1's H-frame, showing the multi-deck stacking and motor arm attachment points"
+        >
+      </div>  
+
+      <p>The H-frame geometry was the starting point. The central body was three stacked decks: ESCs sandwiched between the lower and middle deck, radio receiver and battery between middle and upper, flight controller sitting on top where its screen and program buttons stayed accessible. The four motor arms screwed in and sandwiched between the lower and middle deck — replacing a broken arm meant removing two screws, printing a replacement, and reassembling. Free to reproduce and done in minutes.</p>
+
+      <div class="photo-duo">
+        <img src="../images/fpv-drone-d1-03.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 CAD — H-frame wireframe showing three-deck structure, modular motor arm attachment points, and swing door pivot geometry"
+             alt="FPV Platforms and Goggle System — Drone 1 H-frame wireframe CAD showing three-deck structure and modular motor arms">
+        <img src="../images/fpv-drone-d1-04.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 colored CAD render — complete assembly showing deck layering, swing doors on both sides, and component placement"
+             alt="FPV Platforms and Goggle System — Drone 1 colored CAD render showing complete H-frame assembly with swing doors">
+      </div>
+      <p>The first iteration established the baseline platform architecture. I designed two pivoting swing doors to protect the electronics and serve as a quick-release mount for the voltage monitor. Because the monitor needed to be removed with the battery after every flight, the doors allowed it to be unclipped and removed in one motion. I purposely reserved the front volume of the frame for a future toolless Actioncam bay. To manage the center of gravity for this future layout, I kept the battery, the heaviest component, at the rear where it was expected to stay in later iterations. To simulate the missing camera during testing, I zip-tied a metal socket of equivalent weight to the front as a mass simulator. This allowed me to tune the PID loops and verify handling against the approximate center of gravity the final integrated system would eventually require.</p>
+
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d1-05.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 CAD — H-frame wireframe showing three-deck structure, modular motor arm attachment points, and swing door pivot geometry"
+             alt="FPV Platforms and Goggle System — Drone 1 H-frame wireframe CAD showing three-deck structure and modular motor arms">
+        <img src="../images/fpv-drone-d1-06.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 colored CAD render — complete assembly showing deck layering, swing doors on both sides, and component placement"
+             alt="FPV Platforms and Goggle System — Drone 1 colored CAD render showing complete H-frame assembly with swing doors">
+        <img src="../images/fpv-drone-d1-07.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 colored CAD render — complete assembly showing deck layering, swing doors on both sides, and component placement"
+             alt="FPV Platforms and Goggle System — Drone 1 colored CAD render showing complete H-frame assembly with swing doors">
+      </div>
+    </div>
+
+<!-- 02/ Drone 2: Aluminum X-Frame -->
+
+    <div class="chapter" id="ch02">
+      <div class="chapter-header">
+        <span class="chapter-num">02 /</span>
+        <h2 class="chapter-title">Drone 2: Aluminum X-Frame — Crash-Proof Experiment Platform</h2>
+      </div>
+      <p>Drone 1 served its purpose. Flying skills had improved and the next goal was to fly higher, faster, and through tighter spaces while building toward carrying camera and FPV payload. The 3D printed H-frame was too fragile for that level of abuse. The answer was extruded 6061 aluminum channel bolted into a rigid X configuration.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/fpv-drone-d2-01.webp"
+         loading="lazy"
+         data-lightbox="fpv"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+        >
+      </div>  
+      <p>Every design decision on Drone 2 was about crash survivability and mass centralization. Battery hung underneath a 3D printed underdeck below the X center — heaviest component at the lowest point. ESCs on top of the underdeck. Flight controller on a 3D printed top deck above the X center. <strong>The motors sit in the middle of each arm, not at the tips</strong>, which places the propellers fully enclosed within the aluminum channel profile. In a crash the aluminum frame absorbs the impact and the props survive because the frame geometry puts them inside the protection zone.</p>
+  <span id="motor-wrench" class="scroll-target"></span>
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d2-03.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 CAD — H-frame wireframe showing three-deck structure, modular motor arm attachment points, and swing door pivot geometry"
+             alt="FPV Platforms and Goggle System — Drone 1 H-frame wireframe CAD showing three-deck structure and modular motor arms">
+        <img src="../images/fpv-drone-d2-04.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 colored CAD render — complete assembly showing deck layering, swing doors on both sides, and component placement"
+             alt="FPV Platforms and Goggle System — Drone 1 colored CAD render showing complete H-frame assembly with swing doors">
+        <img src="../images/fpv-drone-d2-05.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 1 colored CAD render — complete assembly showing deck layering, swing doors on both sides, and component placement"
+             alt="FPV Platforms and Goggle System — Drone 1 colored CAD render showing complete H-frame assembly with swing doors">
+      </div>
+      <p>The frame survived every crash without being rebuilt or replaced. Very few props broke. Heavy and bulky, but it served its purpose as a high-risk skill-building platform. One minor operational frustration: brushless motors are smooth and round with nothing to grip, making field prop changes slow. I designed and printed a custom wrench that locked precisely onto the motor housing geometry to solve it.</p>
+
+      <div class="photo-duo">
+        <img src="../images/fpv-drone-d2-02.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 2 completed — aluminum X-frame with all electronics installed, battery underdeck visible below center, ready for high-risk flying"
+             alt="FPV Platforms and Goggle System — Drone 2 completed aluminum X-frame with full electronics installed">
+        <img src="../images/fpv-drone-d2-07.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 2 in flight — aluminum X-frame at an outdoor field, crash-proof construction enabling aggressive maneuvers without downtime"
+             alt="FPV Platforms and Goggle System — Drone 2 aluminum X-frame in flight at outdoor flying field">
+      </div>
+    </div>
+
+<!-- 03/ Drone 3: Camera Integration -->
+
+    <div class="chapter" id="ch03">
+      <div class="chapter-header">
+        <span class="chapter-num">03 /</span>
+        <h2 class="chapter-title">Drone 3: Back to 3D Printed — Camera Integration</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/fpv-drone-d3-01.webp"
+         loading="eager"
+         data-lightbox="fpv"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+        >
+      </div>  
+      <p>Drone 3 returned to the 3D printed H-frame with a specific new goal: carry a recording camera integrated into the airframe rather than mounted on top like a box. The typical approach bolts a GoPro above the drone — it raises center of gravity, adds frontal area, and looks like an afterthought. I chose the Sony Actioncam for its streamlined profile and minimal frontal area, and designed the front half of the chassis with a cutout the camera slides directly into, flush with the frame profile. A toolless clip snaps into the aluminum standoff spacers to retain it. Battery at the rear at a tilted angle so its front overhang sits above the flight controller, maintaining center of gravity over the frame center. Lower profile overall than Drone 1 — the two largest payloads, Actioncam and battery, protrude through deck cutouts rather than stacking above the frame.</p>
+  <span id="weighted-dummy" class="scroll-target"></span>
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d3-02.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 3 CAD — H-frame showing front Actioncam cutout, tilted rear battery position maintaining center of gravity, and enlarged side door geometry"
+             alt="FPV Platforms and Goggle System — Drone 3 CAD showing integrated camera cutout and rear battery tilt for CG balance">
+        <img src="../images/fpv-drone-d3-03.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 3 frame assembly — green low-profile H-frame with electronics integrated before camera and battery installation"
+             alt="FPV Platforms and Goggle System — Drone 3 green H-frame assembly with electronics before camera installation">
+        <img src="../images/fpv-drone-d3-04.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 3 with Sony Actioncam integrated — camera slides flush into front frame cutout, toolless clip retaining it to the aluminum standoff spacers"
+             alt="FPV Platforms and Goggle System — Drone 3 with Sony Actioncam integrated flush into front cutout held by toolless clip">
+      </div>
+      <p>The camera was not cheap and there was no reason to risk it on test flights. I modeled the exact Actioncam dimensions in CAD and printed a hollow dummy shell, then hotglued pennies inside to match the camera's actual weight. <strong>Every test flight ran with the weighted dummy until the airframe was validated. Only then did the real camera fly.</strong> The swing door concept was extended here too — two much larger doors on each side, just to push the clip-and-pivot idea further.</p>
+
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d3-05.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 3 CAD — H-frame showing front Actioncam cutout, tilted rear battery position maintaining center of gravity, and enlarged side door geometry"
+             alt="FPV Platforms and Goggle System — Drone 3 CAD showing integrated camera cutout and rear battery tilt for CG balance">
+        <img src="../images/fpv-drone-d3-06.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 3 frame assembly — green low-profile H-frame with electronics integrated before camera and battery installation"
+             alt="FPV Platforms and Goggle System — Drone 3 green H-frame assembly with electronics before camera installation">
+        <img src="../images/fpv-drone-d3-07.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 3 with Sony Actioncam integrated — camera slides flush into front frame cutout, toolless clip retaining it to the aluminum standoff spacers"
+             alt="FPV Platforms and Goggle System — Drone 3 with Sony Actioncam integrated flush into front cutout held by toolless clip">
+      </div>
+    </div>
+
+<!-- 04/ Drone 4: Dihedral Aluminum X-Frame -->
+
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
+        <h2 class="chapter-title">Drone 4: Dihedral Aluminum X-Frame — FPV Learning Platform</h2>
+      </div>
+
+            <p>Drone 3 validated the camera integration approach but the 3D printed frame was still too fragile for the next phase: learning to fly FPV. More crashes were expected during the FPV learning curve, and the platform needed to carry significantly more hardware simultaneously. Drone 4 returned to aluminum X-frame for crash survivability while pushing weight reduction much further than Drone 2.</p>
+<div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/fpv-drone-d4-01.webp"
+         loading="lazy"
+         data-lightbox="fpv"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+        >
+      </div>  
+      <p>Drone 4 returned to aluminum X-frame but significantly lighter than Drone 2 — full circular holes drilled through each arm throughout to remove as much material as possible while keeping the structural rigidity needed for crash survivability. The arms no longer extend beyond the motor base so props are no longer protected by the frame profile, but flying skill had improved enough that the crash rate was significantly lower. A modular railing system below the center allowed different payload mounting configurations to be tested.</p>
+  <span id="dihedral-experiment" class="scroll-target"></span>
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d4-02.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 CAD — lightweight aluminum X-frame showing dihedral arm bend geometry, weight reduction hole pattern through each arm, and modular railing system below center"
+             alt="FPV Platforms and Goggle System — Drone 4 CAD showing dihedral arm angles and weight reduction hole pattern">
+        <img src="../images/fpv-drone-d4-03.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 aluminum arms with drilled holes — full circular holes throughout each arm for maximum weight reduction while maintaining structural rigidity"
+             alt="FPV Platforms and Goggle System — Drone 4 aluminum arms with circular holes drilled throughout for weight reduction">
+        <img src="../images/fpv-drone-d4-04.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 X-frame assembly — dihedral arm angles visible, arms bent 5 degrees upward tilting all motors inward for passive stability"
+             alt="FPV Platforms and Goggle System — Drone 4 X-frame assembled showing dihedral arm bend with inward motor tilt">
+      </div>
+      <p>The major new addition was dihedral arms: each arm bent upward approximately 5 degrees, tilting all four motors and their propellers inward. <strong>Dihedral creates a passive self-correcting stability effect</strong> — when the drone rolls, the lower motor automatically produces more lift than the higher one, counteracting the roll without any input from the flight controller. With FPV flying as the next step and more payload expected, a more inherently stable and forgiving platform made sense. This was the first drone to carry all FPV hardware simultaneously: board cam, video transmitter, and video system battery alongside the flight battery.</p>
+
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d4-05.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 CAD — lightweight aluminum X-frame showing dihedral arm bend geometry, weight reduction hole pattern through each arm, and modular railing system below center"
+             alt="FPV Platforms and Goggle System — Drone 4 CAD showing dihedral arm angles and weight reduction hole pattern">
+        <img src="../images/fpv-drone-d4-06.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 aluminum arms with drilled holes — full circular holes throughout each arm for maximum weight reduction while maintaining structural rigidity"
+             alt="FPV Platforms and Goggle System — Drone 4 aluminum arms with circular holes drilled throughout for weight reduction">
+        <img src="../images/fpv-drone-d4-07.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 X-frame assembly — dihedral arm angles visible, arms bent 5 degrees upward tilting all motors inward for passive stability"
+             alt="FPV Platforms and Goggle System — Drone 4 X-frame assembled showing dihedral arm bend with inward motor tilt">
+      </div>
+      <div class="photo-duo">
+        <img src="../images/fpv-drone-d4-08.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 with all FPV hardware test-fitted — board cam, video transmitter, and full payload configuration before first FPV flights"
+             alt="FPV Platforms and Goggle System — Drone 4 with FPV hardware installed ready for first person view flying">
+        <img src="../images/fpv-drone-d4-09.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 4 in flight — dihedral X-frame with FPV payload, modular railing system below center visible under the frame"
+             alt="FPV Platforms and Goggle System — Drone 4 dihedral aluminum X-frame in flight with FPV hardware">
+      </div>
+    </div>
+
+<!-- 05/ The FPV Goggle System -->
+
+  <span id="fpv-goggle" class="scroll-target"></span>
+    <div class="chapter" id="ch05">
+      <div class="chapter-header">
+        <span class="chapter-num">05 /</span>
+        <h2 class="chapter-title">The FPV Goggle System: Built from Scratch</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+
+        <img src="../images/fpv-drone-fpv-01.webp"
+         loading="eager"
+         data-lightbox="fpv"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+        >
+      </div>
+      <p>Commercial FPV goggles at the time were expensive, uncomfortable, and had a field of view commonly described as "flying while looking through a mailbox." The Oculus Rift had just launched for PC gaming but FPV uses analog broadcast signals — you cannot use an Oculus for racing FPV. The goal was to build something closer to the Oculus experience: genuinely wide field of view, self-contained electronics, and actually comfortable to wear.</p>
+
+      <div class="photo-duo">
+        <img src="../images/fpv-drone-fpv-02.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-03.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+      </div>
+      <p>Started by getting the full FPV signal chain working: board cam, transmitter on the drone, receiver, analog monitor to verify signal quality. Then bought and <strong>tested approximately eight different generic 3 to 7-inch analog LCD screens</strong> from Amazon — cheap car backup camera monitors that happened to accept the same analog signal and were far cheaper than purpose-built FPV screens. Experimented with two panels side by side for a stereoscopic wide-FOV approach, tried curved mirrors to allow side mounting, tested many optic and spacing combinations. None of the dual-panel configurations worked — sufficiently small, high-quality panels at the right resolution were not available and spacing was always an unresolvable problem. Chose the best single 5-inch panel and moved on.</p>
+
+      <div class="photo-duo">
+        <img src="../images/fpv-drone-fpv-05.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-06.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+      </div>
+      <p>Optics were next. Short focal distance lenses were needed to keep the headset compact enough to actually wear. I tried cutting and bonding magnifying glass lenses together but the bond line never looked clean. Then I found head-mounted magnifiers — the kind used for fine assembly work — which came pre-built with exactly the double-fused lens I had been making, in multiple magnification levels, cheaper, and better quality. That solved the optics problem.</p>
+
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-fpv-07.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-04.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+        <img src="../images/fpv-drone-fpv-08.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Head-mounted magnifier optics — the discovery that solved the lens problem: pre-fused double lens available in multiple magnification levels, cheaper and better than hand-cut and bonded lenses"
+             alt="FPV Platforms and Goggle System — Head-mounted magnifier optics used as FPV goggle lens solution">
+      </div>
+      <p>For the housing, snowboarding goggles were the obvious base: thick foam face padding, heavy-duty straps capable of supporting real weight, and large lens openings. I popped the lens out of a Bolle snowboarding goggle, measured the opening, and modeled it in CAD along with the LCD panel and magnifier optics. Experimented with the physical components in front of my face to establish the correct eye relief distance, translated those measurements into a 3D printed enclosure mounting directly into the goggle frame. All the electronics — receiver, battery regulator, battery, antenna — were stripped of their original enclosures, made as compact as possible, and integrated into the headset housing. <strong>The entire system was self-contained in one package, Oculus-style, with a genuinely wide field of view.</strong></p>
+
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-fpv-09.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-10.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+        <img src="../images/fpv-drone-fpv-11.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Head-mounted magnifier optics — the discovery that solved the lens problem: pre-fused double lens available in multiple magnification levels, cheaper and better than hand-cut and bonded lenses"
+             alt="FPV Platforms and Goggle System — Head-mounted magnifier optics used as FPV goggle lens solution">
+      </div>
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-fpv-12.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-13.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+        <img src="../images/fpv-drone-fpv-17.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Head-mounted magnifier optics — the discovery that solved the lens problem: pre-fused double lens available in multiple magnification levels, cheaper and better than hand-cut and bonded lenses"
+             alt="FPV Platforms and Goggle System — Head-mounted magnifier optics used as FPV goggle lens solution">
+      </div>
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-fpv-14.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-15.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+        <img src="../images/fpv-drone-fpv-16.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+       </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/fpv-drone-fpv-18.webp"
+         loading="eager"
+         data-lightbox="fpv"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+        >
+       </div>
+         <div class="photo-trio">
+        <img src="../images/fpv-drone-fpv-19.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-20.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+        <img src="../images/fpv-drone-fpv-21.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Head-mounted magnifier optics — the discovery that solved the lens problem: pre-fused double lens available in multiple magnification levels, cheaper and better than hand-cut and bonded lenses"
+             alt="FPV Platforms and Goggle System — Head-mounted magnifier optics used as FPV goggle lens solution">
+      </div>
+      <div class="photo-trio">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/fpv-drone-fpv-23.webp"
+             data-lightbox="fpv"
+             data-caption="Sticky note proof of concept — two folded sticky notes validating the single-action spring latch geometry before any CAD"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/fpv-drone-fpv-23.webm" type="video/webm">
+        </video>
+        <img src="../images/fpv-drone-fpv-24.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Goggle system CAD — enclosure designed around the Bolle snowboarding goggle opening, LCD panel position, and magnifier optic eye relief distance"
+             alt="FPV Platforms and Goggle System — Goggle system CAD designed around snowboard goggle opening and LCD optic eye relief">
+        <img src="../images/fpv-drone-fpv-22.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Snowboarding goggle disassembly — lens popped out, foam face padding and strap system retained as the headset foundation for comfort and weight support"
+             alt="FPV Platforms and Goggle System — Snowboarding goggle with lens removed as foundation for custom FPV headset">
+       </div>
+
+
+     </div>
+
+<!-- 06/ The Cloverleaf Antenna Jig -->
+
+  <span id="antenna-jig" class="scroll-target"></span>
+    <div class="chapter" id="ch06">
+      <div class="chapter-header">
+        <span class="chapter-num">06 /</span>
+        <h2 class="chapter-title">The Cloverleaf Antenna Jig</h2>
+      </div>
+      <p>Omnidirectional FPV antennas at the time were unreliable. They had preferred directions and would cut out behind obstacles as minor as a fence post or a single tree. A radio frequency engineer published an open-source omnidirectional Clover Leaf Mushroom antenna design that became widely adopted in the racing FPV community. Cheap Chinese import versions performed poorly because manufacturing variance in wire bending took the antenna out of spec. The information was publicly available but consistently hand-bending MIG welding wire into correct cloverleaf geometry was difficult, especially when building a matched pair for drone and goggle.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/fpv-drone-antenna-01.webp"
+         loading="lazy"
+         data-lightbox="fpv"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+        >
+      </div>        
+      <p>I took the published design, modeled it in CAD, and designed a wire bending jig around it. 3D printed the jig. <strong>Building cloverleaf antennas with the jig was faster, more consistent, and produced a matched pair every time</strong> — the same problem that made commercial imports unreliable was solved at the prototyping level by building tooling that enforced the correct geometry.</p>
+
+      <div class="photo-duo">
+        <img src="../images/fpv-drone-antenna-02.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Cloverleaf antenna bending jig — 3D printed from CAD model of the published RF engineer's open-source design, enforces correct wire bend geometry for every antenna produced"
+             alt="FPV Platforms and Goggle System — 3D printed cloverleaf antenna bending jig for consistent wire geometry">
+        <img src="../images/fpv-drone-antenna-03.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Finished cloverleaf antennas — matched pair produced with the bending jig, consistent geometry that cheap commercial copies failed to achieve through hand bending"
+             alt="FPV Platforms and Goggle System — Matched pair of finished cloverleaf antennas produced with custom bending jig">
+      </div>
+    </div>
+
+<!-- 07/ Drone 5: Everything Together -->
+
+    <div class="chapter" id="ch07">
+      <div class="chapter-header">
+        <span class="chapter-num">07 /</span>
+        <h2 class="chapter-title">Drone 5: Everything Together</h2>
+      </div>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/fpv-drone-d5-01.webp"
+         loading="lazy"
+         data-lightbox="fpv"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+        >
+      </div> 
+      <p>Drone 5 integrated everything learned from the previous four platforms into one final design. Switching to the DragonFly32 flight controller allowed for a significantly lower upper deck. To centralize weight and improve the moment of inertia, I moved both the battery and the Sony Actioncam inboard toward the center of the frame—positioning the battery much further in since it represents the highest percentage of total mass. This allowed the center of gravity to stay naturally balanced without needing a tilted mounting arrangement. The front retaining clip was designed for double duty: it locks the Actioncam in place and serves as the housing for the FPV board cam, with an integrated impact protector for the lens.</p>
+      
+
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d5-02.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 5 assembled — CF motor arms, DragonFly32 FC, Actioncam integrated in cutout, FPV board cam in front clip with impact protector, battery on top deck"
+             alt="FPV Platforms and Goggle System — Drone 5 fully assembled with CF arms, integrated Actioncam, and FPV board cam in front retaining clip">
+        <img src="../images/fpv-drone-d5-03.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Complete FPV system — Drone 5 paired with the scratch-built goggle system, both fully operational for simultaneous FPV flight and HD recording"
+             alt="FPV Platforms and Goggle System — Drone 5 and custom goggle system as complete paired FPV platform">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/fpv-drone-d5-04.webp"
+             data-lightbox="fpv"
+             data-caption="Sticky note proof of concept — two folded sticky notes validating the single-action spring latch geometry before any CAD"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/fpv-drone-d5-04.webm" type="video/webm">
+        </video>
+      </div>
+
+      <p>While the initial design used 3D-printed arms, I wanted to push the platform’s performance ceiling. I previously attempted to maximize the strength of printed arms by strategically shaping their profiles to force the slicer into creating continuous, high-strength perimeter walls. However, the torque loads from high-performance maneuvers eventually reached the material's fatigue limit and caused a few total frame-loss crashes. I modified the frame to accept off-the-shelf carbon fiber motor arms, which offered a better cost-to-performance ratio in bulk. Because the CF arms I selected were longer, it provided the added benefit of being able to run larger propellers for significantly more thrust.</p>
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d5-05.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 5 CAD — H-frame with CF motor arms, low upper deck, Actioncam positioned further back toward center, and dual-function FPV front retaining clip"
+             alt="FPV Platforms and Goggle System — Drone 5 CAD showing H-frame with CF arms, low deck, and integrated FPV front clip">
+        <img src="../images/fpv-drone-d5-06.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 5 assembled — CF motor arms, DragonFly32 FC, Actioncam integrated in cutout, FPV board cam in front clip with impact protector, battery on top deck"
+             alt="FPV Platforms and Goggle System — Drone 5 fully assembled with CF arms, integrated Actioncam, and FPV board cam in front retaining clip">
+        <img src="../images/fpv-drone-d5-07.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 5 assembled — CF motor arms, DragonFly32 FC, Actioncam integrated in cutout, FPV board cam in front clip with impact protector, battery on top deck"
+             alt="FPV Platforms and Goggle System — Drone 5 fully assembled with CF arms, integrated Actioncam, and FPV board cam in front retaining clip">
+      </div>
+      <div class="photo-trio">
+        <img src="../images/fpv-drone-d5-08.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 5 CAD — H-frame with CF motor arms, low upper deck, Actioncam positioned further back toward center, and dual-function FPV front retaining clip"
+             alt="FPV Platforms and Goggle System — Drone 5 CAD showing H-frame with CF arms, low deck, and integrated FPV front clip">
+        <img src="../images/fpv-drone-d5-09.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 5 CAD — H-frame with CF motor arms, low upper deck, Actioncam positioned further back toward center, and dual-function FPV front retaining clip"
+             alt="FPV Platforms and Goggle System — Drone 5 CAD showing H-frame with CF arms, low deck, and integrated FPV front clip">
+        <img src="../images/fpv-drone-d5-10.webp"
+             loading="lazy"
+             data-lightbox="fpv"
+             data-caption="Drone 5 CAD — H-frame with CF motor arms, low upper deck, Actioncam positioned further back toward center, and dual-function FPV front retaining clip"
+             alt="FPV Platforms and Goggle System — Drone 5 CAD showing H-frame with CF arms, low deck, and integrated FPV front clip">
+      </div>
+
+      <p>The longer CF arms provided the additional rigidity needed for precise handling and proved to be the correct choice by surviving dozens of high-speed crashes that would have shattered earlier prototypes. Even though Drone 5 carried the heaviest payload in the series, it had the best flight characteristics due to the compact packaging and centralized weight distribution. With the custom wide-FOV goggles and simultaneous HD recording, this platform was the successful culmination of the entire development program.</p>
+    </div>
+
+  </div>
+
+<!--
+  <a href="#" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">Full Process Documentation</span>
+      <span class="album-link-title">FPV Platforms + Goggle System — Complete Build Archive</span>
+      <span class="album-link-count">~150 photos · Google Photos album · Coming soon</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+-->
+
+  <div class="project-nav" style="display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin:5rem 0 3rem;align-items:stretch;">
+    <a href="../index.html" class="project-nav-item" style="flex:0 0 auto;min-width:72px;text-align:center;justify-content:center;">
+      <span class="pni-label" style="color:var(--accent);font-weight:700;font-size:11px;">Home</span>
+      <span class="pni-title" style="font-size:1rem;">↑</span>
+    </a>
+    <a href="tacoma.html" class="project-nav-item" style="flex:1;">
+      <span class="pni-label" style="color:var(--text-muted);">← Previous Project</span>
+      <span class="pni-title">Suspension Geometry Correction</span>
+    </a>
+    <a href="voron.html" class="project-nav-item next" style="flex:1;">
+      <span class="pni-label">Next Project →</span>
+      <span class="pni-title">Voron Architecture</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="hunterdouglas.html">Case Study</a>
+    </div>
+  </footer>
+
+</main>
+<script src="../lightbox.js"></script>
+
+</body>
+</html>

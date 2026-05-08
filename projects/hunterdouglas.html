@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hunter Douglas $6M Rescue — Kai-Hung Chuang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.constraint-box {
+  background: var(--bg3);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.constraint-box h4 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.constraint-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.constraint-list li {
+  font-size: 16px;
+  color: var(--text-secondary);
+  padding-left: 1rem;
+  position: relative;
+}
+.constraint-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+.constraint-list li strong { color: var(--text); font-weight: 500; }
+
+.timeline {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  margin: 2rem 0;
+}
+.tl-time {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  padding: 1rem 1rem 1rem 0;
+  border-right: 1px solid var(--border);
+  text-align: right;
+}
+.tl-event {
+  font-size: 16px;
+  color: var(--text-secondary);
+  padding: 1rem 0 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.tl-event strong { color: var(--text); font-weight: 500; }
+.tl-time { border-bottom: 1px solid var(--border); }
+.scroll-target { display: block; scroll-margin-top: 80px; }
+</style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#builds">Build Depth</a></li>
+      <li><a href="case-study.html">Case Study</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <span>Case Study</span>
+      </div>
+      <div class="project-hero-tag">00 Case Study · Program Rescue · NPI Under Constraint</div>
+      <h1>Hunter Douglas<br>$6M Rescue<br>60 Days Out</h1>
+    </div>
+    <div>
+      <p class="project-hero-desc">
+        Client-developed accessory failed production validation 60 days before a nationwide launch.
+        24,000 books already mid-production. Zero native CAD. Zero CapEx budget. Immovable launch date.
+        Delivered a functional prototype in 7 days. Shipped on time.
+      </p>
+    </div>
+  </section>
+
+      <div style="max-width:85%;margin:2rem auto;">
+        <img src="../images/hero-hd-window-cling-deployed-01.webp"
+             loading="eager"
+             data-lightbox="hd"
+             data-caption="Pre-production prototype — single-action deployment, four tumbling magnet cavities, entirely polysheet"
+             alt="Hunter Douglas Rescue — Pre-production window cling prototype held open showing four expanded honeycomb swatch columns">
+      </div>
+
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-num accent">7</span>
+      <span class="stat-label">Days to functional prototype</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">14</span>
+      <span class="stat-label">Days to production approval</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">$0</span>
+      <span class="stat-label">New tooling or CapEx</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num accent">$600K</span>
+      <span class="stat-label">Contribution margin added</span>
+    </div>
+  </div>
+
+
+  <div class="narrative">
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0.25rem 0 3rem;">
+    <a href="#failed-autopsy" class="tag-shortcut">Diagnosis from One Static Rendering ↓</a>
+    <a href="#polysheet-discovery" class="tag-shortcut">Polysheet as Functional Structure ↓</a>
+    <a href="#polarity-problem" class="tag-shortcut">Polarity Variance at Scale ↓</a>
+    <a href="#tumbling-magnet" class="tag-shortcut">Soda Can Breakthrough ↓</a>
+    <a href="#dfm-validation" class="tag-shortcut">DFM Returned 1:1 Unchanged ↓</a>
+  </div>
+
+<!-- 01/ The Context — A Two-Year Blind Spot-->
+    
+    <div class="chapter" id="ch01">
+      <div class="chapter-header">
+        <span class="chapter-num">01 /</span>
+        <h2 class="chapter-title">The Context: A Two-Year Blind Spot</h2>
+      </div>
+
+      <div class="photo-single" style="max-width:1000px;margin:2rem auto;">
+        <img src="../images/hd-final-book-duette-01.webp"
+             loading="eager"
+             data-lightbox="hd"
+             data-caption="The 2016 Duette sample book — horizontal swatch arrangement, the major innovation that drove the accessory requirement"
+             alt="Hunter Douglas 2016 Duette sample book with horizontal swatch deck arrangement"
+             style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
+      </div>
+      <p>Sampling International was one of the largest window covering sample book manufacturers in the world. Hunter Douglas was their most important client. The 2016 Duette Honeycomb relaunch was Hunter Douglas's halo program, a full redesign of their premium sample book with one major innovation: horizontal swatch arrangement instead of vertical, allowing multiple swatches to expand simultaneously for side-by-side color comparison.</p>
+      <p>For 24 months, the sample book program had been in development. Hunter Douglas had simultaneously been developing a companion accessory, a window cling device that would allow retail consultants to attach the horizontal swatch decks directly to a customer's window, showing exactly how the shade would look in situ. Sampling International was told only to "reserve space" in the book. They never saw the accessory design. They weren't involved in its development.</p>
+      <p>I had been at the company for a few months when I was pulled into a client meeting. That's where I learned: <strong>the accessory had failed production validation. Launch was 60 days out. 24,000 books were mid-production. Hunter Douglas was asking if we could step in.</strong></p>
+    </div>
+
+<!-- 02/ The Box — Hard System Constraints-->
+
+    <div class="chapter" id="ch02">
+      <div class="chapter-header">
+        <span class="chapter-num">02 /</span>
+        <h2 class="chapter-title">The Box: Hard System Constraints</h2>
+      </div>
+      <p>Before designing anything, I needed to understand exactly what I couldn't change. The constraints weren't preferences. They were locked.</p>
+
+      <div class="constraint-box">
+        <h4>Immutable constraints</h4>
+        <ul class="constraint-list">
+          <li><strong>Sample book geometry:</strong> Finalized, in mid-production. Nothing about the book could change.</li>
+          <li><strong>24,000 committed units:</strong> Books already in production with magnetized swatch decks installed. 60+ decks per book, magnets already embedded.</li>
+          <li><strong>Zero CapEx:</strong> No budget for new tooling, molds, or machinery of any kind.</li>
+          <li><strong>Existing processes only:</strong> Any solution had to be manufacturable with current in-house capabilities.</li>
+          <li><strong>Immovable launch:</strong> Nationwide retail launch date was fixed. Non-negotiable.</li>
+          <li><strong>No native CAD:</strong> Only a single static rendering of the failed design was provided. No dimensions, no specs, no access to the original engineers.</li>
+        </ul>
+      </div>
+
+    </div>
+
+<!-- 03/ Autopsy of the Failed Architecture-->
+
+  <span id="failed-autopsy" class="scroll-target"></span>
+    <div class="chapter" id="ch03">
+      <div class="chapter-header">
+        <span class="chapter-num">03 /</span>
+        <h2 class="chapter-title">Autopsy of the Failed Architecture</h2>
+      </div>
+
+      <p>The failed design was a multi-part injection-molded rigid plastic mechanism. Working from nothing but a single static rendering with no dimensions, no specs, and no access to the original engineers, I could still identify four structural problems that made it incompatible with the program constraints regardless of whether it functioned correctly mechanically.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/hd-context-failed-rendering-01.webp"
+         loading="lazy"
+         data-lightbox="hd"
+         data-caption="The only artifact provided by the client — a single static rendering of the failed design, no dimensions, no specs, no access to original engineers"
+         alt="Hunter Douglas Rescue — Static rendering of failed injection-molded window cling accessory, the only artifact provided"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+        </div>
+      <p><strong>Tolerance dependency:</strong> Multi-part sliding and hinge interfaces required tight molded tolerances to function correctly. The mechanical complexity of the movement itself made reliable, consistent operation at scale inherently difficult.</p>
+      <p><strong>Cost-complexity coupling:</strong> An injection-molded multi-part mechanism for a sampling accessory was architecturally disproportionate. The cost per unit would be high, and under a zero-CapEx constraint, new injection tooling was simply not an option regardless of timeline.</p>
+      <p><strong>Mechanical exposure:</strong> High part count meant cumulative failure probability under field handling. A design consultant carrying sample books in and out of homes would encounter abuse conditions the mechanism wasn't designed for.</p>
+      <p><strong>Operational burden:</strong> Multi-step deployment added user friction that shouldn't exist in a field sales tool.</p>
+
+      <div class="pull-quote">
+        <p>The failure wasn't time-to-design. It was time-to-discover. The architecture failed at validation because it was misaligned with the program's real constraints from the beginning.</p>
+      </div>
+    </div>
+
+<!-- 04/ Field Research — Understanding the Use Case-->
+
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
+        <h2 class="chapter-title">Field Research: Understanding the Use Case</h2>
+      </div>
+      <p>Before designing anything, I got direct input from HD's brand manager overseeing the program, who had aggregated feedback from field sales reps and training sessions across the country. In addition, I went to three Hunter Douglas design center retail locations and talked directly to the design consultants about how they used sample books with clients in the field. Between both sources, the use case became clear.</p>
+      <p>The interaction had to be <strong>self-explanatory and minimal-action.</strong> A consultant with a client standing next to them can't fumble with a multi-step mechanism while trying to present swatch samples. The device had to be intuitive enough that the client could operate it with ease after watching once. If the mechanism wasn't immediately obvious, it was already a design failure.</p>
+    </div>
+
+<!-- 05/ The Polysheet Discovery-->
+
+  <span id="polysheet-discovery" class="scroll-target"></span>
+    <div class="chapter" id="ch05">
+      <div class="chapter-header">
+        <span class="chapter-num">05 /</span>
+        <h2 class="chapter-title">The Polysheet Discovery</h2>
+      </div>
+      <p>The zero-CapEx constraint eliminated injection molding immediately. No new molds, no new tooling. I went looking through old sample books for materials that were already part of the production ecosystem.</p>
+      <p>Most sample book pages were printed polysheet, a semi-rigid plastic sheet material used throughout Sampling International's production. We had scrap everywhere. I started doing cut and bend tests. <strong>Polysheet behaves like origami: it folds cleanly on score lines, holds a bend, and retains spring tension.</strong> You can create a live hinge. You can use the inherent spring tension of the material as a functional element rather than fighting its natural behavior.</p>
+      <p>With an X-Acto knife and high-strength double-sided tape already used in book construction, I assembled a rough polysheet mockup in under ten minutes. It was enough to verify that the material's spring tension could hold a sample deck horizontal and allow the honeycomb cells to deploy. <strong>Functional logic confirmed in its crudest form before committing any further time.</strong></p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/hd-polysheet-early-mockup-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="First polysheet mockup — testing whether spring tension could hold a sample deck horizontal and allow honeycomb deployment"
+             alt="Hunter Douglas Rescue — Initial polysheet mockup testing material spring tension and deck deployment logic"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>       
+      <p>The next problem was deployment. The client's failed design required multiple hands and multiple steps. I needed to reduce it to a single action. The concept: a spring-latch where raising the deck causes it to self-latch into position. <strong>I validated this with two sticky notes folded into the approximate geometry. The paper version worked exactly as predicted.</strong> That was enough to know the direction was correct.</p>
+      <div class="photo-duo">
+        <img src="../images/hd-stickynote-latch-idea-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Latch concept sketches — reducing multi-step deployment to a single lift-and-latch action"
+             alt="Hunter Douglas Rescue — Early concept sketches exploring single-action spring latch deployment mechanism"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center;display:block;">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/hd-stickynote-latch-mockup-01.webp"
+             data-lightbox="hd"
+             data-caption="Sticky note proof of concept — two folded sticky notes validating the single-action spring latch geometry before any CAD"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/hd-stickynote-latch-mockup-01.webm" type="video/webm">
+        </video>
+      </div>
+        <p>I then moved to CAD to establish dimensions and verify the geometry, confirming the self-latching action worked correctly and that everything was properly sized for the swatch decks. The final architecture used polysheet for every functional role simultaneously: <strong>spring tension for the latch mechanism, live hinge for the deployment action, and origami folding to create rigid structural platforms from flat sheet stock.</strong> No rigid inserts, no additional materials, no new processes.</p>
+    </div>
+
+<!-- 06/ The Magnet Polarity Problem — 20+ Failed Ideas-->
+
+    <div class="chapter" id="ch06">
+      <div class="chapter-header">
+        <span class="chapter-num">06 /</span>
+        <h2 class="chapter-title">The Magnet Polarity Problem: 20+ Failed Ideas</h2>
+      </div>
+      <p>The swatch decks attached to the sample books via velcro patches. The honeycomb cells within each deck were held closed by embedded magnets, one per swatch, attracting against a metal disk in the backing material. Those same embedded magnets were the obvious attachment mechanism for the window cling: strong, clean, and already present in every deck without adding any new components.</p>
+  <span id="polarity-problem" class="scroll-target"></span>
+      <p>However, the polarity of those embedded magnets was guidelined but never strictly controlled during manufacturing. It didn't need to be. The magnets held each honeycomb cell closed against a metal disk; which pole faced which direction was not crucial for that function. <strong>But repurposing them as an attachment mechanism exposed a critical manufacturing variance: across millions of embedded magnets, polarity was effectively random.</strong> A single reversed magnet in a 4-swatch deck would cause attachment failure in the field. There was no path to guaranteeing consistent polarity across 24,000 books.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/hd-swatch-magnets-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Polarity failure mode — a single reversed magnet in a 4-swatch deck causes complete attachment failure in the field"
+             alt="Hunter Douglas Rescue — Diagram showing how a single reversed embedded magnet causes window cling attachment failure"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>I spent days testing ideas. Magnets glued to scored polysheet platforms. Magnets on rubber bands. Magnets on arched spring arms. Most worked in theory. None were reliable in practice. Too sensitive to multiple factors, not elegant enough for manual mass production.</p>
+      <div class="photo-duo">
+        <img src="../images/hd-ideas-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Magnet polarity ideation — one of 20+ concepts explored"
+             alt="Hunter Douglas Rescue — Early hand sketches exploring magnet orientation constraint mechanisms">
+        <img src="../images/hd-ideas-02.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Further ideation — all functional in theory, none reliable in practice at scale"
+             alt="Hunter Douglas Rescue — Additional concept sketches for polarity-agnostic magnet attachment solutions">
+      </div>
+    </div>
+
+<!-- 07/ The Breakthrough — A Soda Can in a Parking Lot-->
+
+  <span id="tumbling-magnet" class="scroll-target"></span>
+    <div class="chapter" id="ch07">
+      <div class="chapter-header">
+        <span class="chapter-num">07 /</span>
+        <h2 class="chapter-title">The Breakthrough: A Soda Can in a Parking Lot</h2>
+      </div>
+      <p>The breakthrough came off the clock. Walking across a parking lot, I accidentally kicked an empty soda can someone had thrown on the ground. It tumbled and rolled before coming to rest. In that moment the solution was obvious.</p>
+      <div class="photo-single" style="max-width:1000px;margin:2rem auto;">
+        <img src="../images/hd-magnet-logic-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Tumbling magnet logic — magnetic field induces self-correction"
+             alt="Hunter Douglas Rescue — Diagram showing three-stage free-tumbling magnet self-correction mechanism"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p><strong>The magnets don't need to be attached to anything that constrains their movement. They just need a cavity to tumble freely in.</strong> A magnet in a free-rotating cavity will naturally align itself with whatever magnetic field it encounters on approach, including a reversed one. The cavity magnet self-corrects to match the swatch deck magnet regardless of what polarity it presents. <strong>The unknown, uncontrollable orientation of the swatch deck magnets becomes irrelevant.</strong></p>
+        <div style="max-width:75%;margin:2rem auto;">
+          <video autoplay loop muted playsinline
+               preload="none"
+               poster="../images/hd-tumbling-magnets-proof-01.webp"     
+               data-lightbox="hd"
+               data-caption="Crude clear-polysheet mockup with free-tumbling magnets — magnets shuffled to random orientations, self-aligned to correct attachment on every single approach regardless of starting polarity"
+               style="width:100%;aspect-ratio:16/9;display:block;cursor:zoom-in;">
+            <source src="../images/hd-tumbling-magnets-proof-01.webm" type="video/webm">
+          </video>
+        </div>
+      <p>The next morning I hand-constructed a crude mockup out of clear polysheet with magnets enclosed to test the theory. Shuffled the magnets into random orientations and tested attachment on approach. The magnets self-rotated and self-aligned into perfect attachment every time. The physics worked.</p>
+      <div class="photo-duo">
+        <img src="../images/hd-cad-concept-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="CAD virtual fitment check — integrating all three workstreams into functional geometry"
+             alt="Hunter Douglas Rescue — SolidWorks CAD model integrating polysheet latch, rigid deck, and tumbling magnet cavity geometry">
+        <video autoplay loop muted playsinline
+             preload="none"
+             poster="../images/hd-tumbling-magnets-prototype-01.webp"     
+             data-lightbox="hd"
+             data-caption="First presentation prototype combining all designed features"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/hd-tumbling-magnets-prototype-01.webm" type="video/webm">
+        </video>
+      </div>
+      <p>I then 3D-printed four cylindrical magnet cavities to refine the cavity geometry, and built a concept prototype window cling in under 20 minutes using only materials the factory already used; polysheet folded, scored, and taped throughout, with the 3D-printed cavities embedded where the magnet pockets needed to be. <strong>For the first time, all three solutions worked together in a single prototype: the polysheet spring tension for latching, the rigid folded deck with live hinge as structure, and the tumbling magnet cavities for polarity-agnostic attachment.</strong> The prototype had to look finished enough to bring to management as a complete solution, not just a proof of physics. That's what it became.</p>
+    </div>
+ 
+<!-- 08/ From Proof of Concept to Production: 7 Days--> 
+
+    <div class="chapter" id="ch08">
+      <div class="chapter-header">
+        <span class="chapter-num">08 /</span>
+        <h2 class="chapter-title">From Proof of Concept to Production: 7 Days</h2>
+      </div>
+      <p>With the combined prototype validating all three systems working together, the next step was turning it into a manufacturable design. The 3D-printed magnet cavities were a stand-in, they had to be replaced with something the factory could produce at scale using existing processes. The solution was to fold the cavities out of polysheet itself. A single scored and folded polysheet strip formed all four cavity cells, enclosing the tumbling magnets in the correct locations without any manual alignment or additional tooling. <strong>The entire window cling, including the magnet cavities, was now constructible entirely from flat polysheet stock using existing die-cutting and assembly workflows.</strong></p>
+  <span id="dfm-validation" class="scroll-target"></span>
+      <p>I worked out the final geometry in CAD, locking in every dimension, tolerance, and adhesive placement. Full prototype in 7 days, presented to key stakeholders at Sampling International. The design then went into production engineering — working remotely with the factory's production engineers in China to validate that every assembly step could be performed reliably by workers on the line at scale. Each step reviewed and confirmed before the master pattern was submitted.</p>
+      <p><strong>The DFM master pattern returned 1:1 unchanged from factory engineering review.</strong> No adjustments required. The design was manufacturable as submitted.</p>
+      <div class="photo-trio">
+        <img src="../images/hd-revision-masterpattern-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="CAD redesign — 3D-printed prototype cavities replaced with a single folded polysheet strip forming all four magnet cells"
+             alt="Hunter Douglas Rescue — CAD redesign replacing 3D-printed magnet cavities with single folded polysheet strip">
+        <img src="../images/hd-revision-unifycells-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Revised magnet cavity construction — single folded polysheet forming all four cells, entirely within existing factory processes"
+             alt="Hunter Douglas Rescue — Revised polysheet magnet cavity replacing 3D-printed prototype components">
+        <img src="../images/hd-revision-production-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Pre-production prototype verification — testing assembly sequence and confirming all dimensions"
+             alt="Hunter Douglas Rescue — Pre-production prototype being assembled and verified before factory engineering review">
+      </div>
+      <div class="photo-single" style="max-width:1000px;margin:2rem auto;">
+        <img src="../images/hd-final-design-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Final production design — engineering drawings submitted for US Provisional Patent"
+             alt="Hunter Douglas Rescue — Final window cling engineering drawings used for US Provisional Patent application"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+<!-- 09/ Execution — 24,000 Units, On Time--> 
+
+    <div class="chapter" id="ch09">
+      <div class="chapter-header">
+        <span class="chapter-num">09 /</span>
+        <h2 class="chapter-title">Execution: 24,000 Units, On Time</h2>
+      </div>
+      <p>24,000 units integrated into the Duette sample books and shipped for the nationwide launch. No delay. At their annual summit, the Hunter Douglas Co-President took the window cling apart in front of 30 affiliate executives. He was a mechanical person who wanted to understand how the problem had been solved.</p>
+
+      <div class="timeline">
+        <div class="tl-time">Day 0</div>
+        <div class="tl-event">Client reports failure. Tasked with replacement design.</div>
+        <div class="tl-time">Day 1-4</div>
+        <div class="tl-event">Architecture analysis. Field research at retail locations and with HD brand management. Multiple materials and design concepts explored. Polysheet identified as the logical path after ruling out other options.</div>
+        <div class="tl-time">Day 5-6</div>
+        <div class="tl-event"><strong>Magnet polarity breakthrough.</strong> 20-minute proof-of-concept validates passive tumbling cavity system.</div>
+        <div class="tl-time">Day 7</div>
+        <div class="tl-event"><strong>Functional prototype complete.</strong> Full system demonstrated: single-action latch + polarity-agnostic attachment.</div>
+        <div class="tl-time">Day 14</div>
+        <div class="tl-event"><strong>Production approved.</strong> DFM master pattern returned 1:1 unchanged from factory engineering review.</div>
+        <div class="tl-time">Launch</div>
+        <div class="tl-event"><strong>24,000 units shipped on schedule.</strong> $768K incremental revenue. $600K contribution margin.</div>
+      </div>
+
+      <div class="photo-duo">
+        <img src="../images/hd-final-expanded-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Pre-production prototype deployed on window — four honeycomb swatch columns expanded"
+             alt="Hunter Douglas Rescue — Pre-production window cling prototype deployed on office window with honeycomb swatches expanded">
+        <img src="../images/hd-final-closed-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Production unit in closed position — compact flat profile for storage and transit in sample book"
+             alt="Hunter Douglas Rescue — Final production window cling unit in closed storage position">
+      </div>      
+      <div class="photo-trio">
+        <img src="../images/hd-final-collapsed-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Production unit in closed position — collapsed to expose attachment holes for book rings"
+             alt="Hunter Douglas Rescue — Final production unit in collapsed position with book ring latch engaged">
+        <img src="../images/hd-final-back-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Production unit backside, expansion slots allow compact storage and provide proper distance for honeycomb sampling"
+             alt="Hunter Douglas Rescue — Backside of final production unit showing all-polysheet construction">
+        <img src="../images/hd-final-cells-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Magnet cavity cells constructed out of single folded polysheet — rigid deck formed without rigid components"
+             alt="Hunter Douglas Rescue — Final production magnet cavity cells formed from single folded polysheet strip">
+      </div>  
+      <div class="photo-duo">
+        <img src="../images/hd-final-book-top-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Alternative storage position — window cling stored flat on top of pages"
+             alt="Hunter Douglas Rescue — Window cling stored flat on top of sample book alternative storage position">
+        <img src="../images/hd-final-book-inside-01.webp"
+             loading="lazy"
+             data-lightbox="hd"
+             data-caption="Primary storage position — window cling clipped into book binding via ring attachment"
+             alt="Hunter Douglas Rescue — Window cling integrated into sample book via ring attachment, primary storage position">
+
+      </div>       
+   
+    </div>
+
+  </div>
+
+  <a href="case-study.html" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">PDF Version</span>
+      <span class="album-link-title">Hunter Douglas Case Study — Formatted PDF</span>
+      <span class="album-link-count">6 pages · Technical diagrams and renders · Downloadable</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+
+<!--
+  <a href="#" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">Full Process Documentation</span>
+      <span class="album-link-title">Hunter Douglas Rescue — Complete Prototype Archive</span>
+      <span class="album-link-count">~100 photos · All prototype stages, test iterations, production units · Coming soon</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+-->
+
+  <div class="project-nav" style="display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin:5rem 0 3rem;align-items:stretch;">
+    <a href="../index.html" class="project-nav-item" style="flex:0 0 auto;min-width:72px;text-align:center;justify-content:center;">
+      <span class="pni-label" style="color:var(--accent);font-weight:700;font-size:11px;">Home</span>
+      <span class="pni-title" style="font-size:1rem;">↑</span>
+    </a>
+    <a href="mill.html" class="project-nav-item next" style="flex:1;">
+      <span class="pni-label">Next Project →</span>
+      <span class="pni-title">The Mill Trilogy</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="case-study.html" target="_blank" rel="noopener noreferrer">PDF Case Study</a>
+    </div>
+  </footer>
+
+</main>
+<script src="../lightbox.js"></script>
+</body>
+</html>

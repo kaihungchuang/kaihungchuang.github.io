@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nozzle Camera System — Kai-Hung Chuang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.scroll-target { display: block; scroll-margin-top: 80px; }
+</style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#builds">Build Depth</a></li>
+      <li><a href="hunterdouglas.html">Case Study</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <span>Nozzle Camera System</span>
+      </div>
+      <div class="project-hero-tag">08 · Sensor Packaging · Optics · Thermal Management · Miniaturization</div>
+      <h1>Nozzle<br>Camera<br>System</h1>
+    </div>
+    <div>
+      <p class="project-hero-desc">
+        A miniature sensor payload operating millimeters from a 300°C heat source,
+        in continuous kinematic motion, inside a geometry with almost no clearance.
+        No commercial solution existed. Built one from a hacked endoscope after
+        systematically evaluating 25 different units. Published the full methodology
+        openly so others could evolve it. CNC Kitchen, Obico, and others credited
+        the work by name. The concept was later commercialized as a dedicated
+        product category.
+      </p>
+    </div>
+  </section>
+
+  <div style="max-width:85%;margin:2rem auto;">
+    <img src="../images/nozzlecam-hero-01.webp"
+         loading="eager"
+         data-lightbox="nozzlecam"
+         data-caption="Nozzle camera system fully integrated into Voron printhead carriage — camera module, macro lens, LED illumination, all within the existing printhead geometry"
+         alt="final completed nozzle cam discreet integrated into my Voron carriage, flood LED lights and lens visible">
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-num accent">25</span>
+      <span class="stat-label">Endoscopes systematically evaluated before selecting</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">11</span>
+      <span class="stat-label">Camera modules sacrificed in development</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">~$15</span>
+      <span class="stat-label">Total component cost of final system</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">Credited</span>
+      <span class="stat-label">CNC Kitchen, Obico documentation, community</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">Commercialized</span>
+      <span class="stat-label">Concept adopted as dedicated product category</span>
+    </div>
+  </div>
+
+
+
+  <div class="narrative">
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0.25rem 0 3rem;">
+    <a href="#endoscope-eval" class="tag-shortcut">25-Unit Endoscope Evaluation ↓</a>
+    <a href="#glass-lens-cad" class="tag-shortcut">Glass Lens CAD Reverse Engineering ↓</a>
+    <a href="#lens-hunt" class="tag-shortcut">Lens Hunt and Optical Solution ↓</a>
+    <a href="#thermistor-thermal" class="tag-shortcut">Thermistor Thermal Validation ↓</a>
+    <a href="#publication-philosophy" class="tag-shortcut">Publication Philosophy ↓</a>
+  </div>
+
+<!-- 01/ The Problem -->
+
+    <div class="chapter" id="ch01">
+      <div class="chapter-header">
+        <span class="chapter-num">01 /</span>
+        <h2 class="chapter-title">The Problem: Visibility at the Point of Failure</h2>
+      </div>
+      <p>3D printing fails at the nozzle. Anyone who has spent serious time printing knows the ritual: kneeling down, face close to the print bed, watching the first layer extrusion to make sure it's adhering correctly. If the first layer fails, everything that follows, potentially hours or tens of hours of print time, fails with it. By the time a failure is visible in the output, it has usually been propagating for dozens of layers.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/nozzlecam-ch1-02.webp"
+             data-lightbox="nozzlecam"
+             data-caption="First working prototype — before optimization"
+             aria-label="a somewhat low resolution blurry footage of one of my earliest working prototype"
+             style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/nozzlecam-ch1-02.webm" type="video/webm">
+        </video>
+      </div>
+      <p>Real-time nozzle monitoring would change this entirely: catch failures at onset, tune temperature and flow profiles visually rather than empirically, understand exactly what's occurring at the nozzle under different conditions, and monitor comfortably from a display rather than on your knees. At least one established 3D printing accessories brand was known to be developing a commercial nozzle camera at the time. What surfaced was a module larger than the printhead itself, using a long optical extension to reach down toward the nozzle. The unit looked production-ready but was never officially announced. After my published video it quietly disappeared. The engineering constraint wasn't just solving the problem. <strong>It was solving it in a package small enough and light enough to actually work on a fast printer.</strong></p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/nozzlecam-ch1-03.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Examples of early community attempt at real-time nozzle monitoring"
+             alt="photo collage of 4 pictures of other peoples' attempt at putting camera onto the print head for video feed"
+             style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
+      </div>
+      <p>Nozzle cameras weren't entirely unknown in the DIY community. A few people had strapped USB endoscopes to their printhead pointing at the nozzle. The results were poor: focus too long, lighting inadequate. The endoscope body hanging in front of the printhead also added cantilevered mass on a fast-moving carriage, which compounds on a printer axis that is rarely perfectly rigid. <strong>The concept was right. The implementation needed a complete rethink.</strong></p>
+    </div>
+
+<!-- 02/ Systematic Endoscope Evaluation -->
+
+  <span id="endoscope-eval" class="scroll-target"></span>
+    <div class="chapter" id="ch02">
+      <div class="chapter-header">
+        <span class="chapter-num">02 /</span>
+        <h2 class="chapter-title">Systematic Evaluation: 25 Endoscopes, Spreadsheet, Mill</h2>
+      </div>
+      <p>Before designing anything, the first step was understanding what the available hardware could actually do. I ordered approximately 25 different low-cost USB endoscope models from Amazon and AliExpress and tested each one systematically: plugged into OBS to document video quality under bright, medium, and low light conditions, then into device properties to record supported resolutions, aspect ratios, frame rates, and color profile settings. Everything into a spreadsheet.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/nozzlecam-ch2-04.01.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Side-by-side video output comparison — part of the systematic evaluation of 25 endoscopes"
+             alt="two endoscope video output quality is being compared side by side visually"
+             style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
+      </div>
+      <p>Patterns emerged quickly. Many different-branded models share identical internal electronics and image sensors, same resolution, same output, same limitations, just different housings at different prices. Those were grouped and the higher-cost duplicates eliminated. Some endoscopes output higher resolution than their packaging advertises. Some support 4:3 aspect ratio in addition to 16:9, providing more vertical resolution, useful for looking down at a nozzle. Higher resolution models need more light to perform well, which makes sense given the same sensor size spread across more pixels. They also have slower sensor readout speeds relative to their pixel count, which in a high-acceleration motion environment like a printhead produces more rolling shutter jelly effect. Not ideal. After this testing I narrowed the field to three candidate models worth opening.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/nozzlecam-ch2-04.webp"
+             data-lightbox="nozzlecam"
+             data-caption="Machined casing pried open — PCB and ribbon cable orientation visible, showing why cutting from the underside is the safe approach"
+             aria-label="video showing a mill cut endoscope with PCB sitting flat as predicted, prying the casing open with pliers to extract the module within"
+             style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/nozzlecam-ch2-04.webm" type="video/webm">
+        </video>
+      </div>
+      <p>To extract the camera modules, I first established orientation in OBS by rotating each endoscope until the image was upside down, then marked the underside of the casing with a sharpie. That's the cut side: the circuit board sits flat inside with open space below it, so cutting from the underside keeps the endmill away from the PCB and ribbon cable. Clamped in the mill vise, light passes with a 4-flute endmill until the metal casing was breached, then a reversed snap ring plier to pry it apart. PCB and camera module fell out on their USB cables intact. Each one plugged back in and confirmed functional before proceeding.</p>
+      <p>Community feedback after my YouTube video was published revealed a simpler method: heat the rear junction where the rubber stress relief meets the metal casing, that joint is glued, and simply pull it apart. Worth knowing for anyone replicating the project.</p>
+    </div>
+
+<!-- 03/ Lens Hunt -->
+
+    <div class="chapter" id="ch03">
+      <div class="chapter-header">
+        <span class="chapter-num">03 /</span>
+        <h2 class="chapter-title">Lens Hunt: Ruler, Macro Kit, and the Optical Solution</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/nozzlecam-ch3-05.webp"
+             data-lightbox="nozzlecam"
+             data-caption="3D printed test jig designed to test and verify the focal distance of bare camera module and lens"
+             aria-label="video showing the 3 part 3D printed jig moving back and forth on the aluminum extrusion to measure focal distance with a live video feed from the endoscope"
+             style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/nozzlecam-ch3-05.webm" type="video/webm">
+        </video>
+      </div>
+      <p>With candidate camera modules extracted, the next step was mapping their native focal distances using a purpose-built test jig: two 3D printed pieces that snap onto a 2020 aluminum extrusion, one holding a visual target, one holding the camera module, each slideable independently so the gap between them can be dialed to find the exact focal point. Logged each module's focal distance into the spreadsheet. These modules focus at three to four inches. The target working distance for the nozzle cam geometry was 18 to 20mm. Two options: re-focus the lens by breaking its factory glue and threading it closer, or place an additional optical element in front of the module to shift the focal plane. Both approaches were tested and both worked. The guide covers both with pros and cons for each. The add-a-lens approach was preferred because an element in front of the module also provides a thermal barrier between the camera electronics and the nozzle block.</p>
+      <span id="lens-hunt" class="scroll-target"></span>
+      <p>First candidate lens: a small magnifying glass molded into a plastic ruler sitting on the workbench. Not a deliberate choice, just the fastest possible test of the concept using whatever was immediately at hand. Cut it off with a Dremel, built a third piece for the test jig to hold it, confirmed focus range was close. The image quality through a scratched-up plastic ruler lens was terrible. Back to searching.</p>
+
+      <div class="photo-duo">
+        <img src="../images/nozzlecam-ch3-06.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Budget cell phone camera clip on accessory lens"
+             alt="cheap Amazon cell phone lenses no one wants, showing all 3 lenses out of box">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/nozzlecam-ch3-07.webp"
+             data-lightbox="nozzlecam"
+             data-caption="Machining the lens barrel on the mill — cutting away the aluminum housing to extract the plastic lens element"
+             aria-label="video of the budget macro lens clamped in mill vice being machined to extract lens element"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/nozzlecam-ch3-07.webm" type="video/webm">
+        </video>
+      </div>
+      <p>Second candidate: cheap clip-on lens kits for smartphones, the kind that come three to a pack with fisheye, wide, and macro. They were everywhere on Amazon, cheap, and nobody wanted them. Ordered a few to experiment. The macro lens element was essentially perfect: focus distance exactly right, image quality surprisingly excellent. Cut away the aluminum barrel to extract the plastic element and put it into the test jig. <strong>That was the optical solution.</strong></p>
+
+      <p>One problem surfaced during integration: the lens element and its 3D printed housing would contact the print bed surface at the required placement angle. The fix: held the small lens against the bench grinder and ground a flat edge onto it. Perfectly reasonable thing to do with your fingers on a small lens element, for a scrapper maker. Except for the moment I accidentally touched the grinding wheel. The YouTube video captured that exact frame. A split-second text overlay labeled it "free skin removal." It's probably the most-noticed detail in the video.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/nozzlecam-ch3-08.webp"
+             data-lightbox="nozzlecam"
+             data-caption="Grinding a flat edge on bench grinder to allow lower nozzlecam placement"
+             aria-label="video of me holding the lens element grinding a flat edge and getting free skin removal"
+             style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/nozzlecam-ch3-08.webm" type="video/webm">
+        </video>
+      </div>
+
+      <p>When filming the YouTube guide, the clip-on macro kit had been updated by the manufacturer to a bigger lens, no longer usable. Ordered 20+ kits from Amazon, eBay, and AliExpress, contacted sellers directly, confirmed product page photos, all received were the wrong size. Also destroyed the last remaining original lens element during testing. This is the reason the video took so long to release. A fellow Voron Discord member pointed to Blips lenses as a tested alternative. Blips worked at a nearly identical 17mm focal distance, easier to cut to size, and became the new recommendation in the video. However the Blips element is soft lens material that doesn't hold up well in a heated chamber environment for permanent installation.</p>
+  <span id="glass-lens-cad" class="scroll-target"></span>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/nozzlecam-ch3-09.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Lens profile reconstructed in Fusion 360 — dimensions and curvature reverse engineered to identify exact optical specification for AliExpress sourcing"
+             aria-label="CAD profile drawing of discontinued lens element with dimensions and curvature labeled for optical spec identification"
+             alt="CAD drawing of profile of the lens element, dimensions and curvature labeled to figure out specs to find direct replacements">
+      </div>
+      <p>When it came time to make another lens for myself, I photographed the original element in side profile using a mirrorless camera macro lens, recreated the profile in Fusion 360 to extract its optical geometry in numbers, used optical formulas to identify the exact specification, then searched AliExpress extensively for a matching glass element. <strong>Found one: an actual optical-grade glass element at the correct spec, which produced better image quality than the original plastic element.</strong> That's the permanent solution for anyone building their own.</p>
+
+
+    </div>
+
+<!-- 04/ Integration Design -->
+
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
+        <h2 class="chapter-title">Integration Design: FOV Planning, Angles, and Carriage Mounting</h2>
+      </div>
+      <div class="photo-duo">
+        <img src="../images/nozzlecam-ch4-10.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="First generation nozzlecam integrated into part cooling fan duct — the quickest way to impliment for testing"
+             alt="head on picture of the modified fan duct with nozzlecam integrated dirctly facing the viewer">
+        <img src="../images/nozzlecam-ch4-11.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="First generation nozzlecam assembled into print head — nozzlecam pointed directly at nozzle"
+             alt="fully assembled print head with first generation nozzle cam showing camera positioned right next to and pointing at the hotend nozzle">
+      </div>
+      <p>The first prototype integrated the camera module into the right side part cooling fan duct, the fastest way to validate the concept without redesigning anything else. It worked well enough to confirm the approach, but obstructed cooling performance and required a dedicated camera module for each modular printhead. Neither was acceptable for a permanent installation.</p>
+      <div class="photo-duo">
+        <img src="../images/nozzlecam-ch4-12.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Second generation rendering in Fusion 360 CAD — nozzlecam relocated onto printhead carriage"
+             alt="3D rendering showing the new carriage with newly iterated nozzle cam pointed towards where the nozzle would be if installed">
+        <img src="../images/nozzlecam-ch4-13.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Assembled carriage with integrated nozzle cam — physical build matching the Fusion 360 CAD design"
+             alt="3D printed and assembled new gantry with integrated nozzle cam sitting on tabletop">
+      </div>
+      <div class="photo-duo">
+        <img src="../images/nozzlecam-ch4-14.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Carriage with printhead attached — camera angle and proximity to hotend confirmed before installing the module"
+             alt="3D printed and assembled new gantry with integrated nozzle cam and printhead attached, camera module not yet installed">
+        <img src="../images/nozzlecam-ch4-15.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Camera mounting cavity — nozzle visible through the empty installation hole, confirming sight line geometry"
+             alt="looking through the space where the camera module would be installed, empty see-through hole, nozzle visible through the hole">
+      </div>
+      <p>The permanent solution placed the camera module into the printhead carriage rather than the printhead itself. The carriage is shared across all printhead configurations. Each individual printhead only needs the lighting assembly, cheap, durable, and requiring only two additional wires in the harness. One camera serves every modular printhead combination without duplication.</p>
+      <div class="photo-duo">
+        <img src="../images/nozzlecam-ch4-16.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Field of view plotted in Fusion 360 CAD — camera modules with macro lens at final geometry: 37.5° lateral, 17.5° down, aimed 4.75mm ahead of nozzle tip"
+             alt="Fusion 360 CAD showing camera and lens placement geometry relative to the hotend">
+        <img src="../images/nozzlecam-ch4-17.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Camera module temporarily taped in position — live feed confirming ideal nozzle view before permanent installation"
+             alt="assembled gantry with camera module and lens temporarily installed by tape, camera feed showing ideal view of the nozzle">
+      </div>
+      <p>Camera positioning was planned in Fusion 360 by plotting the field of view cone of the camera module with and without the added lens element against the CAD assembly. <strong>The final geometry: 37.5 degrees to the side from dead center on the hotend, 17.5 degrees downward, aimed approximately 4.75mm in front of the nozzle tip.</strong> This provides a view of two sides of the heating block plus the nozzle and the immediate deposition zone. Confirmed physically by holding the assembly against the printhead and capturing footage in OBS before committing to fabrication.</p>
+    </div>
+
+<!-- 05/ Illumination and Thermal Validation -->
+
+    <div class="chapter" id="ch05">
+      <div class="chapter-header">
+        <span class="chapter-num">05 /</span>
+        <h2 class="chapter-title">Illumination, Shielding, and Thermal Validation</h2>
+      </div>
+      <p>These camera modules have automatic exposure compensation that cannot be disabled. The only way to get predictable, consistent image output is to provide a steady, controlled flood of light, the auto exposure stabilizes and effectively comes under indirect control.</p>
+      <div class="photo-duo">
+        <img src="../images/nozzlecam-ch4-18.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Fusion 360 rendering — revised carriage with integrated nozzle cam and three-point LED flood light system"
+             alt="3D rendering showing the new carriage with nozzle cam, revised printhead with LED flood light system">
+        <img src="../images/nozzlecam-ch4-19_0.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Partly assembled printhead with two LED flood lights installed — below is the cheap LED strip they were scavenged from"
+             alt="3D printed and partly assembled new printhead design with two LED modules installed, section of donor LED strip below">
+      </div>        
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/nozzlecam-ch4-20.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Completed LED flood light system test — hotend and nozzle fully covered by light"
+             alt="first full floodlight system being tested on table top being powered by a portable USB powerbank">
+      </div>
+      <p>Scavenged 5050 LED units off cheap generic LED strip lights, chose 5V specifically because the Voron runs three separate voltage rails and only the 5V stays live when the printer is powered off, meaning the nozzle light can be switched on independently for printhead swaps. LED placement is deliberate: one LED mirrored low on the opposite side from the camera, two more higher up on each side of the hotend. The goal is coverage from multiple heights and angles simultaneously to flood the nozzle area without shadows. The result from the first test was immediately excellent, sharp, clear, real-time visibility directly at and under the nozzle.</p>
+      <div class="photo-duo">
+        <img src="../images/nozzlecam-ch4-21.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Extracted endoscope camera module and bare circuit board - wired for quick USB disconnect for testing"
+             alt="picture showing the bare camera module and circuit board wired with quick disconnect for USB connection">
+        <img src="../images/nozzlecam-ch4-22.webp"
+             loading="lazy"
+             data-lightbox="nozzlecam"
+             data-caption="Camera module PCB wrapped in Kapton tape and aluminum tape — insulation and EMI shielding before permanent installation"
+             alt="circuitry of the camera module covered in Kapton tape and aluminum tape for shielding">
+      </div>
+      <p>The camera PCB was prepared for the environment inside a running 3D printer: Kapton tape for insulation, then wrapped in aluminum tape for EMI shielding against stepper motor signals, heater PWM, and the various other noise sources packed into a small space. A printer has a lot of high-frequency electrical activity in a very confined area. Better safe than sorry when the whole assembly is permanent.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/nozzlecam-ch4-23.webp"
+             data-lightbox="nozzlecam"
+             data-caption="EMI interference before and after aluminum tape shielding — stepper motors, heater PWM, and high-frequency signals in close proximity cause visible flicker and artifacts without shielding"
+             aria-label="split screen comparison video, left side labeled unshielded showing visible flicker and interference artifacts in the nozzle cam feed, right side labeled aluminum tape shielding showing clean stable video output"
+             style="width:100%;aspect-ratio:8/3;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/nozzlecam-ch4-23.webm" type="video/webm">
+        </video>
+      </div>
+      <span id="thermistor-thermal" class="scroll-target"></span>
+      <p>Thermal validation was not assumed. I enabled a spare thermistor channel on the printer controller board, wired a 10K thermistor directly to the camera module, wrapped the assembly in aluminum foil tape, and taped it to the approximate final position. Because the printer already uses identical 10K thermistors for the nozzle and heated bed, the camera temperature appeared as a third live channel in Octoprint alongside the nozzle and bed plots. <strong>Ran hundreds of hours of normal printing with the thermal data logging continuously.</strong> The camera module temperature remained stable throughout, including during extended high-temperature ABS and polycarbonate sessions in a fully enclosed printer. Only after confirming this permanently installed the assembly.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <div style="position:relative;">
+          <img src="https://img.youtube.com/vi/ZsNGCMx14ow/hqdefault.jpg"
+               loading="lazy"
+               data-lightbox="nozzlecam"
+               data-youtube="ZsNGCMx14ow"
+               data-caption="Development test footage — posted without expectation, community response drove enough questions to prompt the full how-to guide"
+               alt="Development stage test footage posted to YouTube, unexpectedly gained popularity and questions, which prompted the complete how-to video"
+               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+            <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid white;margin-left:4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+
+<!-- 06/ Publication and Outcome -->
+
+  <span id="publication-philosophy" class="scroll-target"></span>
+
+      <div class="chapter" id="ch06">
+      <div class="chapter-header">
+        <span class="chapter-num">06 /</span>
+        <h2 class="chapter-title">Publication Philosophy and Outcome</h2>
+      </div>
+
+      <p>After the system was validated and running on the Voron, a few test clips went up on YouTube with no particular intent. The response was significant enough to prompt a proper guide: "3D Printer Nozzle Cam, Complete How To using endoscope," covering endoscope selection, camera extraction, both optical approaches (macro lens addition and direct refocus), LED illumination, integration, and thermal management. The guide was deliberately calibrated for the broadest possible audience rather than engineering depth, the goal was maximum community adoption, not maximum technical exposition, and to answer the community's questions once in a video rather than hundreds of times in individual messages. The guide was published with full STEP reference files on Thingiverse.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <div style="position:relative;">
+          <img src="https://img.youtube.com/vi/GAp23w_dnNc/hqdefault.jpg"
+               loading="lazy"
+               data-lightbox="nozzlecam"
+               data-youtube="GAp23w_dnNc"
+               data-caption="3D Printer Nozzle Cam — Complete How To using endoscope — full methodology guide published openly on YouTube"
+               alt="my popular complete how to guide on nozzle cam published to YouTube"
+               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+            <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid white;margin-left:4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>The format was deliberate. I had considered productizing the system, evaluated inventory requirements, assembly complexity for fragile electronics, calibration overhead, and market size, and decided against it. Publishing openly was the right call for a different reason: I was only able to build this by standing on top of what others had shared openly before me. The goal was for people to understand the approach well enough to evolve it, not just download and print. A turnkey STL teaches nothing. <strong>Full methodology published, everything documented, anyone willing to do the work can build their own and take it further.</strong></p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <div style="position:relative;">
+          <img src="https://img.youtube.com/vi/btOORPWcdcQ/hqdefault.jpg"
+               loading="lazy"
+               data-lightbox="nozzlecam"
+               data-youtube="btOORPWcdcQ"
+               data-yt-start="41"
+               data-caption="Voron high-speed printing showcase — high quality nozzle cam footage showing the final optimized system in action"
+               alt="YouTube video showing off tuned Voron print speed with high quality nozzle cam footage as a showcase of the final system"
+               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+            <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid white;margin-left:4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>The open source loop worked. CNC Kitchen, one of the most respected technical channels in the 3D printing community, credited the design by name and published their own implementation, noting they chose to directly re-focus the endoscope lens rather than add a macro element, one of the two approaches covered in the guide. Obico's official nozzle camera installation documentation credits the YouTube guide as a primary source. The community built on it, modified it, and iterated it in exactly the way it was intended to be used. The concept was eventually commercialized as a dedicated product category, dedicated nozzle camera products are now sold by multiple manufacturers and some commercial printers ship with similar systems built in. <strong>Being credited by name and being copied are both forms of market validation. Getting both means the work was right.</strong></p>
+    </div>
+
+  </div>
+
+<!--
+  <a href="#" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">Full Process Documentation</span>
+      <span class="album-link-title">Nozzle Camera System — Complete Build Archive</span>
+      <span class="album-link-count">~35 photos · Google Photos album · Coming soon</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+-->
+
+  <div class="project-nav" style="display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin:5rem 0 3rem;align-items:stretch;">
+    <a href="../index.html" class="project-nav-item" style="flex:0 0 auto;min-width:72px;text-align:center;justify-content:center;">
+      <span class="pni-label" style="color:var(--accent);font-weight:700;font-size:11px;">Home</span>
+      <span class="pni-title" style="font-size:1rem;">↑</span>
+    </a>
+    <a href="vehiclecompute.html" class="project-nav-item" style="flex:1;">
+      <span class="pni-label" style="color:var(--text-muted);">← Previous Project</span>
+      <span class="pni-title">Vehicle-Integrated Compute</span>
+    </a>
+    <a href="../index.html#builds" class="project-nav-item next" style="flex:1;">
+      <span class="pni-label">Back to Home →</span>
+      <span class="pni-title">Build Depth</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="hunterdouglas.html">Case Study</a>
+    </div>
+  </footer>
+
+</main>
+<script src="../lightbox.js"></script>
+</body>
+</html>

@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kai-Hung Chuang — Hardware Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* HERO */
+.hero {
+  padding: 5rem 0 4rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.hero-left { display: flex; flex-direction: column; gap: 0.5rem; }
+.hero-right { display: flex; flex-direction: column; gap: 1.75rem; justify-content: center; }
+.hero-tag { font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; margin-bottom:0.5rem; display:flex; align-items:center; gap:.75rem; }
+.hero-tag::before { content:''; display:block; width:24px; height:1px; background:var(--accent); }
+.hero-name { font-family:var(--cond); font-size:clamp(3.5rem,7vw,6.5rem); font-weight:700; line-height:.92; letter-spacing:-.01em; color:var(--text); }
+.hero-name .dim { color:var(--text-muted); }
+.hero-title { font-family:var(--cond); font-size:clamp(1.2rem,2.5vw,1.8rem); font-weight:500; color:var(--text-secondary); letter-spacing:.02em; margin-top:0.25rem; }
+.hero-desc { font-size:17px; color:var(--text-secondary); line-height:1.85; }
+.hero-desc strong { color:var(--text); font-weight:500; }
+.hero-cta { display:flex; gap:1rem; flex-wrap:wrap; }
+
+/* HD section title link */
+.hd-section-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+.hd-section-title-link:hover .hd-section-title {
+  color: var(--accent);
+  transition: color 0.2s;
+}
+
+/* Stats bar as link */
+.hd-stats-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+.hd-stats-link .hd-stat {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.hd-stats-link .hd-stat::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.hd-stats-link:hover .hd-stat::after { width: 100%; }
+.hd-stats-link .hd-stat:hover { background: var(--bg2); }
+.hd-stats-link .hd-stat:hover .hd-stat-num { color: var(--text); }
+
+/* HD content clickable area */
+.hd-clickable {
+  cursor: pointer;
+  position: relative;
+}
+.hd-clickable::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  pointer-events: none;
+}
+.hd-clickable:hover::after { width: 100%; }
+.hd-clickable:hover { background: rgba(232,135,10,0.03); }
+
+
+.hd-section { padding:2rem 0 0; }
+
+.hd-section-header {
+  display:flex; align-items:baseline; gap:1rem;
+  padding-bottom:1rem; border-bottom:1px solid var(--border);
+}
+.hd-section-num {
+  font-family:var(--mono); font-size:13px; font-weight:500;
+  letter-spacing:.1em; color:var(--accent); text-transform:uppercase;
+}
+.hd-section-title {
+  font-family:var(--cond); font-size:1.8rem; font-weight:600;
+  letter-spacing:.02em; color:var(--text);
+}
+.hd-stats { display:flex; border:1px solid var(--border); border-top:none; }
+.hd-stat { flex:1; padding:1.25rem 1.5rem; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:.25rem; }
+.hd-stat:last-child { border-right:none; }
+.hd-stat-num { font-family:var(--cond); font-size:1.8rem; font-weight:700; color:var(--accent); line-height:1; }
+.hd-stat-label { font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--text-muted); text-transform:uppercase; }
+
+/* Stacked full-width layout */
+.hd-content {
+  border: 1px solid rgba(232,135,10,0.25);
+  border-top: none;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.hd-content::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(232,135,10,0.04) 0%,transparent 40%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Image — full width, 16:10, on top */
+.hd-image-col {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: var(--bg3);
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(232,135,10,0.15);
+}
+.hd-image-col .img-placeholder { width:100%; height:100%; aspect-ratio:unset; }
+.hd-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.hd-clickable:hover .hd-image-col img { transform: scale(1.03); }
+
+/* Text below — headline full width, then two columns */
+.hd-left {
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+.hd-left-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.hd-left-text { display:flex; flex-direction:column; gap:1rem; }
+.hd-left-actions { display:flex; flex-direction:column; gap:1rem; justify-content:flex-start; padding-top:0.25rem; }
+.hd-headline { font-family:var(--cond); font-size:clamp(1.8rem,3vw,2.8rem); font-weight:700; line-height:1.05; color:var(--text); letter-spacing:-.01em; }
+.hd-sub { font-size:16px; color:var(--text-secondary); line-height:1.8; }
+.hd-sub strong { color:var(--text); font-weight:500; }
+.hd-ctas { display:flex; gap:1rem; flex-wrap:wrap; }
+.hd-btn-primary { font-family:var(--mono); font-size:11px; letter-spacing:.06em; padding:.65rem 1.4rem; background:var(--accent); color:#0e0d0c; font-weight:500; text-decoration:none; text-transform:uppercase; transition:background .2s; display:inline-flex; align-items:center; gap:.4rem; }
+.hd-btn-primary:hover { background:#f5960f; }
+.hd-btn-secondary { font-family:var(--mono); font-size:11px; letter-spacing:.06em; padding:.65rem 1.4rem; border:1px solid var(--border-strong); color:var(--text-secondary); text-decoration:none; text-transform:uppercase; transition:all .2s; }
+.hd-btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+
+/* PROJECTS GRID */
+.section { padding:3rem 0; }
+.projects-grid {
+  display:grid; grid-template-columns:repeat(12,1fr);
+  gap:1px; background:var(--border); border:1px solid var(--border);
+}
+.project-card {
+  background:var(--bg); text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; transition:background .2s;
+  position:relative; overflow:hidden;
+}
+.project-card::after {
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:2px; background:var(--accent);
+  transition:width .3s ease;
+}
+.project-card:hover { background:var(--bg2); }
+.project-card:hover::after { width:100%; }
+.card-thumb { width:100%; aspect-ratio:3/2; overflow:hidden; }
+.card-thumb img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; display:block; }
+.project-card:hover .card-thumb img { transform:scale(1.04); }
+.card-body { padding:1.75rem; display:flex; flex-direction:column; gap:.75rem; flex:1; }
+.card-meta { display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem; }
+.card-num { font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--text-muted); }
+.card-name { font-family:var(--cond); font-weight:700; letter-spacing:.01em; color:var(--text); line-height:1.1; font-size:1.5rem; }
+.card-half .card-name { font-size:1.7rem; }
+.card-desc { font-size:15px; color:var(--text-secondary); line-height:1.7; flex:1; }
+.card-tags { display:flex; gap:.4rem; flex-wrap:wrap; margin-top:auto; padding-top:.5rem; }
+.card-arrow { font-size:16px; color:var(--text-muted); align-self:flex-end; margin-top:.5rem; transition:color .2s,transform .2s; }
+.project-card:hover .card-arrow { color:var(--accent); transform:translate(3px,-3px); }
+
+/* Grid column spans */
+.card-half { grid-column:span 6; }
+.card-md   { grid-column:span 4; }
+
+/* BUILD DEPTH */
+.build-depth { padding:3rem 0; }
+.build-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:var(--border); border:1px solid var(--border);
+  margin-top:3rem;
+}
+.build-item { background:var(--bg); display:flex; flex-direction:column; cursor:pointer; transition:background .15s; }
+.build-item:hover { background:var(--bg2); }
+.build-item-inner { padding:1.25rem; display:flex; flex-direction:column; gap:.6rem; }
+.build-thumb { width:100%; aspect-ratio:3/2; overflow:hidden; }
+.build-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s; }
+.build-item:hover .build-thumb img { transform:scale(1.04); }
+.bi-name { font-family:var(--cond); font-size:1.1rem; font-weight:600; color:var(--text); letter-spacing:.02em; }
+.bi-short { font-size:15px; color:var(--text-secondary); line-height:1.6; }
+.bi-tags { display:flex; gap:.3rem; flex-wrap:wrap; margin-top:auto; }
+.bi-hint { font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:var(--text-muted); text-transform:uppercase; margin-top:.5rem; display:flex; align-items:center; gap:.4rem; transition:color .2s; }
+.build-item:hover .bi-hint { color:var(--accent); }
+
+/* MODAL */
+.modal-backdrop {
+  position:fixed; inset:0; background:rgba(0,0,0,0.82); z-index:1000;
+  display:flex; align-items:center; justify-content:center;
+  padding:2rem; opacity:0; pointer-events:none; transition:opacity .25s ease;
+}
+.modal-backdrop.active { opacity:1; pointer-events:all; }
+.modal {
+  background:var(--bg3); border:1px solid var(--border-strong);
+  width:100%; max-width:960px; max-height:88vh;
+  display:flex; flex-direction:column;
+  transform:scale(0.96) translateY(12px); transition:transform .25s ease;
+  overflow:hidden;
+}
+.modal-backdrop.active .modal { transform:scale(1) translateY(0); }
+
+.modal-header {
+  padding:1.5rem 2rem; border-bottom:1px solid var(--border);
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:1rem; flex-shrink:0;
+}
+.modal-header-left { display:flex; flex-direction:column; gap:.35rem; }
+.modal-cat { font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--accent); text-transform:uppercase; }
+.modal-ttl { font-family:var(--cond); font-size:1.6rem; font-weight:700; color:var(--text); letter-spacing:.01em; line-height:1.1; }
+.modal-tags { display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.2rem; }
+.modal-close { width:36px; height:36px; border:1px solid var(--border); background:transparent; color:var(--text-muted); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .2s; font-family:var(--mono); line-height:1; }
+.modal-close:hover { border-color:var(--accent); color:var(--accent); }
+
+/* Modal body — photos left, content right */
+.modal-body { display:grid; grid-template-columns:1fr 1fr; flex:1; overflow:hidden; min-height:0; }
+
+.modal-photos {
+  border-right:none;
+  display:flex; flex-direction:column;
+  gap:1px; background:var(--border);
+  overflow-y:auto;
+}
+.modal-photos::-webkit-scrollbar { width:6px; }
+.modal-photos::-webkit-scrollbar-thumb { background:#a86200; border-radius:3px; }
+
+.modal-photo { flex-shrink:0; }
+.modal-photo .img-placeholder { aspect-ratio:4/3; }
+.modal-photo img { width:100%; aspect-ratio:3/2; object-fit:cover; display:block; }
+
+.modal-content {
+  padding:2rem; overflow-y:auto;
+  display:flex; flex-direction:column; gap:1rem;
+}
+.modal-content::-webkit-scrollbar { width:6px; }
+.modal-content::-webkit-scrollbar-thumb { background:#a86200; border-radius:3px; }
+
+.modal-text { font-size:15px; color:var(--text-secondary); line-height:1.8; display:flex; flex-direction:column; gap:.75rem; }
+.modal-text p { margin:0; }
+.modal-text strong { color:var(--text); font-weight:500; }
+
+/* Modal footer — Technical Traceability Log */
+.modal-footer { margin-top:auto; padding-top:1rem; flex-shrink:0; }
+.modal-album {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1rem 1.25rem; border:1px solid var(--border-strong);
+  text-decoration:none; transition:all .2s;
+}
+.modal-album:hover { border-color:var(--accent); background:var(--accent-dim2); }
+.modal-album-l { display:flex; flex-direction:column; gap:.25rem; }
+.modal-albl { font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--accent); text-transform:uppercase; }
+.modal-atitle { font-family:var(--cond); font-size:1rem; font-weight:600; color:var(--text); }
+.modal-acnt { font-family:var(--mono); font-size:10px; color:var(--text-muted); letter-spacing:.04em; }
+.modal-arr { font-size:1.1rem; color:var(--text-muted); transition:color .2s,transform .2s; }
+.modal-album:hover .modal-arr { color:var(--accent); transform:translate(3px,-3px); }
+
+
+/* Modal photos wrapper */
+.modal-photos-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+}
+.modal-photos-wrap .modal-photos { border-right: none; flex: 1; }
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 64px;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 12px;
+  background: linear-gradient(to bottom, transparent, rgba(18,17,16,0.85));
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+.scroll-hint-arrow {
+  width: 36px;
+  height: 36px;
+  background: rgba(30,28,26,0.88);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 36px;
+  color: #ffffff;
+  animation: bounce-down 1.4s ease-in-out infinite;
+}
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0);   opacity: 0.9; }
+  50%       { transform: translateY(5px); opacity: 0.5; }
+}
+
+/* Prev / Next nav arrows */
+.modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, color 0.15s, transform 0.15s;
+  padding: 0;
+  user-select: none;
+}
+.modal-nav:hover { color: #ffffff; transform: translateY(-50%) scale(1.2); }
+.modal-nav.left  { left:  max(0.5rem, calc(50% - 540px)); }
+.modal-nav.right { right: max(0.5rem, calc(50% - 540px)); }
+.modal-backdrop.active ~ .modal-nav { opacity: 1; pointer-events: all; }
+.modal-nav.hidden { opacity: 0 !important; pointer-events: none !important; }
+
+@media (max-width:900px) {
+  .modal-photos-wrap { flex-direction:row; border-right:none; border-bottom:1px solid var(--border); max-height:220px; }
+  .modal-photos-wrap .modal-photos { flex-direction:row; overflow-x:auto; overflow-y:hidden; }
+  .scroll-hint { display:none; }
+  .modal-nav { display:none; }
+}
+
+/* Responsive */
+@media (max-width:1100px) { .build-grid { grid-template-columns:repeat(3,1fr); } }
+@media (max-width:900px) {
+  .hero { grid-template-columns:1fr; gap:2rem; padding:4rem 0 3rem; }
+  .card-half, .card-md { grid-column:span 12; }
+  .hd-content { grid-template-columns:1fr; }
+  .hd-image-col { aspect-ratio: 16/10; }
+  .hd-left { padding: 2rem; gap: 1rem; }
+  .hd-left-inner { grid-template-columns: 1fr; gap: 1.25rem; }
+  .modal-body { grid-template-columns:1fr; }
+  .modal-photos { border-right:none; border-bottom:1px solid var(--border); max-height:220px; flex-direction:row; overflow-x:auto; overflow-y:hidden; }
+  .modal-photo .img-placeholder { aspect-ratio:4/3; min-width:180px; }
+  .build-grid { grid-template-columns:repeat(2,1fr); }
+  .hd-stats { flex-wrap:wrap; }
+  .hd-stat { flex:1 1 45%; }
+}
+@media (max-width:480px) {
+  .hero { padding:4rem 0 3rem; }
+  .build-grid { grid-template-columns:1fr 1fr; }
+  .modal { max-height:92vh; }
+  .modal-content { padding:1.25rem; }
+}
+</style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#case-study">00</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#builds">Build Depth</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Hardware Builder · NPI Engineer · Irvine, CA</div>
+      <h1 class="hero-name">Kai-Hung<br><span class="dim">Chuang</span></h1>
+      <div class="hero-title">Builder Who Closes the Gap</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">
+        A decade of independent execution owning the gap between new designs and first working hardware.
+        <strong>Self-funded from day one</strong> — every prototype had real consequences, every
+        production decision had to justify itself against cost and time.
+        Business Administration degree grounding engineering decisions in economic reality.
+        Hands-on across CNC machining, composites, welding, additive manufacturing,
+        and electronics integration.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:kaihung.chuang@gmail.com" class="btn btn-primary">kaihung.chuang@gmail.com</a>
+        <a href="https://linkedin.com/in/kaihungchuang" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 00 / HUNTER DOUGLAS -->
+  <section class="hd-section" id="case-study">
+    <div class="hd-section-header">
+      <span class="hd-section-num">00 /</span>
+      <a href="projects/hunterdouglas.html" class="hd-section-title-link">
+        <h2 class="hd-section-title">Hunter Douglas — $6M Program Rescue →</h2>
+      </a>
+    </div>
+    <a href="projects/hunterdouglas.html" class="hd-stats hd-stats-link">
+      <div class="hd-stat"><span class="hd-stat-num">7</span><span class="hd-stat-label">Days to functional prototype</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">14</span><span class="hd-stat-label">Days to production approval</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">$0</span><span class="hd-stat-label">New tooling or CapEx</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">$600K</span><span class="hd-stat-label">Contribution margin added</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">24,000</span><span class="hd-stat-label">Units shipped on schedule</span></div>
+    </a>
+    <div class="hd-content hd-clickable">
+      <div class="hd-image-col">
+        <div class="hd-content hd-clickable">
+          <div class="hd-image-col">
+            <img src="images/hero-hd-window-cling-deployed-01.webp"
+                 loading="eager"
+                 alt="Hunter Douglas $6M Rescue — Final production window cling with four honeycomb swatch columns fully expanded, zero-CapEx solution shipped 24,000 units on schedule">
+            </div>
+          </div>
+        </div>
+      <div class="hd-left">
+        <h2 class="hd-headline">$6M launch. 60 days out.<br>Client design failed. No CAD. No budget.</h2>
+        <div class="hd-left-inner">
+          <div class="hd-left-text">
+            <p class="hd-sub">
+              Hunter Douglas's halo product was 60 days from a nationwide retail launch.
+              24,000 books mid-production. The accessory they'd developed for two years
+              failed validation at the final hour with no native CAD and no specs provided.
+              <strong>The Business Administration degree kept the solution grounded in
+              economic reality. The engineering background built it. Both were required to ship.</strong>
+            </p>
+          </div>
+          <div class="hd-left-actions">
+            <p class="hd-sub">
+              Full documentation: every prototype stage, the 20+ failed concepts, the parking lot
+              breakthrough, the 20-minute proof-of-concept, and the path from physics validation
+              to 24,000 production units.
+            </p>
+            <div class="hd-ctas">
+              <a href="projects/hunterdouglas.html" class="hd-btn-primary">Full Project + Documentation →</a>
+              <a href="projects/case-study.html" class="hd-btn-secondary" target="_blank" rel="noopener noreferrer">Download PDF →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 / CORE PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-header">
+      <span class="section-label">01 /</span>
+      <h2 class="section-title">Core Projects</h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- ROW 1: THE PILLARS -->
+      <a href="projects/mill.html" class="project-card card-half">
+        <div class="card-thumb">
+          <img src="images/thumb-card-mill.webp"
+             loading="lazy"
+             data-caption="CNC mill — aluminum bracket machining in progress"
+             alt="Portfolio — CNC mill — aluminum bracket machining in progress">
+          <!-- <img src="images/mill-cnc-machining.webp" loading="lazy" alt="The Mill Trilogy — Custom 3-axis CNC built from first-principles to enable rapid in-house metal prototyping"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">01</span><span class="tag-accent">Machining · Automation · First Principles</span></div>
+          <div class="card-name">The Mill Trilogy</div>
+          <p class="card-desc">Three X2 mini mills. Learned manual milling on the first. Built a super mill with DRO from digital calipers, ball screws, and a car window motor power feed. Then machined every bracket for the CNC conversion on the machine I built. The tooling built the tooling.</p>
+          <div class="card-tags"><span class="tag">CNC Conversion</span><span class="tag">Manual Machining</span><span class="tag">Geckodrive</span><span class="tag">DRO Build</span><span class="tag">SolidWorks</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="projects/printhead.html" class="project-card card-half">
+        <div class="card-thumb">
+          <img src="images/thumb-card-printhead.webp"
+             loading="lazy"
+             data-caption="Printhead assembly or billet aluminum fixture"
+             alt="Portfolio — Printhead assembly or billet aluminum fixture">
+          <!-- <img src="images/printhead-billet-fixture.webp" loading="lazy" alt="LulzBot Subsystem Scaling — Redesigned printhead architecture scaled to 2,000+ unit production run, out-competing OEM release"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">02</span><span class="tag-accent">Product Development · NPI · Production Scale</span></div>
+          <div class="card-name">LulzBot Printhead — 2,000+ Units</div>
+          <p class="card-desc">Ground-up redesign of a deployed industrial platform. Custom billet fixture to machine hobbed drive gears. Scaled to 2,000+ units across four SKUs. Out-competed the OEM's own subsequent release in the aftermarket.</p>
+          <div class="card-tags"><span class="tag">Iterative Design</span><span class="tag">Billet Fixturing</span><span class="tag">DFM</span><span class="tag">BOM Management</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <!-- ROW 2: FABRICATION / MECHANICAL / FLIGHT -->
+      <a href="projects/s2000.html" class="project-card card-md">
+        <div class="card-thumb">
+          <img src="images/thumb-card-s2000.webp"
+             loading="lazy"
+             data-caption="S2000 fender flaring or CF trunk on car"
+             alt="Portfolio — S2000 fender flaring or CF trunk on car">
+          <!-- <img src="images/s2000-fender-cf.webp" loading="lazy" alt="S2000 Fabrication Program — Full-stack metal shaping, multi-part mold making, and vacuum-bagged carbon fiber from concept to finished part"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">03</span><span class="tag-accent">Fabrication · Composites · Full Stack</span></div>
+          <div class="card-name">S2000 Fabrication Program</div>
+          <p class="card-desc">Metal shaping, 9-part mold making, vacuum-bagged carbon fiber, backyard paint booth. Every part built because the commercial option was too expensive, too ugly, or didn't exist.</p>
+          <div class="card-tags"><span class="tag">Metal Shaping</span><span class="tag">CF Layup</span><span class="tag">Mold Design</span><span class="tag">Paint</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="projects/tacoma.html" class="project-card card-md">
+        <div class="card-thumb">
+          <img src="images/thumb-card-tacoma.webp"
+             loading="lazy"
+             data-caption="Custom upper control arm or SolidWorks geometry model"
+             alt="Portfolio — Custom upper control arm or SolidWorks geometry model">
+          <!-- <img src="images/tacoma-control-arm.webp" loading="lazy" alt="Suspension Geometry Correction — First-principles SolidWorks analysis, lathe-turned ball joint couplings achieving factory alignment spec on first attempt"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">04</span><span class="tag-accent">Mechanical Engineering · First Principles</span></div>
+          <div class="card-name">Suspension Geometry Correction</div>
+          <p class="card-desc">Lifted the Tacoma. Lost steering return. Modeled factory suspension in SolidWorks, calculated the correction delta, turned new ball joint couplings on the lathe, milled pockets into factory arms. Factory spec on first alignment attempt.</p>
+          <div class="card-tags"><span class="tag">SolidWorks</span><span class="tag">Lathe</span><span class="tag">MIG Welding</span><span class="tag">Suspension</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="projects/fpv.html" class="project-card card-md">
+        <div class="card-thumb">
+          <img src="images/thumb-card-fpv.webp"
+             loading="lazy"
+             data-caption="FPV goggle system internals or assembled unit"
+             alt="Portfolio — FPV goggle system internals or assembled unit">
+          <!-- <img src="images/fpv-goggle-system.webp" loading="lazy" alt="FPV Platforms and Goggle System — Full-stack ownership from PCB-level receiver modification to five-generation airframe iteration methodology"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">05</span><span class="tag-accent">FPV · Airframe Design · Systems Integration</span></div>
+          <div class="card-name">FPV Platforms + Goggle System</div>
+          <p class="card-desc">Five airframe iterations across full build-fly-evaluate cycles. Complete custom goggle system built from component level when commercial options failed requirements. Full stack owned: operator interface through airframe.</p>
+          <div class="card-tags"><span class="tag">Airframe Design</span><span class="tag">PCB Rework</span><span class="tag">Flight Test</span><span class="tag">LCD Integration</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <!-- ROW 3: MACHINE DESIGN / ELECTRONICS / SENSORS -->
+      <a href="projects/voron.html" class="project-card card-md">
+        <div class="card-thumb">
+          <img src="images/thumb-card-voron.webp"
+             loading="lazy"
+             data-caption="Voron build — wire routing detail or full machine"
+             alt="Portfolio — Voron build — wire routing detail or full machine">
+          <!-- <img src="images/voron-wire-routing.webp" loading="lazy" alt="Voron Architecture Contribution — Gantry rotation proposal adopted by core dev team, now standard in every Voron built"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">06</span><span class="tag-accent">Machine Design · Open Source</span></div>
+          <div class="card-name">Voron Architecture Contribution</div>
+          <p class="card-desc">Proposed rotating the flying gantry 180°. The Voron team incorporated it. Every Voron built since uses the layout I suggested. Reverse-engineered their entire STL library to parametric CAD to implement my own improvements.</p>
+          <div class="card-tags"><span class="tag">CoreXY</span><span class="tag">Open Source</span><span class="tag">Wire Routing</span><span class="tag">SolidWorks</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="projects/vehiclecompute.html" class="project-card card-md">
+        <div class="card-thumb">
+          <img src="images/thumb-card-vehiclecompute.webp"
+             loading="lazy"
+             data-caption="Installed nav unit — finished result in dash"
+             alt="Portfolio — Installed nav unit — finished result in dash">
+          <!-- <img src="images/vehicle-compute-gen3.webp" loading="lazy" alt="Vehicle-Integrated Compute Three Generations — Packaging, firmware, and thermal constraints solved across three different vehicles"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">07</span><span class="tag-accent">Systems Integration · Electronics</span></div>
+          <div class="card-name">Vehicle-Integrated Compute — 3 Generations</div>
+          <p class="card-desc">Three cars, three packaging constraints. Body filler bezels to CAD-designed enclosures. Custom firmware, relocated hardware, context-aware automation, NFC data transfer. Each generation solved what the previous couldn't.</p>
+          <div class="card-tags"><span class="tag">Packaging</span><span class="tag">Custom Firmware</span><span class="tag">PCB Rework</span><span class="tag">Thermal Mgmt</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <a href="projects/nozzlecam.html" class="project-card card-md">
+        <div class="card-thumb">
+          <img src="images/thumb-card-nozzlecam.webp"
+             loading="lazy"
+             data-caption="Nozzle cam installed — live view output or optics detail"
+             alt="Portfolio — Nozzle cam installed — live view output or optics detail">
+          <!-- <img src="images/nozzle-cam-installed.webp" loading="lazy" alt="Nozzle Camera System — Miniature sensor payload operating at 250C proximity, community-adopted standard later commercialized by others"> -->
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-num">08</span><span class="tag-accent">Sensor Packaging · Optics · Thermal Management</span></div>
+          <div class="card-name">Nozzle Camera System</div>
+          <p class="card-desc">Miniature sensor payload operating at 250°C proximity in continuous kinematic motion. Hacked endoscope optics repositioned for thermal isolation. Redesigned SMD LED illumination. Community-adopted standard. Later commercialized by others.</p>
+          <div class="card-tags"><span class="tag">Optics</span><span class="tag">Thermal Mgmt</span><span class="tag">Miniaturization</span><span class="tag">SMD Electronics</span></div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- 02 / BUILD DEPTH -->
+  <section class="build-depth" id="builds">
+    <div class="section-header">
+      <span class="section-label">02 /</span>
+      <h2 class="section-title">Build Depth</h2>
+    </div>
+    <p style="color:var(--text-secondary);font-size:15px;max-width:560px;margin-bottom:0;">
+      Not every build needs a full page. Click any item to open the full engineering record.
+    </p>
+
+    <div class="build-grid">
+
+      <!-- 1: RACING COCKPIT -->
+      <div class="build-item"
+        data-title="Racing Cockpit + 20,000 Units"
+        data-category="Commercial Hardware · Vendor Management · Production Scale"
+        data-tags="MIG Welding,CNC,Anodizing,Vendor Mgmt,Supply Chain,Commercial Scale"
+        data-p1="Designed a minimalist racing simulation cockpit optimized for real-car ergonomics in a living space, sized for a real seat, real pedals, real steering column geometry, not a chair in front of a TV. The design spread through the sim racing community and accumulated 5.5 million YouTube views."
+        data-p2="Community demand for compatible accessories, steering wheel adapter hubs, shift knobs, paddle shifters, emerged organically. Started by machining and MIG welding every component in-house. As volume grew, the economics of in-house production stopped making sense against outsourced alternatives."
+        data-p3="Transitioned to a fully outsourced supply chain: waterjet cutting, CNC machining, and anodizing across multiple vendors. Managed global vendor relationships, purchase orders, and iterative unit cost reduction through BOM optimization and supplier negotiation."
+        data-p4="Scaled to 20,000+ units shipped worldwide. The supply chain management and vendor relationship experience on this project directly informed every production decision made afterward, including the LulzBot printhead business and the Sampling International program rescue."
+        data-p5="The commercial validation came before any intentional marketing: demand existed before there was a product to meet it. That sequence, validate first, scale second, is now the operating principle applied to every production decision."
+        data-album="#"
+        data-count="~60 photos · Full iteration history"
+        data-img1="images/cockpit-11.webp|Supply chain documentation, vendor POs and BOM"
+        data-img2="https://www.youtube.com/watch?v=Z8EUqLtOwKM&t=38|Caption here"
+        data-img3="images/cockpit-02.webp|In-house fabrication phase, MIG welded frames"
+        data-img4="images/cockpit-03.webp|Accessory line, shift knobs, paddle shifters, hub adapters"
+        data-img5="images/cockpit-04.webp|Production units, vendor CNC and anodized finish"
+        data-img6="images/cockpit-05.webp|Supply chain documentation, vendor POs and BOM"
+        data-img7="images/cockpit-06.webp|Supply chain documentation, vendor POs and BOM"
+        data-img8="images/cockpit-07.webp|Supply chain documentation, vendor POs and BOM"
+        data-img9="images/cockpit-08.webp|Supply chain documentation, vendor POs and BOM"
+        data-img10="images/cockpit-09.webp|Supply chain documentation, vendor POs and BOM"
+        data-img11="images/cockpit-10.webp|Supply chain documentation, vendor POs and BOM">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-cockpit.webp"
+             loading="lazy"
+             data-caption="Racing cockpit — completed build"
+             alt="Portfolio — Racing cockpit — completed build">
+            <!-- <img src="images/cockpit-completed.webp" loading="lazy" alt="Racing Sim Cockpit — Real-car ergonomics design that generated 5.5M views and scaled to 20,000 unit outsourced supply chain"> -->
+          </div>
+          <div class="bi-name">Racing Cockpit + 20K Units</div>
+          <div class="bi-short">Designed the cockpit. Community validated demand. Scaled accessories to 20,000+ units worldwide via outsourced supply chain.</div>
+          <div class="bi-tags"><span class="tag">MIG Welding</span><span class="tag">Vendor Mgmt</span><span class="tag">Commercial Scale</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+      <!-- 2: AMUSE BUMPER -->
+      <div class="build-item"
+        data-title="Amuse Bumper, 5-Part Mold"
+        data-category="Mold Design · Fiberglass · Pattern Making · Parting Line Geometry"
+        data-tags="Mold Design,Fiberglass,Pattern Making,Composites,Repair"
+        data-p1="A friend's Amuse front bumper ($2,000 to import from Japan) got damaged in an accident. He gave it to me. First task: proper structural fiberglass repair of the damaged sections. Second task, before anything else: pull a mold from the repaired surface, the mold was more valuable than the bumper itself."
+        data-p2="Initial analysis suggested nine mold sections to handle the compound curves, undercuts, and surface transitions. After carefully mapping draft angles across the full surface, the parting line geometry could be reduced to five sections by very specifically positioning and angling each flange. All five sections still needed registration features that would release cleanly without locking against adjacent sections."
+        data-p3="Reducing from nine to five sections is not just a convenience: each additional mold section adds registration complexity, flash lines on the final part, and more opportunities for a locked geometry on demold. Fewer sections means a cleaner part. Getting there required solving the parting line geometry correctly before committing gel-coat to anything."
+        data-p4="The fiberglass repair work itself was a prerequisite: pulling a mold from a damaged surface transfers every imperfection into every subsequent part. The surface quality of the mold is the upper bound on the surface quality of anything pulled from it."
+        data-p5="All five sections released cleanly on the first pull. The mold is reusable indefinitely for future carbon fiber pulls if the right car ever arrives."
+        data-album="#"
+        data-count="~50 photos · Mold build sequence"
+        data-img1="images/bumper-01.webp|Damaged bumper, fiberglass structural repair in progress"
+        data-img2="images/bumper-02.webp|Parting line planning, clay dams before mold sections"
+        data-img3="images/bumper-03.webp|Mold sections, 5 pieces laid out after demold, reduced from initial 9-section plan through draft angle analysis"
+        data-img4="images/bumper-04.webp|Mold assembled, ready for first pull"
+        data-img5="images/bumper-05.webp|Repaired Amuse bumper installed on car"
+        data-img6="images/bumper-06.webp|Repaired Amuse bumper installed on car"
+        data-img7="images/bumper-07.webp|Repaired Amuse bumper installed on car"
+        data-img8="images/bumper-08.webp|Repaired Amuse bumper installed on car"
+        data-img9="images/bumper-09.webp|Repaired Amuse bumper installed on car">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-amuse.webp"
+             loading="lazy"
+             data-caption="Amuse bumper — mold parting lines"
+             alt="Portfolio — Amuse bumper — mold parting lines">
+          </div>
+          <div class="bi-name">Amuse Bumper, 5-Part Mold</div>
+          <div class="bi-short">Repaired a damaged $2K Japanese tuner bumper. Analyzed draft angles to reduce planned 9-part mold to 5 parts, then pulled clean on the first demold.</div>
+          <div class="bi-tags"><span class="tag">Mold Design</span><span class="tag">Fiberglass</span><span class="tag">Pattern Making</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+      <!-- 3: VACUUM CHAMBER -->
+      <div class="build-item"
+        data-title="Vacuum Chamber, $20"
+        data-category="Lathe · Constraint Solving · Repurposed Tooling · Tool Building"
+        data-tags="Lathe,Constraint Solving,Tool Building,Reuse,Repurpose"
+        data-p1="Needed vacuum degassing for clear resin castings on a Sampling International client project. Trapped air bubbles in resin destroy optical clarity: the only solution is pulling vacuum before the resin cures to let bubbles escape. Commercial vacuum chambers were significant upfront cost for an early proof-of-concept that might not proceed."
+        data-p2="Went to my industrial plastics supplier. In their scrap bin: a section of thick-wall PVC pipe, approximately 20 inches diameter. Cut it to length on the bandsaw, turned both ends on the lathe to achieve the flat sealing surface required for acrylic end caps. Tapped fittings for the vacuum port and pressure gauge. Total material cost: under $20. Held vacuum without issue."
+        data-p3="When the client project didn't proceed, the chamber sat unused for years until differential and transmission oil changes on the S2000. The standard method is a hand pump into the fill port, slow, hand-cramping, and prone to spills. The alternative is drilling into the oil bottle and pressurizing it with shop air, but an oil bottle is not a pressure vessel. It will fail unpredictably. The chamber was the answer."
+        data-p4="Converted from vacuum to pressure chamber: added threaded rod compression on both end plates instead of relying on vacuum to self-seal, turned an aluminum through-fitting on the lathe from raw bar stock so an oil tube could pass through the acrylic plate. Place a full bottle of oil inside, leave the cap off, drop the tube in, seal the chamber, and pressurize to 15 PSI. Chamber was pressure tested to 40 PSI before use, giving a comfortable safety margin for the 15 PSI working pressure. Oil flows from bottle directly into the car in under 10 seconds."
+        data-p5="The chamber cost $20 and an afternoon to build. It served one application, sat unused for years, then was fundamentally repurposed for a completely unrelated problem years later. The lathe-turned aluminum fitting is the detail that made the second application possible, off-the-shelf fittings can't thread through a half-inch acrylic plate cleanly."
+        data-album="#"
+        data-count="~25 photos · Build and repurpose sequence"
+        data-img1="images/chamber-01.webp|PVC pipe stock, found in supplier scrap bin"
+        data-img2="images/chamber-02.webp|Lathe turning, end face for sealing surface"
+        data-img3="images/chamber-03.webp|Chamber assembled, vacuum port and gauge fitted"
+        data-img4="images/chamber-04.webp|Repurposed as oil transfer pump, pressure fitting detail"
+        data-img5="images/chamber-05.webp|PLACEHOLDER"
+        data-img6="images/chamber-06.webp|PLACEHOLDER"
+        data-img7="images/chamber-07.webp|PLACEHOLDER">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-chamber.webp"
+             loading="lazy"
+             data-caption="PVC vacuum chamber — finished"
+             alt="Portfolio — PVC vacuum chamber — finished">
+          </div>
+          <div class="bi-name">Vacuum Chamber, $20</div>
+          <div class="bi-short">Scrap PVC turned on the lathe. Degassing chamber for $20. Later repurposed as a pressurized oil transfer pump.</div>
+          <div class="bi-tags"><span class="tag">Lathe</span><span class="tag">Constraint Solving</span><span class="tag">Tool Building</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+      <!-- 4: LEAF SPRINGS -->
+      <div class="build-item"
+        data-title="Tacoma Leaf Spring Pack"
+        data-category="Spring Rate Calculation · Suspension Engineering · Fabrication"
+        data-tags="Spring Rate Calc,Suspension,Fabrication,Napkin Math,First Principles"
+        data-p1="Aftermarket rear leaf spring packs for a Tacoma lift were expensive. A Craigslist listing offered two complete sets of Chevy HD2500 springs for $50, four packs total. The leaf cross-sections were compatible enough to work with the right selection and sequencing."
+        data-p2="Measured each leaf: thickness, length, and approximate material grade. Spring rate for a multi-leaf pack scales with the cube of leaf thickness and linearly with leaf count, napkin math from beam bending first principles. Calculated estimated rate for two target configurations: full leaf count for higher spring rate, one leaf removed for a softer pack."
+        data-p3="Built both packs completely: cut leaves to length, fabricated new clamps, bent and drilled attachment hardware, degreased and painted both packs to look new. The two-pack strategy was deliberate, bracketing the uncertainty rather than committing to one answer based on calculations that couldn't account for every variable."
+        data-p4="Installed the stiffer pack first. Drove it for a week. Too stiff, one leaf too many. Swapped to the softer pack. Height correct. Ride quality correct. Both conditions right on the first full-cycle test."
+        data-p5="Sold the stiffer pack to a Tacoma owner running a heavy canopy who specifically wanted the additional spring rate. Net cost of the rear suspension component of the lift: zero. The uncertainty bracket paid for itself."
+        data-album="#"
+        data-count="~30 photos · Build and install sequence"
+        data-img1="images/tacoma-leafspring-00.webp|Salvage Chevy HD2500 leaves, sorted by thickness"
+        data-img2="images/tacoma-leafspring-01.webp|Both packs assembled and painted, stiff vs soft"
+        data-img3="images/tacoma-leafspring-02.webp|Pack installation, rear axle detail"
+        data-img4="images/tacoma-leafspring-03.webp|Tacoma at final ride height, lifted and aligned"
+        data-img5="images/tacoma-leafspring-04.webp|Tacoma at final ride height, lifted and aligned"
+        data-img6="images/tacoma-leafspring-beforeafter-01.webp|"
+        data-img7="images/tacoma-leafspring-05.webp|">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-leafspring.webp"
+             loading="lazy"
+             data-caption="Custom leaf pack — painted and assembled"
+             alt="Portfolio — Custom leaf pack — painted and assembled">
+          </div>
+          <div class="bi-name">Tacoma Leaf Spring Pack</div>
+          <div class="bi-short">Two custom packs from $50 salvage springs bracketing spring rate uncertainty. Free lift. Sold the spare.</div>
+          <div class="bi-tags"><span class="tag">Spring Rate Calc</span><span class="tag">Suspension</span><span class="tag">Fabrication</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+      <!-- 5: SHELDON LATHE -->
+      <div class="build-item"
+        data-title="Sheldon Lathe Restoration"
+        data-category="Mechanical Restoration · Precision Alignment · Machine Literacy"
+        data-tags="Restoration,Alignment,Mechanical,Gearing,Precision"
+        data-p1="The Sheldon was functional but tired, worn ways, inconsistent gear backlash throughout the apron and carriage mechanism, degraded lubrication in every bearing and sliding surface, and cosmetically rough. Functional is not the same as precise, and precision is the only thing a lathe is actually for."
+        data-p2="Complete teardown. Every gear removed from the headstock and gearbox, cleaned of old hardened grease, inspected for wear pattern and tooth integrity, and reassembled with fresh grease packed to specification. Headstock bearings cleaned and re-packed. Apron mechanism disassembled, cleaned, adjusted for correct engagement."
+        data-p3="Ways cleaned of all accumulated swarf and oil contamination, stoned to remove any rust or burr, and re-oiled properly. Tailstock removed, its internal mechanism cleaned and adjusted for correct travel. Headstock and tailstock aligned to each other using a test bar, not just eyeballed, but measured and corrected."
+        data-p4="Repaint came after every mechanical operation was complete and verified. Making something look good before confirming it works correctly is the wrong sequence, the cosmetics would have been irrelevant if the alignment had been off."
+        data-p5="Restoring a lathe teaches how a lathe works at a level that operating one never does. Understanding the gear train, the apron mechanism, the compound slide geometry, and the headstock bearing arrangement transfers directly into understanding what the machine is telling you during any cutting operation, and what it means when something sounds or feels wrong."
+        data-album="#"
+        data-count="~40 photos · Full restoration sequence"
+        data-img1="images/sheldon-restore-01.webp|Sheldon lathe before, original condition"
+        data-img2="images/sheldon-restore-02.webp|Full teardown, components laid out"
+        data-img3="images/sheldon-restore-03.webp|Machined new toolpost holder, mating surfaces machined true"
+        data-img4="images/sheldon-restore-04.webp|Holes filled smooth, painted, gearbox fully restored"
+        data-img5="images/sheldon-restore-05.webp|Completed restoration, in service"
+        data-img6="images/sheldon-restore-06.webp|Completed restoration, in service"
+        data-img7="images/sheldon-restore-07_.webm|Completed restoration, in service">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-sheldon.webp"
+             loading="lazy"
+             data-caption="Sheldon lathe — restored and repainted"
+             alt="Portfolio — Sheldon lathe — restored and repainted">
+          </div>
+          <div class="bi-name">Sheldon Lathe Restoration</div>
+          <div class="bi-short">Complete teardown, gear restoration, precision alignment, repaint. Functional before. Precise after.</div>
+          <div class="bi-tags"><span class="tag">Restoration</span><span class="tag">Alignment</span><span class="tag">Mechanical</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+      <!-- 6: CF TRUNK -->
+      <div class="build-item"
+        data-title="Carbon Fiber Trunk, 1.77 lb"
+        data-category="Carbon Fiber Layup · Mold Making · Vacuum Bagging · Welding"
+        data-tags="Carbon Fiber,Mold Making,Vacuum Bag,Welding,Composites"
+        data-p1="Carbon fiber S2000 trunks existed, imported from Japan at $2,000 to $4,000 each. The OEM steel trunk weighed approximately 18 lb. The economics of buying one didn't make sense when building one would teach the entire composites process and cost a fraction of importing."
+        data-p2="The OEM trunk became the plug. First operation: weld and shave the keyhole and emblem mounting holes. A carbon fiber trunk with visible hardware holes defeats the entire visual and structural purpose, the plug surface has to be exactly what you want the final part to be, filled and sanded the welded areas to a smooth, consistent surface ready for mold work."
+        data-p3="Pulled two separate molds: one from the outside skin, one from the inside structural skeleton. Both molds required proper flanges and parting lines. The inner skeleton mold was the harder one: the OEM inner structure has complex geometry and the mold had to release cleanly from all of it."
+        data-p4="Full carbon layup on both outer skin and inner skeleton, no fiberglass sandwich. Multiple plies of 2x2 twill woven carbon, vacuum-bagged for consolidation on each piece. The vacuum pump used for bagging was converted from a salvaged refrigerator compressor — nothing in this build was sourced off a shelf if it could be built from what was already available. Both pieces bonded together into a complete trunk assembly. Because both molds were pulled from the OEM parts, every mounting point, latch mechanism, and taillight fitting lands exactly where Honda engineered it."
+        data-p5="Finished weight without hardware: 1.77 lb. With trunk latch, third brake light, and all mounting hardware installed: 3 lb. OEM steel trunk with hardware: approximately 18 lb. Honda's engineers already proved the shape was right. The only thing changed was the material, and the manufacturing process that made it possible in a garage."
+        data-album="#"
+        data-count="~40 photos · Full mold and layup sequence"
+        data-img1="images/s2000-cftrunk-01.webp|OEM trunk plug, shaved keyhole, surface prep, flange built ready to mold"
+        data-img2="images/s2000-cftrunk-02.webp|Two-part fiberglass mold, both inside and outside trunk sheet metal"
+        data-img3="images/s2000-cftrunk-03.webp|Molds seperated, carbon fiber outside skin cured under vacuum bagging"
+        data-img4="images/s2000-cftrunk-04.webp|Inside and outside trunk skin repicated in CF"
+        data-img5="images/s2000-cftrunk-05.webp|Both skins fitment corrected and epoxyed together"
+        data-img6="images/s2000-cftrunk-06.webp|Removed from car as single piece"
+        data-img7="images/s2000-cftrunk-07.webp|Finished CF trunk, 1.77 lb without installed hardware">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-cftrunk.webp"
+             loading="lazy"
+             data-caption="CF trunk — finished on car"
+             alt="Portfolio — CF trunk — finished on car">
+          </div>
+          <div class="bi-name">Carbon Fiber Trunk, 1.77 lb</div>
+          <div class="bi-short">Two-part mold from OEM plug, full carbon layup, no fiberglass sandwich. 1.77 lb finished weight.</div>
+          <div class="bi-tags"><span class="tag">Carbon Fiber</span><span class="tag">Mold Making</span><span class="tag">Welding</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+      <!-- 7: DDR PAD -->
+      <div class="build-item"
+        data-title="Arcade DDR Dance Pad Controller"
+        data-category="Structural Fabrication · Sensor Design · PCB Integration · HID Electronics"
+        data-tags="Woodworking,Sheet Metal,Sensor Design,PCB Integration,HID,Scrap Build"
+        data-p1="Soft DDR pads always disappointed. The assumption was that commercial hard pads at $800+ were the real thing. Found three non-working ones from two different brands on Craigslist for free, picked them up expecting to repair them, opened them up, and was immediately let down. Fixed in minutes, performed below expectations. The $800 reputation was perception, not reality. That was the moment to build something better from scratch."
+        data-p2="A heavy solid-wood tabletop being discarded became the structural base. Cut to size, the mass is actually an asset: it stays planted under impact without bolting to the floor. Arrow panels fabricated from sheet aluminum: cut, deburred, surface finished. Sensor system uses pressure-sensitive contact points at each corner of each panel. Entire build completed in a few days using mostly salvaged and remnant materials."
+        data-p3="The controller logic runs on a salvaged gaming controller PCB that was already on the shelf. Mapped the four arrow inputs to four face buttons by soldering directly to the button contact points on the existing PCB. No new microcontroller needed, the existing HID descriptor handles everything the host computer needs to see."
+        data-p4="Surface treatment: graphics designed for each arrow panel and printed, laminated for durability, and applied under a polycarbonate overlay layer for impact protection and easy replacement. The overall aesthetic matches commercial arcade DDR pads closely enough that the visual difference is the texture, not the layout."
+        data-p5="The build uses zero purpose-bought materials except consumables. Solid wood base from a discarded table, aluminum panels from offcut stock, PCB from an existing controller, hardware from the fastener bin. Total out-of-pocket spend was close to zero. The pad was accurate enough to matter: skills improved significantly from regular use, and AAA-ranked several high-difficulty songs that transferred directly to arcade performance. The $800 commercial unit sitting disassembled in the corner of the garage never got reassembled."
+        data-album="#"
+        data-count="~80 photos · Full build sequence"
+        data-img1="images/ddr-01.webp|Solid wood base cut from discarded tabletop"
+        data-img2="images/ddr-03.webp|Arrow panel fabrication, sheet aluminum cut and finished"
+        data-img3="images/ddr-04.webp|Sensor system, contact points and wiring"
+        data-img4="images/ddr-05.webp|PCB integration, salvaged controller with remapped inputs"
+        data-img5="images/ddr-06.webp|Surface graphics and polycarbonate overlay applied"
+        data-img6="images/ddr-07.webp|Completed DDR pad, in use"
+        data-img7="images/ddr-08.webp|Completed DDR pad, in use">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-ddr.webp"
+             loading="lazy"
+             data-caption="DDR dance pad — completed build"
+             alt="Portfolio — DDR dance pad — completed build">
+          </div>
+          <div class="bi-name">Arcade DDR Dance Pad</div>
+          <div class="bi-short">Picked up three non-working commercial pads from two brands. Fixed them, tried both, disappointed in both. Built a better one from scrap wood and a salvaged PCB instead.</div>
+          <div class="bi-tags"><span class="tag">Sheet Metal</span><span class="tag">PCB Integration</span><span class="tag">Scrap Build</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+      <!-- 8: HEADPHONE AMPS -->
+      <div class="build-item"
+        data-title="Headphone Amplifiers"
+        data-category="Point-to-Point Soldering · Analog Electronics · Wire Routing Discipline"
+        data-tags="Point-to-Point,Analog Electronics,Soldering,Wire Routing,cMoy,PIMETA"
+        data-p1="Point-to-point soldering is electronics work without the safety net of a PCB. Every connection is a deliberate act, the physical path of each wire is a design decision that affects both function and serviceability. There is no silkscreen telling you where things go. There is no copper trace establishing the correct connection. Every joint is yours."
+        data-p2="The cMoy was first, a battery-powered opamp headphone amplifier in an Altoids tin, the classic beginner point-to-point project. Then the PIMETA: a more sophisticated dual-opamp design requiring a regulated power supply, multiple filtering stages, and significantly more complex signal routing. Then a tube amplifier: a 12AU7-based design with a high-voltage regulated supply, demanding both analog electronics knowledge and respect for voltages that will actually hurt you."
+        data-p3="Each build was an exercise in making the internal layout as considered as the external chassis. The discipline: no wire crosses another unnecessarily. Every bundle has a dedicated path. Connections are made at the shortest viable route. The result looks designed rather than assembled, which is the entire point."
+        data-p4="The specific wire routing discipline developed across these builds transferred directly into the Voron machine build. A 3D printer with 50+ wires is just a larger version of the same problem: too many connections, not enough space, every routing decision visible to anyone who opens the enclosure."
+        data-p5="When you've spent time on headphone amplifiers learning to make wiring look designed, the Voron wiring looks designed. The community noted it specifically. The aesthetic wasn't an accident, it was applied practice from a completely different domain."
+        data-album="#"
+        data-count="~30 photos · All three builds"
+        data-img1="images/build-amp-cmoy-01.webp|cMoy build, point-to-point wiring in Altoids tin"
+        data-img2="images/build-amp-pimeta-01.webp|PIMETA, dual-opamp design with regulated supply"
+        data-img3="images/build-amp-tube-01.webp|Tube amplifier, 12AU7 with high-voltage supply"
+        data-img4="images/build-amp-wiring-01.webp|Wire routing detail, bundle discipline"
+        data-img5=""
+        data-img6="">
+        <div class="build-item-inner">
+          <div class="build-thumb">
+            <img src="images/thumb-build-amp.webp"
+             loading="lazy"
+             data-caption="Headphone amp — point-to-point wiring"
+             alt="Portfolio — Headphone amp — point-to-point wiring">
+          </div>
+          <div class="bi-name">Headphone Amplifiers</div>
+          <div class="bi-short">cMoy, PIMETA, tube amp, point-to-point with extreme wire routing discipline. Where the Voron wiring aesthetic originated.</div>
+          <div class="bi-tags"><span class="tag">Point-to-Point</span><span class="tag">Analog Electronics</span><span class="tag">Soldering</span></div>
+          <div class="bi-hint">+ Open engineering record</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="projects/hunterdouglas.html">00 / Hunter Douglas</a>
+      <a href="projects/case-study.html" target="_blank" rel="noopener noreferrer">Case Study PDF</a>
+    </div>
+  </footer>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-cat" id="mCat"></div>
+        <div class="modal-ttl" id="mTtl"></div>
+        <div class="modal-tags" id="mTags"></div>
+      </div>
+      <button class="modal-close" id="mClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-photos-wrap">
+        <div class="modal-photos" id="mPhotos"></div>
+        <div class="scroll-hint" id="scrollHint">
+          <span class="scroll-hint-arrow">↓</span>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div class="modal-text" id="mText"></div>
+        <div class="modal-footer">
+          <a href="#" class="modal-album" id="mAlbum" target="_blank" rel="noopener noreferrer">
+            <div class="modal-album-l">
+              <span class="modal-albl">Technical Traceability Log</span>
+              <span class="modal-atitle">Full Build Archive &amp; Iteration History</span>
+              <span class="modal-acnt" id="mCnt"></span>
+            </div>
+            <span class="modal-arr">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="modal-nav left"  id="modalPrev">‹</button>
+<button class="modal-nav right" id="modalNext">›</button>
+
+<script>
+const backdrop = document.getElementById('modalBackdrop');
+
+function ytId(url) {
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+function ytStart(url) {
+  const m = url.match(/[?&](?:t|start)=([0-9hms]+)/);
+  if (!m) return null;
+  const raw = m[1];
+  if (/^[0-9]+$/.test(raw)) return raw;
+  let secs = 0;
+  const h = raw.match(/(\d+)h/); if (h) secs += parseInt(h[1]) * 3600;
+  const mn = raw.match(/(\d+)m/); if (mn) secs += parseInt(mn[1]) * 60;
+  const s = raw.match(/(\d+)s/); if (s) secs += parseInt(s[1]);
+  return secs > 0 ? String(secs) : null;
+}
+function makePh(entry) {
+  const parts = entry.split('|');
+  const src = parts.length > 1 ? parts[0].trim() : 'images/placeholder-3x2.webp';
+  const label = parts.length > 1 ? parts[1].trim() : parts[0].trim();
+  const vid = ytId(src);
+  if (vid) {
+    const thumb = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
+    const startSecs = ytStart(src);
+    const startAttr = startSecs ? `data-yt-start="${startSecs}"` : '';
+    return `<div class="modal-photo" style="position:relative;">
+      <img src="${thumb}"
+           loading="lazy"
+           data-lightbox="modal-build"
+           data-youtube="${vid}"
+           ${startAttr}
+           data-caption="${label}"
+           alt="Build Depth — ${label}"
+           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+        <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+          <div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid white;margin-left:4px;"></div>
+        </div>
+      </div>
+    </div>`;
+  }
+  if (src.endsWith('.webm') || src.endsWith('.mp4')) {
+    return `<div class="modal-photo">
+      <video preload="none"
+             autoplay loop muted playsinline
+             data-lightbox="modal-build"
+             data-caption="${label}"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+        <source src="${src}" type="video/${src.endsWith('.mp4') ? 'mp4' : 'webm'}">
+      </video>
+    </div>`;
+  }
+  return `<div class="modal-photo">
+    <img src="${src}"
+         loading="lazy"
+         data-lightbox="modal-build"
+         data-caption="${label}"
+         alt="Build Depth — ${label}"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+  </div>`;
+}
+
+const buildItems = [...document.querySelectorAll('.build-item')];
+let currentIndex = -1;
+
+function updateNavArrows() {
+  document.getElementById('modalPrev').classList.toggle('hidden', currentIndex <= 0);
+  document.getElementById('modalNext').classList.toggle('hidden', currentIndex >= buildItems.length - 1);
+}
+
+function openModal(item) {
+  currentIndex = buildItems.indexOf(item);
+  updateNavArrows();
+  const d = item.dataset;
+    document.getElementById('mCat').textContent = d.category;
+    document.getElementById('mTtl').textContent = d.title;
+    document.getElementById('mTags').innerHTML = d.tags.split(',')
+      .map(t => `<span class="tag">${t.trim()}</span>`).join('');
+
+    const imgs = [];
+    let i = 1;
+    while (d[`img${i}`]) { imgs.push(d[`img${i}`]); i++; }
+    document.getElementById('mPhotos').innerHTML = imgs.map(makePh).join('');
+    // Re-init lightbox so modal photos get click handlers
+    if (window.lbInit) window.lbInit();
+
+    const paras = [d.p1,d.p2,d.p3,d.p4,d.p5].filter(Boolean);
+    document.getElementById('mText').innerHTML = paras.map(p => `<p>${p}</p>`).join('');
+
+    const albumEl = document.getElementById('mAlbum');
+    albumEl.href = d.album;
+    document.getElementById('mCnt').textContent = d.count + ' · Engineering Audit';
+
+    // Reset photo scroll + hint
+    const photosEl  = document.getElementById('mPhotos');
+    const contentEl = document.querySelector('.modal-content');
+    const hintEl    = document.getElementById('scrollHint');
+    photosEl.scrollTop  = 0;
+    contentEl.scrollTop = 0;
+    if (hintEl) hintEl.style.opacity = '1';
+
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+buildItems.forEach(item => {
+  item.addEventListener('click', () => openModal(item));
+});
+
+// Prev / Next buttons
+document.getElementById('modalPrev').addEventListener('click', () => {
+  if (currentIndex > 0) openModal(buildItems[currentIndex - 1]);
+});
+document.getElementById('modalNext').addEventListener('click', () => {
+  if (currentIndex < buildItems.length - 1) openModal(buildItems[currentIndex + 1]);
+});
+
+// Fade scroll hint on scroll
+document.getElementById('mPhotos').addEventListener('scroll', function() {
+  const hint = document.getElementById('scrollHint');
+  if (hint) hint.style.opacity = this.scrollTop > 24 ? '0' : '1';
+});
+
+// HD content area — navigate on click unless clicking a button or link
+document.querySelectorAll('.hd-clickable').forEach(el => {
+  el.addEventListener('click', function(e) {
+    if (e.target.closest('a, button')) return;
+    window.location.href = 'projects/hunterdouglas.html';
+  });
+});
+
+function closeModal() {
+  backdrop.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('mClose').addEventListener('click', closeModal);
+backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (!backdrop.classList.contains('active')) return;
+  if (e.key === 'ArrowLeft'  && currentIndex > 0) openModal(buildItems[currentIndex - 1]);
+  if (e.key === 'ArrowRight' && currentIndex < buildItems.length - 1) openModal(buildItems[currentIndex + 1]);
+});
+</script>
+
+<script src="lightbox.js"></script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voron Build — Kai-Hung Chuang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#builds">Build Depth</a></li>
+      <li><a href="hunterdouglas.html">Case Study</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <span>Voron Architecture</span>
+      </div>
+      <div class="project-hero-tag">06 · Machine Design · Precision Fabrication · Systems Integration</div>
+      <h1>Voron<br>Architecture</h1>
+    </div>
+    <div>
+      <p class="project-hero-desc">
+        Started by designing a CoreXY printer from scratch to incorporate the best available
+        ideas at the time. Found the Voron project mid-design, recognized what they were
+        doing right, contributed design feedback, and eventually built one of the most
+        documented and modified Vorons in the community. The most interesting parts
+        were not the deliberate decisions. They were the accidental ones.
+      </p>
+    </div>
+  </section>
+
+  <div style="max-width:85%;margin:2rem auto;">
+    <img src="../images/thumb-card-voron.webp"
+         loading="eager"
+         data-lightbox="voron"
+         data-caption="Completed Voron build — 310x3315mm non-square, MIC6 bed, modular dual-filament printhead, custom fume extraction, 12-channel relay electronics"
+         alt="Voron Build — Completed machine with all custom modifications integrated">
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-num accent">310×315</span>
+      <span class="stat-label">First non-square Voron — found and reported a configurator bug</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">Custom</span>
+      <span class="stat-label">AC silicone heater manufactured direct to CAD spec</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">Direct</span>
+      <span class="stat-label">Drive — among first Voron direct drive conversions</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">V2.180</span>
+      <span class="stat-label">Sub-200th registered build — all custom modifications already incorporated</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0.25rem 0 3rem;">
+    <a href="#ch03" class="tag-shortcut">Non-Square Configurator Bug ↓</a>
+    <a href="#ch04" class="tag-shortcut">Accidental Optimal Kinematic Mount ↓</a>
+    <a href="#ch05" class="tag-shortcut">Modular 1.75 + 2.85mm Printhead ↓</a>
+    <a href="#ch06" class="tag-shortcut">Magnetic Fume Extraction ↓</a>
+  </div>
+
+  <div class="narrative">
+
+<!-- 01/ Origin and Community Feedback -->
+
+    <div class="chapter" id="ch01">
+      <div class="chapter-header">
+        <span class="chapter-num">01 /</span>
+        <h2 class="chapter-title">Origin: Evaluating the Architecture</h2>
+      </div>
+      <p>This wasn't about reinventing the wheel. After years of modifying existing printers the goal was to build one that deliberately incorporated the best available technologies at the time: CoreXY motion for fast non-mass-dependent movement, linear rails instead of rod-and-bearing for rigidity and precision, MIC6 cast aluminum tooling plate for a mechanically flat print surface that doesn't require active leveling, and an AC silicone heater for fast heat-up times. The one self-imposed requirement was maximum front and top access without compromising frame rigidity, which none of the existing designs prioritized.</p>
+
+      <div class="photo-duo">
+        <img src="../images/voron-01.1.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Independent CoreXY concept in SolidWorks — developed before finding Voron, targeting CoreXY motion, linear rails, MIC6 bed, and maximum front access"
+             alt="Voron Build — Independent CoreXY printer concept developed in SolidWorks before discovering the Voron project">
+        <img src="../images/voron-01.2.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Voron STL library reverse-engineered to parametric Fusion 360 CAD — same approach as the LulzBot printhead program, but applied at full machine scale from the start"
+             alt="Voron Build — Full Voron STL library reverse-engineered to parametric Fusion 360 CAD">
+      </div>
+      <p>While developing the concept I came across the Voron project. Their flying gantry architecture was the thing that stood out. Traditionally Z is driven by two parallel motors which limits how independently each corner can be leveled. Voron solved this by running two controller boards together to drive four fully independent Z motors, one at each corner. The result was automatic four-point gantry leveling, and the MIC6 bed, the heaviest component, sitting stationary at the bottom of the frame. That combination hadn't seemed achievable before seeing it implemented. I shared my own concept with the community and got useful feedback. The creator of Voron noted unprompted that my gantry configuration looked like the V2.1 they already had in early development, the same rear crossbar position I had arrived at independently. Neither influenced the other. <strong>Two separate lines of thinking converging on the same answer is its own kind of validation.</strong></p>
+    </div>
+
+<!-- 02/ STL to CAD -->
+
+    <div class="chapter" id="ch02">
+      <div class="chapter-header">
+        <span class="chapter-num">02 /</span>
+        <h2 class="chapter-title">From STL to Parametric CAD</h2>
+      </div>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-02.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div>    
+      <p>Same situation as the LulzBot program: only mesh files, no native CAD. Before cutting a single extrusion, I reverse-engineered the full Voron STL library into a parametric Fusion 360 assembly, cross-referenced against physical measurements from the machine. This wasn't optional. Lower-level modifications were planned from the start, including a full extruder redesign for 2.85mm filament, and a fully editable assembly was the prerequisite for all of it. Every custom part that followed was designed against that model.</p>
+    </div>
+
+<!-- 03/ The Non-Square Build -->
+
+    <div class="chapter" id="ch03">
+      <div class="chapter-header">
+        <span class="chapter-num">03 /</span>
+        <h2 class="chapter-title">The Non-Square Build: A Bug and a Better Design</h2>
+      </div>
+      <p>Standard Voron configurations are 250x250mm or 300x300mm. The stock 300x300mm build gives slightly less than 300mm of usable Y travel because the nozzle probe at the rear of the bed requires the gantry to travel past the bed edge, bringing actual usable Y down to around 285mm. That was unacceptable. I also wanted nozzle travel beyond the bed boundary on all four sides for outside-bed purging and overtravel without losing print area. <strong>There is no engineering reason the printer footprint needs to match the square geometry of the bed.</strong> I configured 310mm X and 315mm Y and ran those numbers through Voron's frame rail length configurator.</p>
+      <p>I was apparently the first person to generate a non-square configuration. After the custom-cut aluminum extrusions arrived, the two bed mounting rails that should run front-to-back were clearly the wrong length. The configurator had output the width dimension for both. My bed rails had to run side to side. I reported the bug to the development team. They acknowledged it but noted that since no one else would build a non-square printer it was low priority. I proceeded anyway.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-03.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div>      
+      <p>As the frame went together, the side-to-side rail orientation turned out to look better. The proportions were cleaner. <strong>I kept it, and that accident set off a chain of downstream design decisions that each turned out better than the original plan would have produced.</strong></p>
+
+    </div>
+
+<!-- 04/ MIC6 Bed -->
+
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
+        <h2 class="chapter-title">MIC6 Bed: Sourced from Remnant Stock, Milled, Accidentally Optimal</h2>
+      </div>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-04.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div> 
+      <p>Rather than ordering a MIC6 plate cut to spec from an online supplier at high shipping cost, I went to my local industrial metal supplier's remnant section and found MIC6 plate, slightly thinner than recommended, at a fraction of the cost. Bought it and milled it myself.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-05.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div> 
+      <div class="photo-trio">
+        <img src="../images/voron-06.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="MIC6 plate being milled — extending rear tabs, locating pin holes, kinematic mounting slots, and heater clearance all cut from the same remnant plate"
+             alt="Voron Build — MIC6 tooling plate being milled with custom geometry on manual mill">
+        <img src="../images/voron-07.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Custom AC silicone heater manufactured to CAD spec — three mounting holes at exact kinematic mount coordinates, edge-to-edge coverage made possible by thermal fuse relocation to the rear tabs"
+             alt="Voron Build — Custom AC silicone heater with three mounting holes manufactured to CAD specification">
+        <img src="../images/voron-08.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Completed bed assembly — nozzle probe through rear tab, locating pins, kinematic thermal slots with fiber washers, edge-to-edge heater coverage"
+             alt="Voron Build — Completed MIC6 bed assembly with nozzle probe through tabs, locating pins, and full-coverage heater">
+      </div>
+
+      <p>Having my own mill opened up decisions no one ordering a pre-cut plate could make. I added two extending tabs at the rear of the bed. The Z probe nozzle pin passes through those tabs, distinctive on a part most builders have no ability to customize. I also added locating pins to the tabs as a repeatable datum for the magnetic flex plate, every removal and replacement snaps back to the same position without re-tramming.</p>      
+      <p>The side-to-side rail accident had an unexpected structural consequence. Voron bed design specifies four corner mounting holes from the early versions. Later it was recognized that three-point kinematic mounting is superior for a rigid flat surface, three points define a plane with no over-constraint. The problem was that every existing build had MIC6 already cut for four corner holes, so the community kept using four holes but only bolting three, leaving one corner on a long cantilever.</p>   
+      
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-09.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div> 
+      <div class="photo-duo">
+        <img src="../images/voron-10.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="MIC6 plate being milled — extending rear tabs, locating pin holes, kinematic mounting slots, and heater clearance all cut from the same remnant plate"
+             alt="Voron Build — MIC6 tooling plate being milled with custom geometry on manual mill">
+        <img src="../images/voron-11.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Custom AC silicone heater manufactured to CAD spec — three mounting holes at exact kinematic mount coordinates, edge-to-edge coverage made possible by thermal fuse relocation to the rear tabs"
+             alt="Voron Build — Custom AC silicone heater with three mounting holes manufactured to CAD specification">
+      </div>  
+ 
+      <p>Because my non-standard side-to-side rails required the bed to be mounted differently, I was able to place the three mounting points where the geometry actually called for them. <strong>Two rear points and one centered front point: a perfect equilateral triangle from the center of the bed.</strong> The best possible kinematic configuration, arrived at entirely by accident.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-12.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div> 
+      <p>Three mounting points at custom positions meant no standard AC silicone heater would fit. I contacted the Chinese manufacturer directly, sent my CAD drawing, and asked if they could produce a custom heater with three mounting holes punched at my exact coordinates. They said yes at no extra charge. <strong>The custom heater arrived matching the drawing exactly.</strong></p>
+
+       <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-13.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div>      
+      <p>The thermal fuse that must be bolted in direct contact with the underside of the bed is normally accommodated by making the heater smaller than the bed, leaving the edges exposed. Edges are where the most heating loss occurs. With the tabs extending beyond the print area, the thermal fuse could be mounted to the tab undersides, allowing my custom heater to cover the bed essentially edge to edge. </p>
+
+      <p>The two non-reference mounting points use slotted holes in the radial direction from the reference point, with fiber washers between the bolt hardware and the plate on both sides. The fiber washers prevent metal-on-metal contact so the MIC6 can thermally expand and slide slightly in the slot direction without any constraint on flatness. The reference point at rear-right nearest the nozzle probe is rigidly bolted: no slot, no washers, stainless hardware directly through.</p>
+
+      <div class="photo-duo">
+        <img src="../images/voron-14.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="MIC6 plate being milled — extending rear tabs, locating pin holes, kinematic mounting slots, and heater clearance all cut from the same remnant plate"
+             alt="Voron Build — MIC6 tooling plate being milled with custom geometry on manual mill">
+        <img src="../images/voron-15.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Custom AC silicone heater manufactured to CAD spec — three mounting holes at exact kinematic mount coordinates, edge-to-edge coverage made possible by thermal fuse relocation to the rear tabs"
+             alt="Voron Build — Custom AC silicone heater with three mounting holes manufactured to CAD specification">
+      </div>
+      <div class="photo-duo">
+        <img src="../images/voron-16.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="MIC6 plate being milled — extending rear tabs, locating pin holes, kinematic mounting slots, and heater clearance all cut from the same remnant plate"
+             alt="Voron Build — MIC6 tooling plate being milled with custom geometry on manual mill">
+        <img src="../images/voron-17.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Custom AC silicone heater manufactured to CAD spec — three mounting holes at exact kinematic mount coordinates, edge-to-edge coverage made possible by thermal fuse relocation to the rear tabs"
+             alt="Voron Build — Custom AC silicone heater with three mounting holes manufactured to CAD specification">
+      </div>
+    </div>
+
+<!-- 05/ Modular Printhead -->
+
+    <div class="chapter" id="ch05">
+      <div class="chapter-header">
+        <span class="chapter-num">05 /</span>
+        <h2 class="chapter-title">Modular Printhead: 1.75mm or 2.85mm, Any Hotend</h2>
+      </div>
+      <p>The Voron was originally designed as a Bowden system running 1.75mm filament. The first modification was converting it to 2.85mm, driven by economics: the LulzBot printhead business had accumulated a large free stash of 2.85mm material, and retail stores were clearing 2.85mm inventory at pennies on the dollar as the market converged on 1.75mm. The material cost difference was large enough to design around. The Bowden setup made this conversion relatively straightforward since the extruder motor sat outside the printhead on the frame, far from the space-constrained carriage.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-24.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div>
+      <p>During that 2.85mm Bowden redesign, the nozzle datum problem was solved almost as a side effect. Most Voron users never think about nozzle position consistency across hotends because the Z probe handles it in software: if a different hotend changes the nozzle height, the probe recalibrates automatically on the next print. That software compensation is sufficient for anyone running one hotend configuration permanently.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-23.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Vehicle Integrated Compute — Generation 2 Moto G installed in Tacoma AC vent with custom driving-optimized launcher">
+      </div>
+      <p>It was already clear at this stage that a fixed on-gantry nozzle camera was the next project. A camera has a fixed focal point and a fixed field of view. <strong>Software Z compensation cannot move an optical system</strong>. If the nozzle datum shifts between hotend swaps, the camera's calibrated view breaks regardless of what the firmware does. The nozzle position had to be physically identical across every hotend configuration.</p>
+      <p>The solution was to build the compensation into the hardware itself: each hotend housing is <strong>designed to a consistent nozzle datum by compensating for its own length variation</strong>, so every housing drops the nozzle to exactly the same position regardless of hotend geometry.</p>
+
+      <div class="pull-quote">
+        <p>The nozzle datum solution wasn't just a fix. It was the prerequisite that made the nozzle cam project possible.</p>
+      </div>
+
+      <p>Nozzle cam development was underway when the direct drive problem was solved. The community had been working out whether miniaturized direct drive was achievable on the Voron's compact carriage without sacrificing the mass advantage that made Bowden worth using in the first place. The answer was NEMA14 stepper motors with high planetary gear reduction, delivering enough torque from a fraction of the weight and volume of a standard NEMA17. For 2.85mm filament running at significantly higher back-pressure than 1.75mm, that gear ratio wasn't a nice-to-have — it was the difference between viable and not. Being the only person in the community running 2.85mm meant there was more at stake in getting the torque math right than anyone else working on it.</p>
+      <div class="photo-duo">
+        <img src="../images/voron-21.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Modified Orbiter extruder for 2.85mm — gear layout rearranged around fixed CNC planetary hub geometry from a community group buy"
+             alt="Voron Build — Orbiter extruder modified for 2.85mm filament with rearranged gear layout around fixed planetary hub">
+        <img src="../images/voron-22.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Modular printhead system — extruder module and hotend housing as independent assemblies, each hotend housing compensates its length so nozzle datum stays constant"
+             alt="Voron Build — Modular printhead system showing independent extruder module and hotend housing assemblies">
+      </div>
+      <p>The Orbiter extruder was the right platform: open source, high planetary reduction, NEMA14 native. Modifying it for 2.85mm required designing around two fixed geometric constraints simultaneously — <strong>the CNC planetary gear hub</strong> from a community group buy that couldn't be changed, and the <strong>dual filament drive gears</strong>, which are significantly larger in the 2.85mm version than their 1.75mm counterparts. Both were immovable. Everything else was redesigned around them.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-18.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Voron Build — Modular printhead hotend housing system">
+      </div>
+      <div class="photo-duo">
+        <img src="../images/voron-19.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="MIC6 plate being milled — extending rear tabs, locating pin holes, kinematic mounting slots, and heater clearance all cut from the same remnant plate"
+             alt="Voron Build — MIC6 tooling plate being milled with custom geometry on manual mill">
+        <img src="../images/voron-20.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Custom AC silicone heater manufactured to CAD spec — three mounting holes at exact kinematic mount coordinates, edge-to-edge coverage made possible by thermal fuse relocation to the rear tabs"
+             alt="Voron Build — Custom AC silicone heater with three mounting holes manufactured to CAD specification">
+      </div>
+      <p>Incorporating direct drive as a third modular configuration — alongside the existing Bowden 1.75mm and Bowden 2.85mm setups — meant the direct drive extruder now lived on the printhead carriage rather than on the frame. The nozzle datum system already handled the physical swap. What it created was a firmware problem nobody else in the community had: each combination of filament diameter and hotend type required its own firmware profile, with configuration differences significant enough that a simple variable swap was insufficient. The hardware modularity that made the machine flexible multiplied the firmware management problem directly, and there was no community solution to reference because nobody else was running this combination. A custom Octoprint plugin script handles the firmware config file swap automatically in two clicks when changing configurations. <strong>Swapping between hotend configurations takes seconds on both the hardware and software side.</strong></p>
+    </div>
+
+<!-- 06/ Electronics and Fume Extraction -->
+
+    <div class="chapter" id="ch06">
+      <div class="chapter-header">
+        <span class="chapter-num">06 /</span>
+        <h2 class="chapter-title">Electronics, Fume Extraction, and Integrated Systems</h2>
+      </div>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/voron-25.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="PLACEHOLDER"
+             alt="Voron Build — Modular printhead hotend housing system">
+      </div>
+      <p>The electronics bay uses custom mounting plates sized to the exact footprint of each board, with separated voltage rails and a 12-channel relay system for software-controlled switching of lighting, fans, and printer power, all accessible from the bottom of the machine. Every wire bundle runs a dedicated routed path, no unnecessary crossings, secured at deliberate intervals. <strong>The underside wiring became one of the most commented-on aspects of the build</strong>, the direct result of treating it as a design problem rather than an afterthought.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <video autoplay loop muted playsinline
+             preload="none" 
+             poster="../images/voron-26.webp"
+             data-lightbox="voron"
+             data-caption="First working prototype — before optimization"
+             aria-label="a somewhat low resolution blurry footage of one of my earliest working prototype"
+             style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/voron-26.webm" type="video/webm">
+        </video>
+      </div>
+      <div class="photo-trio">
+        <img src="../images/voron-27.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="MIC6 plate being milled — extending rear tabs, locating pin holes, kinematic mounting slots, and heater clearance all cut from the same remnant plate"
+             alt="Voron Build — MIC6 tooling plate being milled with custom geometry on manual mill">
+        <img src="../images/voron-28.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Custom AC silicone heater manufactured to CAD spec — three mounting holes at exact kinematic mount coordinates, edge-to-edge coverage made possible by thermal fuse relocation to the rear tabs"
+             alt="Voron Build — Custom AC silicone heater with three mounting holes manufactured to CAD specification">
+        <img src="../images/voron-29.webp"
+             loading="lazy"
+             data-lightbox="voron"
+             data-caption="Custom AC silicone heater manufactured to CAD spec — three mounting holes at exact kinematic mount coordinates, edge-to-edge coverage made possible by thermal fuse relocation to the rear tabs"
+             alt="Voron Build — Custom AC silicone heater with three mounting holes manufactured to CAD specification">
+      </div>
+      <p>The fume extraction system was built from scratch because printing ABS in a room requires actual extraction, not filtration. Voron's stock activated carbon filter still vents into the room and asks a lot from a small amount of filter media. I built a full exhaust system ducted outside through a window that can still fully close around the duct. A 140mm fan on the window side ensures consistent push-pull exhaust pressure. Powering that external fan without another hanging wire across the room required a creative solution: I salvaged magnetic contact pins and PCBs from cheap Lowe's flashlights, cheaper to buy the whole flashlight than to source the magnetic contact components separately, and built them into the air duct as power contacts. The external fan draws power directly from the printer through those contacts inside the duct. The full duct system mounts magnetically on both ends, connecting or disconnecting in seconds.</p>
+
+    </div>
+
+<!-- 07/ Community Recognition and Nozzle Cam -->
+
+    <div class="chapter" id="ch07">
+      <div class="chapter-header">
+        <span class="chapter-num">07 /</span>
+        <h2 class="chapter-title">Community Recognition and the Nozzle Camera</h2>
+      </div>
+      <p>The build was documented throughout as a community build log. The non-square configuration, the custom milled bed with the nozzle probe tab (visually distinctive enough to attract sustained attention on its own), the modular printhead, and the wiring discipline combined into one of the most widely recognized Voron builds in the community. Not because of the earlier design suggestions, but from showing the work and explaining the reasoning. Serial number V2.180, under the 200th registered build, with all the custom modifications already incorporated before submission.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <div style="position:relative;">
+          <img src="https://img.youtube.com/vi/btOORPWcdcQ/hqdefault.jpg"
+               loading="lazy"
+               data-lightbox="nozzlecam"
+               data-youtube="btOORPWcdcQ"
+               data-yt-start="274"
+               data-caption="Voron high-speed printing showcase — high quality nozzle cam footage showing the final optimized system in action"
+               alt="YouTube video showing off tuned Voron print speed with high quality nozzle cam footage as a showcase of the final system"
+               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+            <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <div style="width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid white;margin-left:4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>The final addition was a miniature nozzle monitoring camera built from an affordable USB endoscope. The complete methodology was published openly on YouTube rather than as a downloadable STL file, the intent was for people to understand the approach well enough to evolve it, not just reproduce it. The design spread widely through the community. CNC Kitchen, one of the most prominent 3D printing channels, credited the design by name and built their own from it. Obico's official nozzle camera installation documentation credits the YouTube guide as a primary source. The concept was later commercialized by others as a dedicated product category. Full documentation on the <a href="nozzlecam.html" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(232,135,10,0.4);">Nozzle Camera System</a> page.</p>
+    </div>
+
+  </div>
+
+<!--
+  <a href="#" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">Technical Traceability Log</span>
+      <span class="album-link-title">Voron Build — Full Build Archive and Iteration History</span>
+      <span class="album-link-count">~80 photos · Google Photos album · Coming soon</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+-->
+
+  <div class="project-nav" style="display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin:5rem 0 3rem;align-items:stretch;">
+    <a href="../index.html" class="project-nav-item" style="flex:0 0 auto;min-width:72px;text-align:center;justify-content:center;">
+      <span class="pni-label" style="color:var(--accent);font-weight:700;font-size:11px;">Home</span>
+      <span class="pni-title" style="font-size:1rem;">↑</span>
+    </a>
+    <a href="fpv.html" class="project-nav-item" style="flex:1;">
+      <span class="pni-label" style="color:var(--text-muted);">← Previous Project</span>
+      <span class="pni-title">FPV Platforms + Goggle System</span>
+    </a>
+    <a href="vehiclecompute.html" class="project-nav-item next" style="flex:1;">
+      <span class="pni-label">Next Project →</span>
+      <span class="pni-title">Vehicle-Integrated Compute</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="hunterdouglas.html">Case Study</a>
+    </div>
+  </footer>
+
+</main>
+<script src="../lightbox.js"></script>
+</body>
+</html>

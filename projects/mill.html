@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mill Trilogy — Kai-Hung Chuang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.scroll-target { display: block; scroll-margin-top: 80px; }
+</style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#builds">Build Depth</a></li>
+      <li><a href="hunterdouglas.html">Case Study</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <span>The Mill Trilogy</span>
+      </div>
+      <div class="project-hero-tag">01 · Machining · Automation · First Principles</div>
+      <h1>The Mill<br>Trilogy</h1>
+    </div>
+    <div>
+      <p class="project-hero-desc">
+        Two used X2 mini mills, one used to machine the modifications for the other,
+        building a precision super mill with miniaturized internal DRO electronics,
+        ball screws, and a custom power feed designed from scratch. Then a third
+        higher-quality mill from Little Machine Shop converted to full 3-axis CNC:
+        every component designed in SolidWorks, machined from 6061 aluminum on the
+        super mill, and integrated with Geckodrive motion control with no kit hardware.
+      </p>
+    </div>
+  </section>
+
+
+      <div style="max-width:85%;margin:2rem auto;">
+        <img src="../images/mill-manual-setup-01.webp"
+             loading="eager"
+             data-lightbox="mill"
+             data-caption="The completed super mill: powder coated, all three axes converted to ball screws, internal DRO electronics, and custom power feed. This machine was built to machine the CNC conversion components."
+             alt="The Mill Trilogy — Completed super mill with ball screw conversion, miniaturized internal DRO, powder coat finish, and custom X-axis power feed">
+      </div>
+
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-num accent">3</span>
+      <span class="stat-label">Mills, each a different chapter</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">DIY</span>
+      <span class="stat-label">Miniaturized internal DRO system</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">3-axis</span>
+      <span class="stat-label">Full CNC from first principles</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">6061</span>
+      <span class="stat-label">Aluminum, milled from raw stock</span>
+    </div>
+  </div>
+
+
+  <div class="narrative">
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0.25rem 0 3rem;">
+    <a href="#dro-internal" class="tag-shortcut">Miniaturized Internal DRO ↓</a>
+    <a href="#power-feed" class="tag-shortcut">Custom Power Feed ↓</a>
+    <a href="#teardown-sequencing" class="tag-shortcut">Machine-Before-Teardown Sequencing ↓</a>
+    <a href="#coupling-tolerance" class="tag-shortcut">Designed Sacrificial Failure Point ↓</a>
+    <a href="#geckodrive-integration" class="tag-shortcut">Geckodrive System Integration ↓</a>
+  </div>    
+
+<!-- 01/ Mills #1 and #2: Building a Better Machine -->
+
+    <div class="chapter" id="ch01">
+      <div class="chapter-header">
+        <span class="chapter-num">01 /</span>
+        <h2 class="chapter-title">Mills #1 and #2: Building a Better Machine</h2>
+      </div>
+      <div class="photo-single" style="max-width:1000px;margin:2rem auto;">
+        <img src="../images/mill-manual-twomills-01.webp"
+             loading="eager"
+             data-lightbox="mill"
+             data-caption="Two used X2 mills: the starting point. Between them they came with tooling, ball screws, and digital scales that would have cost significantly more bought new."
+             alt="The Mill Trilogy — Two used X2 mini mills on toolboxes, the starting point for the super mill and CNC conversion builds"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>       
+      <p>X2 mini mills were the only desktop-size machines available to hobbyists at the time, known to be fairly subpar out of the factory. CNC conversion kits existed but together with the mill would run well into the $3,000 range. Buying two used machines for next to nothing made sense. They usually came with tooling from previous owners worth significantly more than the asking price. One happened to come with ball screws and digital scales already, which turned out to be a significant cost saving for what came next.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/mill-manual-blueprint-01.webp"
+         loading="lazy"
+         data-lightbox="mill"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>One mill was used to machine the modifications for the other. Full teardown first: blueprinted all axes, compound-ground and polished the dovetail ways to remove factory tool marks and establish true reference surfaces. <strong>Chinese import castings are functional but their surface finish and geometric accuracy leave significant room for improvement.</strong> Replacing bushings with ball bearings followed. The goal was a machine accurate and repeatable enough to produce CNC-grade components on its own output.</p>
+      <p>The ball screws themselves transferred across all three axes. The previous conversion hardware was hacked together and unusable, so all the conversion components were redesigned and remilled from scratch, in addition to milling the necessary clearance into the underside of the table ways to accommodate them. The digital scales followed, long linear encoders that output the same signal as digital calipers.</p>
+  <span id="dro-internal" class="scroll-target"></span>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/mill-manual-scale-01.webp"
+         loading="lazy"
+         data-lightbox="mill"
+         data-caption="Ball screw and linear scale installed inside the table: milled clearance on the underside of the ways lets both components sit fully internal with nothing hanging off the exterior."
+         alt="The Mill Trilogy — Ball screw and linear scale installed internally inside milling table after milling underside clearance into table ways"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <div class="photo-trio" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);margin:2rem 0;">
+        <img src="../images/mill-manual-pcbmod-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Digital caliper PCB stripped to bare minimum: LCD, buttons, and all unnecessary components removed to achieve the smallest possible footprint for fitment inside the milling table."
+             alt="The Mill Trilogy — Digital caliper PCB stripped to minimum components for low-profile fitment inside milling table">
+        <img src="../images/mill-manual-lowprocover-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Custom milled aluminum low-profile cover: replaced the original caliper housing to achieve the clearance needed to fit the scale inside the table alongside the ball screw."
+             alt="The Mill Trilogy — Custom milled aluminum low-profile cover replacing original caliper housing for internal table fitment">
+        <img src="../images/mill-manual-dro-wire-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Scale wiring routed inside the table: all three axes wired cleanly through the casting before the cover goes on, no exposed wiring."
+             alt="The Mill Trilogy — DRO scale wiring routed internally through mill casting before assembly">
+      </div>    
+      <p><strong>The DRO integration was the part most hobbyists take shortcuts on.</strong> The typical approach mounts scales externally with brackets hanging off the outside. Functional enough, but it adds stack-up, creates snag points, and looks bolted on as an afterthought. Instead, I stripped the digital caliper circuit boards down to their minimum, removing the LCD, buttons, and every unnecessary component, then designed and milled custom aluminum enclosures in CAD sized to fit inside the milling table alongside the ball screws. Everything internal, nothing hanging off the outside. An open-source interface circuit built on a breadboard connects the scales to an Android tablet as a full three-axis DRO display. Custom 3D-printed enclosure for the interface board, mounted cleanly on the side of the mill.</p>
+      <p>Powder coated all the bare aluminum and cast iron components flat black. Seals the surface, makes cleanup faster, and makes the machine read as a designed unit rather than an assembled collection of parts.</p>
+
+  <span id="power-feed" class="scroll-target"></span>      
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/mill-manual-powerfeed-01.webp"
+           loading="lazy"
+           data-lightbox="mill"
+           data-caption="Custom X-axis power feed: SolidWorks designed, machined from 6061 aluminum, one-third the size of the commercial equivalent. Looks like it was designed to fit the machine from the factory."
+           alt="The Mill Trilogy — Custom X-axis power feed machined from 6061 aluminum, one-third the size of commercial unit, designed to look factory-integrated"
+           style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+
+      <div class="photo-duo" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin:2rem 0;">
+        <video autoplay loop muted playsinline
+             preload="none"  
+             poster="../images/mill-manual-powerfeed-clutch-01.webp" 
+             data-lightbox="mill"
+             data-caption="Quick-disconnect clutch: standard 3/8 drive socket components adapted as the coupling interface, allowing the power feed to be removed from the ball screw without tools."
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/mill-manual-powerfeed-clutch-01.webm" type="video/webm">
+        </video>
+        <video autoplay loop muted playsinline
+             preload="none"  
+             poster="../images/mill-manual-powerfeed-cut-01.webp" 
+             data-lightbox="mill"
+             data-caption="Power feed in operation: facing mild steel at a controlled feed rate, demonstrating the consistent surface finish the motorized drive enables compared to hand feeding."
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;cursor:zoom-in;">
+          <source src="../images/mill-manual-powerfeed-cut-01.webm" type="video/webm">
+        </video>
+      </div>
+
+      <p>The last thing the super mill needed was a power feed. Commercial units existed but were bulky and expensive. The requirement was straightforward: a motor with speed and direction control, coupled to the X-axis ball screw. A car window regulator motor from Amazon with a 90-degree reduction gearbox built in, combined with a bidirectional speed controller from AliExpress. Measured everything with digital calipers, modeled the full design in SolidWorks, bought 6061 aluminum stock from a local metal supplier, and had a working power feed the next day. <strong>The finished unit is one-third the footprint of the commercial equivalent, designed with integrated access panels for the motor controller and speed potentiometer from the start rather than added as an afterthought.</strong> Quick-disconnect using standard 3/8" socket drive components. Sitting next to a commercial power feed, it looks like the commercial unit is the afterthought.</p>
+
+      <div class="photo-trio">
+        <img src="../images/mill-manual-bearingmount-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Custom bearing mount for ball screw end support: machined to locate the ballscrew end bearing precisely against the casting, replacing the original lead screw thrust arrangement."
+             alt="The Mill Trilogy — Custom machined bearing mount for ball screw end support precision location against casting">
+        <img src="../images/mill-manual-pcoat-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Powder coat applied to all bare aluminum and cast iron components before final assembly: seals the surface and gives the machine a designed-unit appearance rather than an assembled one."
+             alt="The Mill Trilogy — Powder coated mill components before final assembly, flat black finish on aluminum and cast iron parts">
+        <img src="../images/mill-manual-scale-02.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Ball screw installed and linear scale positioned alongside it: the complete internal axis assembly before the table cover is fitted."
+             alt="The Mill Trilogy — Ball screw and linear scale installed together inside milling table before cover fitment">
+      </div>
+      <div class="photo-trio">
+        <img src="../images/mill-manual-dro-wireroute-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="DRO cable routing: all three axis scale cables routed and managed cleanly through the machine before the interface circuit is connected."
+             alt="The Mill Trilogy — DRO scale cable routing through mill before connection to interface circuit">
+        <img src="../images/mill-manual-dro-android-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Android tablet DRO display live: three-axis readout from internal scales driven by the open-source interface circuit, mounted at eye level on the side of the mill."
+             alt="The Mill Trilogy — Android tablet showing live three-axis DRO readout from internal digital caliper scales">
+        <img src="../images/mill-manual-dro-mount-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="DRO interface circuit mounted on the mill: open-source circuit evolved from Arduino to TI LaunchPad, connecting the three internal caliper scales to the Android tablet HMI. Analog hardware to digital display, built from scratch."
+             alt="The Mill Trilogy — Open-source DRO interface circuit board mounted on mill connecting internal scales to Android tablet display">
+      </div>
+      <div class="photo-duo">
+        <img src="../images/mill-manual-powerfeed-controller.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Power feed controller panel: integrated speed potentiometer and direction toggle, with access panels designed into the housing geometry from the start rather than added as an afterthought."
+             alt="The Mill Trilogy — Power feed controller panel with integrated speed control and direction toggle, access panels built into original housing geometry">
+        <img src="../images/mill-manual-setup-02.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Super mill completed and operational: ball screws on all three axes, internal DRO, powder coat finish, and custom power feed. This machine was then used to produce all the CNC conversion components."
+             alt="The Mill Trilogy — Completed super mill fully operational with ball screws, internal DRO system, powder coat, and custom power feed">
+      </div>
+    </div>
+
+
+<!-- 02/ Mill #3: Designing the CNC Conversion -->
+
+    <div class="chapter" id="ch02">
+      <div class="chapter-header">
+        <span class="chapter-num">02 /</span>
+        <h2 class="chapter-title">Mill #3: Designing the CNC Conversion</h2>
+      </div>
+      <div class="photo-single" style="max-width:1000px;margin:2rem auto;">
+        <img src="../images/mill-cnc-design-01.webp"
+             loading="eager"
+             data-lightbox="mill"
+             data-caption="Two used X2 mills: the starting point. Between them they came with tooling, ball screws, and digital scales that would have cost significantly more bought new."
+             alt="The Mill Trilogy — Two used X2 mini mills on toolboxes, the starting point for the super mill and CNC conversion builds"
+             style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div> 
+      <p>The Little Machine Shop X2 variant was a meaningfully better machine than the standard Chinese import. Beefier castings, tighter factory tolerances, acquired specifically as the CNC platform. By this point I had already modified two X2 mills extensively and understood exactly where the casting geometry allowed modification and where it didn't. That knowledge went directly into the SolidWorks design. The entire conversion: motor mounts, ballscrew end supports, scale mounts, coupling adapters, electronics enclosure brackets. All fully modeled before any material was touched.</p>
+
+  <span id="teardown-sequencing" class="scroll-target"></span>      
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/mill-cnc-components-milled-01.webp"
+         loading="lazy"
+         data-lightbox="mill"
+         data-caption="Batch of finished 6061 aluminum CNC conversion components: motor mounts, end supports, scale mounts, and coupling adapters, all machined on the super mill before the LMS teardown."
+         alt="The Mill Trilogy — Batch of finished 6061 aluminum CNC conversion components machined on super mill before LMS mill teardown"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <div class="photo-trio">
+        <img src="../images/mill-cnc-components-materials-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Raw 6061 aluminum stock and hardware sourced before machining: ballscrew ends, fasteners, and bar stock ready for the super mill."
+             alt="The Mill Trilogy — Raw 6061 aluminum stock and hardware components laid out before CNC conversion machining begins">
+        <img src="../images/mill-cnc-components-materials-05.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Motor mount and bracket components in progress on the super mill: 6061 aluminum being machined to fit the LMS casting geometry precisely."
+             alt="The Mill Trilogy — CNC conversion motor mount components being machined from 6061 aluminum on super mill">
+        <img src="../images/mill-cnc-components-materials-03.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Machined conversion components laid out for inspection before assembly: every piece verified for fit before the LMS mill teardown begins."
+             alt="The Mill Trilogy — Finished CNC conversion components laid out for inspection before LMS mill teardown and assembly">
+      </div>
+      <div class="photo-trio">
+        <img src="../images/mill-cnc-components-materials-04.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Ballscrew end support block being machined: locating the ballscrew end bearing precisely against the LMS casting requires tight tolerances at this interface."
+             alt="The Mill Trilogy — Ballscrew end support block being machined from 6061 aluminum for precise bearing location against LMS casting">
+        <img src="../images/mill-cnc-components-materials-06.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Cast iron clearance work after teardown: pocketing the LMS casting to accommodate the ballscrew, end support, and scale bracket geometry."
+             alt="The Mill Trilogy — Cast iron LMS mill casting being milled for clearance after teardown to accommodate conversion components">
+        <img src="../images/mill-cnc-components-materials-02.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Conversion components being assembled onto the LMS mill: all machined parts fit as designed on first assembly without rework."
+             alt="The Mill Trilogy — CNC conversion components being assembled onto LMS mill, fitting correctly on first assembly as designed">
+      </div>
+
+      <p>Because the ball screws were being repurposed from the super mill and I had already done similar casting modifications before, I knew exactly what aluminum parts needed to be machined and what cast iron clearance work the LMS mill would need. <strong>All the 6061 aluminum components were machined before the LMS mill was even torn down.</strong> Once the teardown happened, the cast iron clearance work was done on the now-bare machine, and everything was ready to assemble with the new components already waiting.</p>
+      <p>That sequencing was deliberate. Tearing down a machine and leaving it disassembled while waiting for parts to be machined is how projects stall for weeks. Having everything ready before the teardown meant the conversion moved in one continuous direction. <strong>Everything fit on first assembly.</strong></p>
+
+      <div class="photo-duo">
+        <img src="../images/mill-cnc-components-materials-07.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="SolidWorks assembly showing motor mount geometry referenced against the LMS casting model: every clearance and hole pattern designed before cutting started."
+             alt="The Mill Trilogy — SolidWorks motor mount design referenced against LMS X2 casting geometry">
+        <img src="../images/mill-cnc-components-materials-08.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Milling the LMS cast iron for ballscrew clearance: the casting is on the super mill after teardown, being pocketed to accept the ballscrew end support block."
+             alt="The Mill Trilogy — LMS cast iron casting being milled on super mill for ballscrew end support clearance after teardown">
+      </div>
+      <div class="photo-duo">
+        <img src="../images/mill-cnc-components-materials-09.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Motor mount facing operation on the super mill: reference surface being established to ensure the stepper motor sits perpendicular to the ballscrew axis."
+             alt="The Mill Trilogy — CNC motor mount reference surface being machined on super mill for stepper motor perpendicularity">
+        <img src="../images/mill-cnc-components-materials-10.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="CNC conversion assembled: all machined components installed on the LMS mill, everything fitting to spec on first assembly."
+             alt="The Mill Trilogy — Completed CNC conversion assembly with all machined components installed and fitting correctly on first assembly">
+      </div>
+    </div>
+
+
+<!-- 03/ Compliance Couplings: Machined to Exact Spec -->
+
+  <span id="coupling-tolerance" class="scroll-target"></span>
+    <div class="chapter" id="ch03">
+      <div class="chapter-header">
+        <span class="chapter-num">03 /</span>
+          <h2 class="chapter-title">Compliance Couplings: Machined to Exact Spec</h2>
+      </div>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/mill-cnc-couplings-01.webp"
+         loading="lazy"
+         data-lightbox="mill"
+         data-caption="Oldham coupling components laid out before assembly: aluminum flanges on the outside, Delrin center disk in the middle. All three pieces machined from raw stock."
+         alt="The Mill Trilogy — Oldham coupling components laid out: aluminum flanges and Delrin center sliding disk machined from raw stock"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>The ball screws repurposed from the super mill had already been turned to a non-standard spec for that application, so off-the-shelf couplings wouldn't fit anyway. Machining them from scratch was the practical solution. The design was an Oldham coupling: aluminum flanges on both shaft ends, Delrin center sliding disk in between.</p>
+      <p>Delrin was chosen for its low coefficient of friction for smooth lateral compensation, good dimensional stability, and clean machinability with standard HSS endmills. It was also already on hand. Critically, it acts as a <strong>designed sacrificial failure point.</strong> On a crash, the Delrin disk fails before the ballscrew or motor does.</p>
+      <p>The interference fit between the disk and flanges determines backlash. I referenced Machinery's Handbook and targeted approximately 0.04mm interference: tight enough for zero backlash under cutting loads, light enough to press in by hand. Delrin channels machined slightly undersized, aluminum teeth slightly oversized. <strong>Getting that fit dialed in took a few iterations on the super mill, which was the whole point of making these from scratch.</strong></p>
+
+      <div class="photo-duo">
+        <img src="../images/mill-cnc-couplings-milling-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Milling the Oldham coupling flanges from 6061 aluminum: the slot geometry that engages the Delrin center disk being cut to dimension."
+             alt="The Mill Trilogy — Oldham coupling aluminum flanges being milled from 6061 raw stock with engagement slot geometry">
+        <img src="../images/mill-cnc-couplings-lathe-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Turning the Delrin center disk to final OD: Delrin chosen for low friction slideability, natural dampening, and as a designed sacrificial failure point on a crash."
+             alt="The Mill Trilogy — Delrin Oldham coupling center disk being turned to final OD on lathe">
+      </div>
+    </div>
+
+
+<!-- 04/ Electronics: Specced and Integrated from Scratch -->
+
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
+        <h2 class="chapter-title">Electronics: Specced and Integrated from Scratch</h2>
+      </div>
+      <p>Years of building, modifying, and hacking 3D printers meant stepper motors, drivers, and motion control were already familiar territory before this project started. That background made it possible to select and spec every component independently rather than buying a packaged kit. Geckodrive G540 chosen for proven reliability, good cost-to-performance ratio, and straightforward configurability. An older small form factor computer sourced specifically for its parallel port, required for the G540 and no longer standard on newer hardware, and because older Windows with minimal background processes runs Mach3 more reliably than a modern machine would.</p>
+  <span id="geckodrive-integration" class="scroll-target"></span>
+      <p>After removing the unnecessary hardware from the computer case, the CD-ROM drive and unused expansion cards, there was more than enough room inside. Designed and 3D-printed custom mounting brackets and mounted the Geckodrive directly inside the computer case. Repurposed old CPU heatsinks and fans to build a custom cooler for the drive. A dedicated 48V power supply for the motor drivers was also integrated inside the case alongside the computer hardware. <strong>The entire CNC control system, computer, Geckodrive, and 48V motor supply, lives inside one slim computer case.</strong></p>
+      <p>All motor wiring done by hand. Configured soft limits in Mach3, ran test programs, and after a small amount of troubleshooting the machine was up and cutting.</p>
+
+      <div class="photo-trio">
+        <img src="../images/mill-cnc-electronics-01.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Geckodrive G540 mounted inside computer case on 3D-printed custom brackets: entire drive system integrated into the existing enclosure."
+             alt="The Mill Trilogy — Geckodrive G540 mounted inside small form factor computer case on custom 3D-printed brackets">
+        <img src="../images/mill-cnc-electronics-02.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Custom Geckodrive cooler — repurposed CPU heatsinks and fans adapted to fit the G540 drive within the computer case"
+             alt="The Mill Trilogy — Custom cooler built from repurposed CPU heatsinks for Geckodrive G540 inside computer case">
+        <img src="../images/mill-cnc-electronics-03.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="48V dedicated motor power supply integrated inside the computer case alongside the computer hardware: one enclosure for the entire control system."
+             alt="The Mill Trilogy — 48V motor power supply integrated inside computer case for compact single-enclosure CNC control system">
+      </div>
+      <div class="photo-duo">
+        <img src="../images/mill-cnc-electronics-04.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Completed electronics enclosure: Geckodrive G540, custom CPU-heatsink cooler, 48V motor PSU, and computer all integrated inside one slim form-factor case."
+             alt="The Mill Trilogy — Completed CNC electronics enclosure with Geckodrive, custom cooler, 48V PSU, and computer in slim computer case">
+        <img src="../images/mill-cnc-electronics-05.webp"
+             loading="lazy"
+             data-lightbox="mill"
+             data-caption="Completed 3-axis CNC conversion: Mach3 configured, soft limits set, all axes live, first cuts made."
+             alt="The Mill Trilogy — Completed 3-axis CNC mill conversion fully operational with Mach3 control software">
+      </div>
+    </div>
+
+  </div>
+
+<!--
+  <a href="#" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">Full Process Documentation</span>
+      <span class="album-link-title">The Mill Trilogy — Complete Build Archive</span>
+      <span class="album-link-count">~120 photos · Google Photos album · Coming soon</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+-->
+
+  <div class="project-nav" style="display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin:5rem 0 3rem;align-items:stretch;">
+    <a href="../index.html" class="project-nav-item" style="flex:0 0 auto;min-width:72px;text-align:center;justify-content:center;">
+      <span class="pni-label" style="color:var(--accent);font-weight:700;font-size:11px;">Home</span>
+      <span class="pni-title" style="font-size:1rem;">↑</span>
+    </a>
+    <a href="hunterdouglas.html" class="project-nav-item" style="flex:1;">
+      <span class="pni-label" style="color:var(--text-muted);">← Previous Project</span>
+      <span class="pni-title">Hunter Douglas Rescue</span>
+    </a>
+    <a href="printhead.html" class="project-nav-item next" style="flex:1;">
+      <span class="pni-label">Next Project →</span>
+      <span class="pni-title">Lulzbot Printhead</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="hunterdouglas.html">Case Study</a>
+    </div>
+  </footer>
+
+</main>
+<script src="../lightbox.js"></script>
+</body>
+</html>

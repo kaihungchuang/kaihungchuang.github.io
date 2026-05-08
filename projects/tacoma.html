@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suspension Geometry Correction — Kai-Hung Chuang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+.scroll-target { display: block; scroll-margin-top: 80px; }
+</style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">KHC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#builds">Build Depth</a></li>
+      <li><a href="hunterdouglas.html">Case Study</a></li>
+      <li><a href="mailto:kaihung.chuang@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+    <div>
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span>
+        <span>Suspension Geometry Correction</span>
+      </div>
+      <div class="project-hero-tag">04 · Mechanical Engineering · First Principles · Safety-Critical</div>
+      <h1>Suspension<br>Geometry<br>Correction</h1>
+    </div>
+    <div>
+      <p class="project-hero-desc">
+        Lifted the Tacoma 3 inches. The steering wheel stopped self-centering.
+        Aftermarket upper control arms were $1,000. Instead: modeled the factory
+        suspension geometry in SolidWorks, calculated the correction delta,
+        machined a custom fixture to hold the irregularly shaped arm on the mill,
+        turned new ball joint tapered couplings on the lathe, and had the
+        modification TIG welded. Alignment shop achieved factory spec on the
+        first attempt with every adjustment bolt centered in its range.
+      </p>
+    </div>
+  </section>
+
+  <div style="max-width:85%;margin:2rem auto;">
+    <img src="../images/tacoma-geometry-00.webp"
+         loading="eager"
+         data-lightbox="tacoma"
+         data-caption="Toyota Tacoma lifted 3 inches on custom leaf spring pack and front coilover lift — MT tires fitted, geometry corrected, alignment at factory spec"
+         alt="Suspension Geometry Correction — Lifted Toyota Tacoma with MT tires at final ride height after full suspension lift and geometry correction">
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-cell">
+      <span class="stat-num accent">$0</span>
+      <span class="stat-label">Material cost — factory arms free, steel on hand, TIG only outside expense</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">3"</span>
+      <span class="stat-label">Lift height corrected for</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">$1,000</span>
+      <span class="stat-label">Aftermarket upper control arms avoided</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">Factory</span>
+      <span class="stat-label">Alignment spec achieved, first attempt</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0.25rem 0 3rem;">
+    <a href="#solidworks-model" class="tag-shortcut">SolidWorks Correction Delta ↓</a>
+    <a href="#compound-fixture" class="tag-shortcut">Compound-Angle Holding Fixture ↓</a>
+    <a href="#tig-decision" class="tag-shortcut">Safety-Critical TIG Decision ↓</a>
+    <a href="#alignment-validation" class="tag-shortcut">Factory Spec, First Attempt ↓</a>
+  </div>
+
+  <div class="narrative">
+
+
+
+<!-- 01/ The Geometry Problem -->
+
+    <div class="chapter" id="ch01">
+      <div class="chapter-header">
+        <span class="chapter-num">01 /</span>
+        <h2 class="chapter-title">The Geometry Problem</h2>
+      </div>
+      <p>After the 3-inch lift, at highway speeds tracking was normal. The abnormality appeared only during low-speed, high-lock maneuvers. The steering wheel lacked any self-centering moment after a U-turn and required manual input to return to zero. I drew from my S2000 suspension tuning experience to visualize the kinematic shift and identify the caster deficiency. A 3-inch lift had pushed the upper ball joint too far forward relative to the lower, neutering the steering feedback. A four-wheel alignment confirmed the theory. The technician found caster angle significantly out of spec with <strong>every adjustment bolt maxed at its limit.</strong> The system could not be brought back to factory specifications without mechanical intervention.</p>
+
+      <div class="photo-duo">
+        <img src="../images/tacoma-leafspring-beforeafter-01.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Suspension geometry diagram annotated with caster axis, ball joint position, and the required correction location — the starting point for the SolidWorks model"
+             alt="Suspension Geometry Correction — Annotated suspension geometry diagram showing caster axis and required ball joint correction location">
+        <img src="../images/tacoma-geometry-01.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Alignment printout showing caster out of spec with all adjustment bolts maxed — confirmation that the geometry correction could not be resolved without modifying the control arm"
+             alt="Suspension Geometry Correction — Alignment printout showing caster out of factory specification with adjustment bolts at maximum limit">
+      </div>
+      <p>The standard commercial solution is aftermarket upper control arms designed with geometry correction built in, typically $1,000 for a pair. The factory upper control arm is two pieces of heavy-gauge stamped steel welded together, with a ball joint mount welded in between. <strong>The geometry correction needed was a repositioned ball joint mount. A machined component problem, not a reason to buy new arms.</strong></p>
+    </div>
+
+<!-- 02/ SolidWorks Geometry Model and Correction Delta -->
+
+    <div class="chapter" id="ch02">
+      <div class="chapter-header">
+        <span class="chapter-num">02 /</span>
+        <h2 class="chapter-title">SolidWorks Geometry Model and Correction Delta</h2>
+      </div>
+      <p>Factory upper control arms are essentially worthless once a truck is lifted. Every owner replaces them with aftermarket units. A free pair was available almost immediately. Measured all the critical geometry: arm length, ball joint position and taper angle, frame mounting pivot locations, caster angle at stock ride height. Plotted everything in SolidWorks as a 2D suspension geometry model. Simulated the geometry at stock height, then adjusted the model to show 3 inches of lift and its effect on the upper arm's effective position relative to the lower control arm and steering axis.</p>
+
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/tacoma-geometry-05.webp"
+         loading="lazy"
+         data-lightbox="tacoma"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>      
+  <span id="solidworks-model" class="scroll-target"></span>
+      <div class="photo-trio">
+        <img src="../images/tacoma-geometry-02.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Spreadsheet geometry calculation — caster angle change from 3-inch lift modeled numerically to verify the SolidWorks geometric result independently"
+             alt="Suspension Geometry Correction — Spreadsheet calculating caster angle change from 3-inch lift to determine required ball joint correction offset">
+        <img src="../images/tacoma-geometry-03.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="SolidWorks suspension geometry model — stock height vs lifted position showing caster angle change and the calculated corrected ball joint location"
+             alt="Suspension Geometry Correction — SolidWorks suspension geometry model comparing stock and lifted positions to determine correction delta">
+        <img src="../images/tacoma-geometry-04.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Control arm geometry in SolidWorks — factory arm dimensions modeled to determine pocket location and angle for the corrected ball joint mount"
+             alt="Suspension Geometry Correction — SolidWorks model of factory upper control arm geometry showing corrected ball joint mount position and angle">
+      </div>
+      <p>The model made the correction delta visible and calculable: a specific angular offset of the ball joint mount from the factory arm geometry that would restore caster to factory spec at the lifted ride height. Verified the result with a spreadsheet that independently calculated the caster change from the geometric inputs. Both methods agreed. <strong>The corrected ball joint position was within the footprint of the factory arm.</strong> There was enough material in the stamped steel arm to pocket in a new mount without compromising structural integrity.</p>
+    </div>
+
+<!-- 03/ Fabrication: Fixture, Lathe, Mill, Weld -->
+
+    <div class="chapter" id="ch03">
+      <div class="chapter-header">
+        <span class="chapter-num">03 /</span>
+        <h2 class="chapter-title">Fabrication: Fixture, Lathe, Mill, Weld</h2>
+      </div>    
+      <div class="photo-trio">
+        <img src="../images/tacoma-geometry-06.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Spreadsheet geometry calculation — caster angle change from 3-inch lift modeled numerically to verify the SolidWorks geometric result independently"
+             alt="Suspension Geometry Correction — Spreadsheet calculating caster angle change from 3-inch lift to determine required ball joint correction offset">
+        <img src="../images/tacoma-geometry-07.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="SolidWorks suspension geometry model — stock height vs lifted position showing caster angle change and the calculated corrected ball joint location"
+             alt="Suspension Geometry Correction — SolidWorks suspension geometry model comparing stock and lifted positions to determine correction delta">
+        <img src="../images/tacoma-geometry-08.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="SolidWorks suspension geometry model — stock height vs lifted position showing caster angle change and the calculated corrected ball joint location"
+             alt="Suspension Geometry Correction — SolidWorks suspension geometry model comparing stock and lifted positions to determine correction delta">
+            </div>
+      <p>The ball joint mount needed to be turned on the lathe to produce the correct taper for proper fitment. That part was straightforward: turned from mild steel bar stock to my calculated dimensions, taper angle matched to factory spec using the compound slide on the lathe.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/tacoma-geometry-09.webp"
+         loading="lazy"
+         data-lightbox="tacoma"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+  <span id="compound-fixture" class="scroll-target"></span>
+      <div class="photo-trio">
+        <img src="../images/tacoma-geometry-10.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Factory upper control arm fixtured on the mill at compound angle — custom holding fixture required to orient the irregular arm geometry correctly for the pocket cut"
+             alt="Suspension Geometry Correction — Factory upper control arm held at compound angle on mini mill using custom fixture for pocket milling operation">
+        <img src="../images/tacoma-geometry-11.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Milling the corrected ball joint pocket — cutting to the calculated depth and angle in the factory arm, with the custom fixture holding everything at the correct orientation"
+             alt="Suspension Geometry Correction — Milling corrected ball joint pocket in factory upper control arm at calculated angle and depth">
+        <img src="../images/tacoma-geometry-12.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Lathe turning the ball joint tapered coupling — mild steel turned to factory ball joint taper specification for direct replacement fitment"
+             alt="Suspension Geometry Correction — Lathe turning ball joint tapered coupling from mild steel to factory taper specification">
+      </div>
+      <p>The harder problem was milling the pocket in the factory arm. The upper control arm is an irregular curved shape, essentially impossible to clamp flat on a milling table without the geometry being completely wrong. Before touching the arm, I designed and machined a custom holding fixture that clamped the arm at the specific compound angle needed to orient the pocket face perpendicular to the spindle. <strong>Without the fixture, the pocket geometry would have been wrong regardless of how carefully the mill was set up.</strong> With the fixture, the mill could cut the pocket at exactly the calculated angle in a single setup.</p>
+      <div class="photo-duo">
+        <img src="../images/tacoma-geometry-13.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Turned ball joint coupling — tapered to factory spec, ready to be pressed into the milled pocket and TIG welded in place"
+             alt="Suspension Geometry Correction — Finished lathe-turned ball joint coupling tapered to factory specification before welding into control arm">
+        <img src="../images/tacoma-geometry-14.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Modified control arm with new ball joint mount welded in — TIG welded at a local shop for the appropriate weld quality on a safety-critical component"
+             alt="Suspension Geometry Correction — Modified upper control arm with new ball joint mount TIG welded into milled pocket">
+      </div>
+  <span id="tig-decision" class="scroll-target"></span>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/tacoma-geometry-15.webp"
+         loading="lazy"
+         data-lightbox="tacoma"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <p>I only had a MIG welder in my shop, but I knew the application warranted TIG. The stamped steel control arm was significantly thinner than the solid mild steel ball joint disk I had turned on the lathe. Managing the heat input between these disparate thermal masses would have been difficult with MIG. There was a high risk of burning through the thin stamping before achieving adequate penetration on the solid disk. I outsourced the welding to a local welder to ensure structural integrity of the joint. He was impressed enough to ask about the process. The TIG welds came out perfect. Cleaned and painted both arms to a factory flat black finish.</p>
+    </div>
+
+<!-- 04/ Installation and Alignment Validation -->
+
+  <span id="alignment-validation" class="scroll-target"></span>
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
+        <h2 class="chapter-title">Installation and Alignment Validation</h2>
+      </div>
+      <p>Installed both modified arms on the truck. Drove directly to the alignment shop and explained to the tech what had been done. <strong>Caster, camber, and toe all came into factory specification, with every adjustment bolt sitting in the middle of its adjustment range.</strong> Confirming the geometry correction worked exactly as expected.</p>
+      <p>Steering self-centering behavior returned to normal. The modified arms have been on the truck ever since taking abuse off road, with no issues and no regrets about not spending the $1,000 on the aftermarket units.</p>
+      <div class="photo-single" style="max-width:900px;margin:2rem auto;">
+        <img src="../images/tacoma-geometry-17.webp"
+         loading="lazy"
+         data-lightbox="tacoma"
+         data-caption="Blueprinting the axes: measuring all critical surfaces before teardown to understand what the factory delivered and what precision actually needed to be established from scratch."
+         alt="The Mill Trilogy — Blueprinting mill axes with precision measuring tools before teardown to establish baseline accuracy"
+         style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
+      </div>
+      <div class="photo-trio">
+        <img src="../images/tacoma-geometry-19.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Modified upper control arm installed on front suspension — new ball joint mount position visible at the corrected caster geometry"
+             alt="Suspension Geometry Correction — Modified upper control arm installed on Tacoma front suspension at corrected caster geometry">
+        <img src="../images/tacoma-geometry-16.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Front suspension at ride height with modified control arms installed — lifted struts, corrected geometry, ball joint at factory taper engagement"
+             alt="Suspension Geometry Correction — Tacoma front suspension at lifted ride height with modified control arms and corrected geometry">
+        <img src="../images/tacoma-geometry-18.webp"
+             loading="lazy"
+             data-lightbox="tacoma"
+             data-caption="Tacoma lifted, aligned, and on the road — 3-inch lift on custom leaf springs rear, coilover lift front, geometry corrected, alignment at factory spec"
+             alt="Suspension Geometry Correction — Lifted Toyota Tacoma on road with full suspension lift and corrected alignment at factory specification">
+      </div>
+    </div>
+
+  </div>
+
+<!--
+  <a href="#" class="album-link" target="_blank" rel="noopener noreferrer">
+    <div class="album-link-left">
+      <span class="album-link-label">Full Process Documentation</span>
+      <span class="album-link-title">Tacoma Suspension — Complete Build Archive</span>
+      <span class="album-link-count">~80 photos · Google Photos album · Coming soon</span>
+    </div>
+    <span class="album-arrow">↗</span>
+  </a>
+-->
+
+  <div class="project-nav" style="display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin:5rem 0 3rem;align-items:stretch;">
+    <a href="../index.html" class="project-nav-item" style="flex:0 0 auto;min-width:72px;text-align:center;justify-content:center;">
+      <span class="pni-label" style="color:var(--accent);font-weight:700;font-size:11px;">Home</span>
+      <span class="pni-title" style="font-size:1rem;">↑</span>
+    </a>
+    <a href="s2000.html" class="project-nav-item" style="flex:1;">
+      <span class="pni-label" style="color:var(--text-muted);">← Previous Project</span>
+      <span class="pni-title">S2000 Fabrication Program</span>
+    </a>
+    <a href="fpv.html" class="project-nav-item next" style="flex:1;">
+      <span class="pni-label">Next Project →</span>
+      <span class="pni-title">FPV Platforms + Goggle System</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-name">Kai-Hung Chuang</div>
+      <div class="footer-loc">Irvine, CA · Open to relocation · (949) 350-8012</div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:kaihung.chuang@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/kaihungchuang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="hunterdouglas.html">Case Study</a>
+    </div>
+  </footer>
+
+</main>
+<script src="../lightbox.js"></script>
+</body>
+</html>
