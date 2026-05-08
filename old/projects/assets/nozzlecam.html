@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDD572R4GV"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MDD572R4GV');
+		</script>
+
+		<title>3D Printer Nozzle Cam</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../index.html" class="logo">Kai Chuang</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="../projects.html">Innovation Projects</a></li>
+							<li class="active"><a href="#">3D Printer Nozzle Cam</a></li>
+							<!--<li><a href="../pastprojects.html">Past Projects</a></li>-->
+							<!--<li><a href="skills.html">Technical Skills</a></li>-->
+
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>3D Printer Nozzle Cam<br /></h1>
+									<p>A compact monitoring system built from repurposed endoscope hardware, adopted as a community standard and later commercialized by others.<br />
+									</p>
+								</header>
+
+								<!-- youtube nozzle cam video -->
+								<div class="video-container">
+  								<iframe src="https://www.youtube.com/embed/GAp23w_dnNc?si=e6aZH5yck3aXWXLo&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+								</div>		
+								<br>
+								<p>
+									This project was born out of necessity. Early 3D printing operators quickly learned the frustration of a long print failing hours into the job, often due to subtle issues at the nozzle like clogs or poor adhesion. Without a clear, up-close view, diagnosing these problems in real-time was nearly impossible, leading to wasted filament, time, and immense disappointment. This common experience highlighted a critical need for a way to actually see what was happening without negatively affecting the printer’s performance.<br />
+								</p>
+
+								<div class="image main"><img src="images/nozzlecam_02_1.jpg" alt="" /></div>
+								<p>
+									Recognizing the challenge, many in the 3D printing community attempted various methods for nozzle monitoring. However, these early approaches typically made no serious attempt to truly integrate the camera cleanly into the existing print head, often overlooking this critical aspect. Consequently, many solutions involved cumbersome camera modules that negatively impacted printer dynamics or relied on messy, stiff wiring that couldn't be neatly tucked away. Furthermore, achieving a clear, usable image remained a significant hurdle, with many attempts suffering from subpar video quality due to incorrect focus distance and inadequate illumination for the small sensors.<br />
+								</p>	
+
+								<div class="image main"><img src="images/nozzlecam_03_2.jpg" alt="" /></div>
+								<p>
+									My approach began with hands-on research: I purchased and tested many readily available USB endoscopes to identify the best candidates based on their video capabilities. The optimal candidate was then carefully disassembled to isolate its camera module, allowing me to assess its suitability for compact packaging and integration. To overcome the persistent short-focus limitation, I developed a novel focusing system by integrating an external macro lens salvaged from a common cell phone accessory, which also acted as a heat barrier for the camera.<br />
+								</p>	
+
+								<div class="image main"><img src="images/nozzlecam_03.5.jpg" alt="" /></div>
+								<p>
+									Addressing the illumination was equally critical. My goal was not just brightness, but high-quality, even lighting across the entire field of view—essential for clearly visualizing printed layers below the nozzle and eliminating undesirable, flashlight-like hotspots. This presented a distinct challenge with LED brightness control; common PWM (Pulse Width Modulation) techniques allow easier fine control but risk potential flickering or banding artifacts if the frequencies conflicted. To circumvent this, I implemented a more low-tech brightness control solution using simple SMD (Surface Mount Device) resistors. Integrating these micro-sized components into the extremely limited space available within the print head assembly required meticulous point-to-point soldering. After extensive trials with various LED types, physical configurations, and placements to perfect the evenness and intensity of light, I then finalized the optimal camera positioning and angle, ensuring a consistently clear, well-lit, and comprehensive view of both the nozzle and the print bed below.<br />
+								</p>	
+
+								<div class="image main"><img src="images/nozzlecam_04_1.jpg" alt="" /></div>
+								<p>
+									Leveraging my proficiency in CAD and a solid understanding of electronics, I rapidly translated the initial concept into a detailed 3D model. This crucial step allowed for virtual fitment checks to preemptively address potential issues, streamlining the path to physical prototypes. Iterative versions were then 3D printed and integrated with readily available electronic components, efficiently culminating in a fully realized, functional unit that performed exactly as envisioned and met all performance expectations.<br />
+								</p>	
+
+								<div class="image main"><img src="images/nozzlecam_05.jpg" alt="" /></div>
+								<p>
+									My "3D Printer Nozzle Cam - Complete How To using endoscope!" video guide quickly gained traction, spreading across 3D printing communities. Its practical and accessible solution soon caught the attention of many, including a number of well-established 3D printing YouTube channels and blogs, which referenced and cited my work in their own subsequent publications, further amplifying its reach. Enthusiastic community members began adapting the core design, establishing it as a go-to reference and spawning numerous derivative 'forks' tailored for a vast array of different printer models. This widespread adoption ultimately spurred innovation beyond the hobbyist sphere; today, multiple commercially available products feature variations of my nozzle cam design integrated directly into their printers, alongside an increasing number of plug-and-play kits designed to help others easily incorporate this crucial monitoring into their own setups. Excitingly, the core concept of compact, integrated visual monitoring has also begun to inspire similar solutions in related DIY fields, including laser cutting and hobby CNC machining.<br />
+								</p>
+
+								<br><br>
+							
+								<!-- back button -->
+								<ul class="actions special">
+									<li><a href="../projects.html" class="button">back to Innovation Projects</a></li>
+								</ul>
+							
+							
+							
+							</section>
+
+
+
+					</div>
+
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Kai-Hung Chuang</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+				<!--
+				Massively by HTML5 UP
+				html5up.net | @ajlkn
+				Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+				-->
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+
