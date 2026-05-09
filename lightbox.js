@@ -252,6 +252,25 @@
     if (e.key === 'ArrowRight' && currentIndex < currentGroup.length - 1) { currentIndex++; renderItem(); }
   });
 
+
+  // ── TOUCH SWIPE ──────────────────────────────────────────────────────────
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  overlay.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  overlay.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only trigger if horizontal swipe dominates and exceeds 50px threshold
+    if (Math.abs(dx) < 50 || Math.abs(dy) > Math.abs(dx)) return;
+    if (dx < 0 && currentIndex < currentGroup.length - 1) { currentIndex++; renderItem(); }
+    if (dx > 0 && currentIndex > 0) { currentIndex--; renderItem(); }
+  }, { passive: true });
+
   // ── INIT ─────────────────────────────────────────────────────────────────
   function initLightbox() {
     const elements = document.querySelectorAll('img[data-lightbox], video[data-lightbox]');
