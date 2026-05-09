@@ -16,14 +16,8 @@
       <button id="lb-prev" aria-label="Previous">&#8592;</button>
       <button id="lb-next" aria-label="Next">&#8594;</button>
       <div id="lb-img-wrap">
-        <div id="lb-slide-track">
-          <div id="lb-slot-prev" class="lb-slot"></div>
-          <div id="lb-slot-curr" class="lb-slot">
-            <img id="lb-img" src="" alt="" style="display:none;">
-            <video id="lb-vid" autoplay loop playsinline style="display:none;"></video>
-          </div>
-          <div id="lb-slot-next" class="lb-slot"></div>
-        </div>
+        <img id="lb-img" src="" alt="" style="display:none;">
+        <video id="lb-vid" autoplay loop playsinline style="display:none;"></video>
         <div id="lb-caption"></div>
       </div>
     </div>
@@ -71,7 +65,13 @@
       height: auto;
       display: block;
       object-fit: contain;
+      transform: scale(0.96);
+      transition: transform 0.2s ease;
       border: 1px solid rgba(255,255,255,0.1);
+    }
+    #lb-overlay.active #lb-img,
+    #lb-overlay.active #lb-vid {
+      transform: scale(1);
     }
     #lb-caption {
       font-family: 'IBM Plex Mono', monospace;
@@ -124,36 +124,6 @@
     #lb-next { right: 1rem; }
     #lb-prev:hover, #lb-next:hover { border-color: #e8870a; color: #e8870a; }
     #lb-prev.hidden, #lb-next.hidden { opacity: 0; pointer-events: none; }
-    #lb-img-wrap {
-      overflow: hidden;
-      position: relative;
-    }
-    #lb-slide-track {
-      display: flex;
-      width: 300%;
-      transform: translateX(-33.333%);
-      transition: none;
-      will-change: transform;
-    }
-    #lb-slide-track.animating {
-      transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .lb-slot {
-      width: 33.333%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 60px;
-    }
-    .lb-slot img, .lb-slot video {
-      max-width: 90vw;
-      max-height: 85vh;
-      width: auto;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
     img[data-lightbox], video[data-lightbox] {
       cursor: zoom-in;
       transition: transform 0.4s ease;
@@ -189,87 +159,58 @@
   let currentGroup = [];
 
   // ── RENDER ───────────────────────────────────────────────────────────────
-  function buildSlotContent(slot, entry) {
-    slot.innerHTML = '';
-    if (!entry) return;
-    if (entry.type === 'youtube') {
-      const frame = document.createElement('iframe');
-      const startParam = entry.startTime ? `&start=${entry.startTime}` : '';
-      frame.src = `https://www.youtube.com/embed/${entry.youtubeId}?autoplay=0&rel=0${startParam}`;
-      frame.allow = 'autoplay; encrypted-media; fullscreen';
-      frame.allowFullscreen = true;
-      frame.style.cssText = 'width:90vw;max-width:1200px;aspect-ratio:16/9;border:1px solid rgba(255,255,255,0.1);display:block;';
-      slot.appendChild(frame);
-    } else if (entry.type === 'video') {
-      const vid = document.createElement('video');
-      vid.autoplay = false;
-      vid.loop = true;
-      vid.playsInline = true;
-      vid.muted = false;
-      vid.src = entry.src;
-      vid.style.cssText = 'max-width:90vw;max-height:85vh;border:1px solid rgba(255,255,255,0.1);display:block;';
-      slot.appendChild(vid);
-    } else {
-      const img = document.createElement('img');
-      img.src = entry.src;
-      img.alt = entry.alt || '';
-      img.style.cssText = 'max-width:90vw;max-height:85vh;border:1px solid rgba(255,255,255,0.1);display:block;';
-      slot.appendChild(img);
-    }
-  }
-
-  function renderItem(animate) {
+  function renderItem() {
+    const lbImg = document.getElementById('lb-img');
+    const lbVid = document.getElementById('lb-vid');
     const caption = document.getElementById('lb-caption');
     const prev = document.getElementById('lb-prev');
     const next = document.getElementById('lb-next');
-    const track = document.getElementById('lb-slide-track');
-    const slotPrev = document.getElementById('lb-slot-prev');
-    const slotCurr = document.getElementById('lb-slot-curr');
-    const slotNext = document.getElementById('lb-slot-next');
     const entry = currentGroup[currentIndex];
 
     caption.textContent = entry.caption || entry.alt || '';
     prev.classList.toggle('hidden', currentIndex === 0);
     next.classList.toggle('hidden', currentIndex === currentGroup.length - 1);
 
-    buildSlotContent(slotPrev, currentGroup[currentIndex - 1] || null);
-    buildSlotContent(slotCurr, entry);
-    buildSlotContent(slotNext, currentGroup[currentIndex + 1] || null);
+    // Remove any previous YouTube iframe
+    const prevFrame = document.getElementById('lb-yt-frame');
+    if (prevFrame) prevFrame.remove();
 
-    // Play video in current slot if present
-    const currVid = slotCurr.querySelector('video');
-    if (currVid) { currVid.load(); currVid.play(); }
-
-    // Reset track position instantly
-    track.classList.remove('animating');
-    track.style.transform = 'translateX(-33.333%)';
-  }
-
-  function slideToIndex(newIndex) {
-    if (newIndex < 0 || newIndex >= currentGroup.length) return;
-    const track = document.getElementById('lb-slide-track');
-    const direction = newIndex > currentIndex ? -1 : 1;
-    const targetX = direction > 0 ? 0 : -66.666;
-
-    track.classList.add('animating');
-    track.style.transform = `translateX(${targetX}%)`;
-
-    track.addEventListener('transitionend', function handler() {
-      track.removeEventListener('transitionend', handler);
-      currentIndex = newIndex;
-      renderItem();
-    }, { once: true });
+    if (entry.type === 'youtube') {
+      lbImg.style.display = 'none';
+      lbImg.src = '';
+      lbVid.style.display = 'none';
+      lbVid.pause();
+      lbVid.src = '';
+      const frame = document.createElement('iframe');
+      frame.id = 'lb-yt-frame';
+      const startParam = entry.startTime ? `&start=${entry.startTime}` : '';
+      frame.src = `https://www.youtube.com/embed/${entry.youtubeId}?autoplay=1&rel=0${startParam}`;
+      frame.allow = 'autoplay; encrypted-media; fullscreen';
+      frame.allowFullscreen = true;
+      frame.style.cssText = 'width:90vw;max-width:1200px;aspect-ratio:16/9;border:1px solid rgba(255,255,255,0.1);display:block;';
+      lbImg.parentNode.insertBefore(frame, lbImg);
+    } else if (entry.type === 'video') {
+      lbImg.style.display = 'none';
+      lbImg.src = '';
+      lbVid.style.display = 'block';
+      lbVid.muted = false;
+      lbVid.src = entry.src;
+      lbVid.load();
+      lbVid.play();
+    } else {
+      lbVid.style.display = 'none';
+      lbVid.pause();
+      lbVid.src = '';
+      lbImg.style.display = 'block';
+      lbImg.src = entry.src;
+      lbImg.alt = entry.alt || '';
+    }
   }
 
   // ── OPEN / CLOSE ─────────────────────────────────────────────────────────
   function openLightbox(group, index) {
     currentGroup = group;
     currentIndex = index;
-    // Hide legacy single-slot elements (now slot-managed)
-    const lbImg = document.getElementById('lb-img');
-    const lbVid = document.getElementById('lb-vid');
-    if (lbImg) lbImg.style.display = 'none';
-    if (lbVid) lbVid.style.display = 'none';
     renderItem();
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -294,11 +235,11 @@
   // ── NAVIGATION ───────────────────────────────────────────────────────────
   document.getElementById('lb-prev').addEventListener('click', (e) => {
     e.stopPropagation();
-    if (currentIndex > 0) slideToIndex(currentIndex - 1);
+    if (currentIndex > 0) { currentIndex--; renderItem(); }
   });
   document.getElementById('lb-next').addEventListener('click', (e) => {
     e.stopPropagation();
-    if (currentIndex < currentGroup.length - 1) slideToIndex(currentIndex + 1);
+    if (currentIndex < currentGroup.length - 1) { currentIndex++; renderItem(); }
   });
   document.getElementById('lb-close').addEventListener('click', closeLightbox);
   overlay.addEventListener('click', (e) => {
@@ -307,54 +248,9 @@
   document.addEventListener('keydown', (e) => {
     if (!overlay.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft' && currentIndex > 0) slideToIndex(currentIndex - 1);
-    if (e.key === 'ArrowRight' && currentIndex < currentGroup.length - 1) slideToIndex(currentIndex + 1);
+    if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; renderItem(); }
+    if (e.key === 'ArrowRight' && currentIndex < currentGroup.length - 1) { currentIndex++; renderItem(); }
   });
-
-  // ── TOUCH SWIPE WITH FOLLOW ANIMATION ───────────────────────────────────
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let isDragging = false;
-
-  overlay.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    isDragging = true;
-    const track = document.getElementById('lb-slide-track');
-    if (track) track.classList.remove('animating');
-  }, { passive: true });
-
-  overlay.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    const dx = e.touches[0].clientX - touchStartX;
-    const dy = e.touches[0].clientY - touchStartY;
-    if (Math.abs(dy) > Math.abs(dx)) return;
-    const track = document.getElementById('lb-slide-track');
-    if (!track) return;
-    const dragPct = (dx / window.innerWidth) * 100;
-    track.style.transform = `translateX(${-33.333 + dragPct}%)`;
-  }, { passive: true });
-
-  overlay.addEventListener('touchend', (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    const track = document.getElementById('lb-slide-track');
-    if (!track) return;
-    if (Math.abs(dx) < 50 || Math.abs(dy) > Math.abs(dx)) {
-      track.classList.add('animating');
-      track.style.transform = 'translateX(-33.333%)';
-      return;
-    }
-    if (dx < 0 && currentIndex < currentGroup.length - 1) slideToIndex(currentIndex + 1);
-    else if (dx > 0 && currentIndex > 0) slideToIndex(currentIndex - 1);
-    else {
-      track.classList.add('animating');
-      track.style.transform = 'translateX(-33.333%)';
-    }
-  }, { passive: true });
-
 
   // ── INIT ─────────────────────────────────────────────────────────────────
   function initLightbox() {
