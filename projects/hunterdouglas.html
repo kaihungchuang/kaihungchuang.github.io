@@ -8,65 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 <style>
-.constraint-box {
-  background: var(--bg3);
-  border: 1px solid var(--border-strong);
-  border-left: 3px solid var(--accent);
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-}
-.constraint-box h4 {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-}
-.constraint-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.constraint-list li {
-  font-size: 16px;
-  color: var(--text-secondary);
-  padding-left: 1rem;
-  position: relative;
-}
-.constraint-list li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--text-muted);
-}
-.constraint-list li strong { color: var(--text); font-weight: 500; }
-
-.timeline {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 0;
-  margin: 2rem 0;
-}
-.tl-time {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-  padding: 1rem 1rem 1rem 0;
-  border-right: 1px solid var(--border);
-  text-align: right;
-}
-.tl-event {
-  font-size: 16px;
-  color: var(--text-secondary);
-  padding: 1rem 0 1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
-.tl-event strong { color: var(--text); font-weight: 500; }
-.tl-time { border-bottom: 1px solid var(--border); }
 .scroll-target { display: block; scroll-margin-top: 80px; }
+
+/* Hero title/desc: 2-col on desktop, stacked on mobile */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .hero-grid { display: block; }
+  .hero-grid > div + div { margin-top: 1.5rem; }
+}
+
+/* Photo grids: always side by side regardless of viewport width */
+.photo-trio { grid-template-columns: 1fr 1fr 1fr !important; }
+.photo-duo  { grid-template-columns: 1fr 1fr !important; }
 </style>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
@@ -85,7 +43,7 @@
 
 <main class="wrap">
 
-  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+  <section class="project-hero hero-grid">
     <div>
       <div class="breadcrumb">
         <a href="../index.html">Home</a>
