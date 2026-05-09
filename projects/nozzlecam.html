@@ -9,6 +9,22 @@
 <link rel="stylesheet" href="../styles.css">
 <style>
 .scroll-target { display: block; scroll-margin-top: 80px; }
+
+/* Hero title/desc: 2-col on desktop, stacked on mobile */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .hero-grid { display: block; }
+  .hero-grid > div + div { margin-top: 1.5rem; }
+}
+
+/* Photo grids: always side by side regardless of viewport width */
+.photo-trio { grid-template-columns: 1fr 1fr 1fr !important; }
+.photo-duo  { grid-template-columns: 1fr 1fr !important; }
 </style>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
@@ -27,7 +43,7 @@
 
 <main class="wrap">
 
-  <section class="project-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+  <section class="project-hero hero-grid">
     <div>
       <div class="breadcrumb">
         <a href="../index.html">Home</a>
