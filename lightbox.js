@@ -13,8 +13,8 @@
   overlay.innerHTML = `
     <div id="lb-inner">
       <button id="lb-close" aria-label="Close">✕</button>
-      <button id="lb-prev" aria-label="Previous">&#8592;</button>
-      <button id="lb-next" aria-label="Next">&#8594;</button>
+      <button id="lb-prev" aria-label="Previous">&#8249;</button>
+      <button id="lb-next" aria-label="Next">&#8250;</button>
       <div id="lb-img-wrap">
         <img id="lb-img" src="" alt="" style="display:none;">
         <video id="lb-vid" autoplay loop playsinline style="display:none;"></video>
@@ -87,42 +87,49 @@
       position: fixed;
       top: 1.5rem;
       right: 1.5rem;
-      width: 40px;
-      height: 40px;
-      background: rgba(14,13,12,0.9);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.6);
-      font-size: 18px;
+      width: 36px;
+      height: 36px;
+      background: rgba(30,28,26,0.88);
+      border: none;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
-      font-family: 'IBM Plex Mono', monospace;
+      transition: background 0.15s, transform 0.15s;
       line-height: 1;
       z-index: 2001;
+      padding: 0;
     }
-    #lb-close:hover { border-color: #e8870a; color: #e8870a; }
+    #lb-close:hover { background: rgba(50,48,46,0.95); transform: scale(1.1); }
     #lb-prev, #lb-next {
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      background: rgba(14,13,12,0.85);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.6);
-      font-size: 20px;
+      width: 48px;
+      height: 48px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
+      transition: color 0.15s, transform 0.15s;
       z-index: 2001;
+      padding: 0;
+      user-select: none;
     }
     #lb-prev { left: 1rem; }
     #lb-next { right: 1rem; }
-    #lb-prev:hover, #lb-next:hover { border-color: #e8870a; color: #e8870a; }
+    #lb-prev:hover { color: #ffffff; transform: translateY(-50%) scale(1.2); }
+    #lb-next:hover { color: #ffffff; transform: translateY(-50%) scale(1.2); }
     #lb-prev.hidden, #lb-next.hidden { opacity: 0; pointer-events: none; }
     img[data-lightbox], video[data-lightbox] {
       cursor: zoom-in;
