@@ -20,6 +20,17 @@
 @media (max-width: 768px) {
   .hero-grid { display: block; }
   .hero-grid > div + div { margin-top: 1.5rem; }
+
+  /* Stats bar: tighter on mobile */
+  .stat-cell { padding: 0.75rem 1rem; }
+  .stat-num { font-size: 1.4rem; }
+
+  /* Shortcut tags: allow text to wrap so tags can sit side by side */
+  .tag-shortcut { white-space: normal; word-break: break-word; }
+
+  /* Project nav: stack vertically on mobile */
+  .project-nav { grid-template-columns: 1fr !important; }
+  .project-nav-item.next { text-align: left; }
 }
 
 /* Photo grids: always side by side regardless of viewport width */
