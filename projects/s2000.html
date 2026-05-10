@@ -22,15 +22,16 @@
   .hero-grid > div + div { margin-top: 1.5rem; }
 
   /* Stats bar: tighter on mobile */
-  .stat-cell { padding: 0.75rem 1rem; }
-  .stat-num { font-size: 1.4rem; }
+  .stat-cell { padding: 0.6rem 0.75rem; }
+  .stat-num { font-size: 1.3rem; }
 
-  /* Shortcut tags: allow text to wrap so tags can sit side by side */
+  /* Shortcut tags: allow wrap so tags can sit side by side */
   .tag-shortcut { white-space: normal; word-break: break-word; }
 
-  /* Project nav: stack vertically on mobile */
-  .project-nav { grid-template-columns: 1fr !important; }
-  .project-nav-item.next { text-align: left; }
+  /* Project nav: stay side by side, smaller text and tighter padding */
+  .project-nav-item { padding: 1rem; }
+  .pni-label { font-size: 10px; }
+  .pni-title { font-size: 1rem; }
 }
 
 /* Photo grids: always side by side regardless of viewport width */
