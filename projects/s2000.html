@@ -28,10 +28,12 @@
   /* Shortcut tags: allow wrap so tags can sit side by side */
   .tag-shortcut { white-space: normal; word-break: break-word; }
 
-  /* Project nav: stay side by side, smaller text and tighter padding */
-  .project-nav-item { padding: 1rem; }
-  .pni-label { font-size: 10px; }
-  .pni-title { font-size: 1rem; }
+  /* Project nav: force 2-col, strip box, plain text links */
+  .project-nav { grid-template-columns: 1fr 1fr !important; border: none !important; gap: 0; }
+  .project-nav-item { padding: 0.6rem 0.5rem; background: transparent; border: none; border-top: 1px solid rgba(255,255,255,0.08); }
+  .project-nav-item.next { border-left: 1px solid rgba(255,255,255,0.08); }
+  .pni-label { font-size: 9px; }
+  .pni-title { font-size: 0.85rem; line-height: 1.3; }
 }
 
 /* Photo grids: always side by side regardless of viewport width */
@@ -509,12 +511,32 @@
              alt="S2000, Fusion 360 3D scan virtual test fit of intake snorkel"
              style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
       </div>
-      <p>After fitting lower-offset wider tires, the car needed visual balance between the fender width and the side profile. Japanese aftermarket side diffusers for the S2000 ran close to $2,000. For what are, functionally, decorative trim panels. A pair of side diffusers is essentially a flat composite slab with a consistent cross-section, which meant the shape already existed at Home Depot for $3 a yard in baseboard molding.</p>
-      <p>The plug was built from wood: cut, shaped, glued, and sanded into the target profile, then sprayed in high-fill primer and block-sanded smooth. The key design decision was to build the plug as a single unified piece, both diffusers mirrored and joined, rather than as two separate halves. One plug, one mold, one pull produces both sides simultaneously. That decision created a repeatability constraint that needed solving: how to split one symmetrical part into two matching halves without introducing error from freehand cutting.</p>
+<p>After fitting lower-offset wider tires, the car needed visual balance between the fender width and the side profile. Japanese aftermarket side diffusers for the S2000 ran close to $2,000 for what are, functionally, decorative trim panels. A pair of side diffusers is essentially a flat composite slab with a consistent cross-section, which meant the shape already existed at Home Depot for $3 a yard in baseboard molding.</p>
 
-      <span id="diffuser-jig" class="scroll-target"></span>
-      <p>The solution was a purpose-built cutting jig. A section of the first test pull was trimmed, flipped, and hot-glued directly to the bandsaw table, form-fitted to the part, perfectly centered, stopping the blade exactly at the midpoint. That jig meant every subsequent pull could be split in under a minute with zero measuring and zero variation. A second jig handled the final thickness trim the same way: form-fitted, fixed to the table, repeatable to the same dimension on every piece. <strong>The jigs weren't planned for commercial production. The commercial production happened because the jigs made it effortless.</strong></p>
-      <p>The first version was revised after test fitting revealed the proportions wanted to be wider. A second plug and mold followed, along with refined versions of both jigs for the new geometry. Over 100 sets were sold to other S2000 owners, each with the Chilicoke logo embedded in the layup.</p>
+      <p>The look was already validated on a scrappy wood mockup. The first mold was a process test: pull a proper fiberglass part, mount it on the car, and road-test real fitment before committing to a refined design. The plug was built from wood, cut, shaped, glued, and sanded into the target profile, then sprayed in high-fill primer and block-sanded smooth. A crude mold was pulled, one set cut and mounted.</p>
+
+      <div class="photo-duo">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="V1 side diffuser — fiberglass process test mounted on car for real fitment and road testing"
+             alt="S2000, V1 side diffuser prototype mounted on car">
+        <img src="../images/placeholder-3x2.webp"
+             loading="lazy"
+             data-lightbox="s2000"
+             data-caption="V1 side diffuser — community response, positive on proportion, exposed fitment compromise"
+             alt="S2000, V1 side diffuser community feedback">
+      </div>
+
+      <p>Road testing exposed real problems with the approach. A truly side-agnostic shape is a fitment compromise on both sides of the car. Producing a pair required pulling the same mold twice, which was slow. And manually trimming a long flat piece to consistent length was labor-intensive. The design was scrapped entirely.</p>
+
+      <p>The second plug was also built from wood, with revised geometry addressing the fitment compromises found on the first version. The key redesign decision was to <strong>build both sides as a single unified piece</strong>, both diffusers mirrored and joined, rather than two separate halves. One plug, one mold, one pull produces both sides simultaneously.</p>
+
+      <p>The unified double-width shape created a demolding problem. The part is long and thin with flat parallel sides, the mold profile resembling a very long, narrow Tupperware container. Even with flat walls, a mold that shape can trap the part if the mold deforms over time. <strong>The mold was designed as two pieces, flange-jointed at the center</strong>, so the halves bolt together for layup and separate for demolding, eliminating the trap entirely. Wooden cradles were built to hold the assembled mold upright during fabrication, keeping the parting flange clear of the table surface. Multiple molds and cradles were built in parallel, allowing multiple sets to be fabricated simultaneously.</p>
+
+<span id="diffuser-jig" class="scroll-target"></span>
+      <p>Freehand cutting was not an option on either cut. The solution was two purpose-built jigs. The first, built from wood as the fastest material to work with, clips onto the bandsaw and registers the pulled part at exact center for the lengthwise center split, dividing every pull into two identical halves in under a minute with zero measuring. The second jig handles the edge trim cut, which runs the full length of each piece approximately 5mm from the most visible long edge — any deviation reads immediately on the installed part. A 12-inch section of a first-pull part was used as a mold to cast a short fiberglass form, trimmed to the exact profile and mounted vertically on the jig base. Each piece slides along this guide in the correct orientation, referenced to the same profile dimension on every cut. Over 100 sets were sold to other S2000 owners, each with the Chilicoke logo embedded in the layup. <strong>The jigs weren't planned for commercial production. The commercial production happened because the jigs made it effortless.</strong></p>
+
 
       <div class="photo-trio">
         <img src="../images/placeholder-3x2.webp"
@@ -552,8 +574,8 @@
       <p>The AP2 S2000's rear bumper integrates the dual exhaust tips into the bumper design. Converting to a single exhaust, a common weight-saving modification, left a large open hole on one side. No aftermarket cover existed for the AP2 bumper. The first design approach was logical: find an object with the right curvature, lay fiberglass over it, trim and bond into a bezel. A pool ball from Walmart matched the exhaust opening radius closely enough to work. The result fit correctly and covered the hole completely.</p>
 
       <span id="exhaust-iteration" class="scroll-target"></span>
-      <p>The forum response was immediate and unanimous: it looked like the car was laying an egg. Which was, objectively, accurate. The round protrusion had no relationship to any line on the car. Rather than argue, the post was updated with the original photo, egg crack drawn over it. Then the design was scrapped entirely.</p>
-      <p>The second approach started with hobby clay instead of geometry. Sculpted directly against the bumper surface, working to the car's actual line language rather than to the nearest convenient geometry. When something read correctly, it was sprayed in rattle-can primer at rough color match and photographed back on the car. <strong>The photo went back to the forum before the mold was started.</strong> The community response reversed completely, approval on the shape, and unsolicited interest in buying one. Only then was the mold built. Over 100 covers were sold. The lesson was about sequencing: get external validation before committing to tooling, not after.</p>
+      <p>The forum response was immediate and unanimous: it looked like the car was laying an egg. Which was, objectively, accurate. The exhaust cutout itself is rounded, so the geometry wasn't wrong at the opening, but the pool ball radius domed outward in a way that clashed with the S2000's otherwise sharp, straight rear bumper lines the moment you stepped back from the hole. Rather than argue, the post was updated with the original photo, egg crack drawn over it. Then the design was scrapped entirely.</p>
+      <p>The second approach started with clay and plaster instead of geometry. Sculpted directly against the bumper surface, working to the car's actual line language rather than to the nearest convenient geometry. When something read correctly, it was sprayed in rattle-can primer at rough color match and photographed back on the car. <strong>The photo went back to the forum before the mold was started.</strong> The community response reversed completely, approval on the shape, and unsolicited interest in buying one. Only then was the mold built. Over 100 covers were sold. The lesson was about sequencing: get external validation before committing to tooling, not after.</p>
 
       <div class="photo-duo">
         <img src="../images/placeholder-3x2.webp"
