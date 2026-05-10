@@ -10,6 +10,13 @@
 <style>
 .scroll-target { display: block; scroll-margin-top: 80px; }
 
+/* Override styles.css 900px nav stacking */
+@media (max-width: 900px) {
+  .project-nav { grid-template-columns: 1fr 1fr !important; border: none !important; gap: 0; }
+  .project-nav-item { background: transparent; border: none; border-top: 1px solid rgba(255,255,255,0.08); }
+  .project-nav-item.next { border-left: 1px solid rgba(255,255,255,0.08); }
+}
+
 /* Hero title/desc: 2-col on desktop, stacked on mobile */
 .hero-grid {
   display: grid;
@@ -535,7 +542,7 @@
       <p>The unified double-width shape created a demolding problem. The part is long and thin with flat parallel sides, the mold profile resembling a very long, narrow Tupperware container. Even with flat walls, a mold that shape can trap the part if the mold deforms over time. <strong>The mold was designed as two pieces, flange-jointed at the center</strong>, so the halves bolt together for layup and separate for demolding, eliminating the trap entirely. Wooden cradles were built to hold the assembled mold upright during fabrication, keeping the parting flange clear of the table surface. Multiple molds and cradles were built in parallel, allowing multiple sets to be fabricated simultaneously.</p>
 
 <span id="diffuser-jig" class="scroll-target"></span>
-      <p>Freehand cutting was not an option on either cut. The solution was two purpose-built jigs. The first, built from wood as the fastest material to work with, clips onto the bandsaw and registers the pulled part at exact center for the lengthwise center split, dividing every pull into two identical halves in under a minute with zero measuring. The second jig handles the edge trim cut, which runs the full length of each piece approximately 5mm from the most visible long edge — any deviation reads immediately on the installed part. A 12-inch section of a first-pull part was used as a mold to cast a short fiberglass form, trimmed to the exact profile and mounted vertically on the jig base. Each piece slides along this guide in the correct orientation, referenced to the same profile dimension on every cut. Over 100 sets were sold to other S2000 owners, each with the Chilicoke logo embedded in the layup. <strong>The jigs weren't planned for commercial production. The commercial production happened because the jigs made it effortless.</strong></p>
+      <p>Freehand cutting was not an option on either cut. The solution was two purpose-built jigs. The first, built from wood as the fastest material to work with, clips onto the bandsaw and registers the pulled part at exact center for the lengthwise center split, dividing every pull into two identical halves in under a minute with zero measuring. The second jig handles the edge trim cut, which runs the full length of each piece approximately 5mm from the most visible long edge, any deviation reads immediately on the installed part. A 12-inch section of a first-pull part was used as a mold to cast a short fiberglass form, trimmed to the exact profile and mounted vertically on the jig base. Each piece slides along this guide in the correct orientation, referenced to the same profile dimension on every cut. Over 100 sets were sold to other S2000 owners, each with the Chilicoke logo embedded in the layup. <strong>The jigs weren't planned for commercial production. The commercial production happened because the jigs made it effortless.</strong></p>
 
 
       <div class="photo-trio">
