@@ -317,7 +317,7 @@
       groups[group].push({
         src,
         alt: el.getAttribute('alt') || '',
-        caption: el.getAttribute('data-caption') || el.getAttribute('alt') || '',
+        caption: el.getAttribute('data-caption') || '',
         type: youtubeId ? 'youtube' : (isVideo ? 'video' : 'image'),
         youtubeId,
         startTime
