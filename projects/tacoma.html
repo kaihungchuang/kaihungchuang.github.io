@@ -109,6 +109,7 @@
 
   <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0.25rem 0 3rem;">
     <a href="#solidworks-model" class="tag-shortcut">SolidWorks Correction Delta ↓</a>
+    <a href="#material-verification" class="tag-shortcut">Material &amp; Structural Verification ↓</a>
     <a href="#compound-fixture" class="tag-shortcut">Compound-Angle Holding Fixture ↓</a>
     <a href="#tig-decision" class="tag-shortcut">Safety-Critical TIG Decision ↓</a>
     <a href="#alignment-validation" class="tag-shortcut">Factory Spec, First Attempt ↓</a>
@@ -180,11 +181,26 @@
       <p>The model made the correction delta visible and calculable: a specific angular offset of the ball joint mount from the factory arm geometry that would restore caster to factory spec at the lifted ride height. Verified the result with a spreadsheet that independently calculated the caster change from the geometric inputs. Both methods agreed. <strong>The corrected ball joint position was within the footprint of the factory arm.</strong> There was enough material in the stamped steel arm to pocket in a new mount without compromising structural integrity.</p>
     </div>
 
-<!-- 03/ Fabrication: Fixture, Lathe, Mill, Weld -->
+<!-- 03/ Material and Structural Verification -->
 
+  <span id="material-verification" class="scroll-target"></span>
     <div class="chapter" id="ch03">
       <div class="chapter-header">
         <span class="chapter-num">03 /</span>
+        <h2 class="chapter-title">Material and Structural Verification</h2>
+      </div>
+      <p>Before any material was removed from the factory arm, the structural context and material were characterized independently. In a double wishbone suspension, the upper control arm carries primarily compressive loads. The lower control arm and its chassis mounts form the primary structural load path; the upper arm's role is to maintain geometry and react the comparatively lighter loads at the top of the knuckle. That load case makes modification a tractable problem — but it is not a reason to skip verification.</p>
+
+      <p>The factory arm construction was readable from the outside: two stamped steel halves forming upper and lower profiles, joined along a visible weld flange, with a turned tapered ball joint stub welded into the arm end. Material hardness was verified with a center punch against the arm and against a known piece of mild steel scrap side by side. The indentations matched across both the stamped halves and the turned stub — consistent with mild steel, and distinguishable from significantly harder alloy or heat-treated material. Both observations were independently confirmed during machining: chip formation, color, and cutting force during the pocket mill all behaved consistently with mild steel, and the open pocket gave a direct cross-section view of the arm wall at the cut face. The welder confirmed the same material behavior during TIG. Four independent checks before and during fabrication, each consistent.</p>
+
+      <p>Multiple aftermarket upper control arms from several vendors were also physically inspected before committing to this approach. Most consisted of simple bent tubing sections with basic gussets. Several appeared to be of equal or lesser construction quality compared to the factory stamped steel arms. The aftermarket option was deprioritized not primarily because of cost — but because the factory arm construction was sound, the material verified across multiple independent checks, and the modification geometrically precise with an alignment shop validation built in as the final confirmation step.</p>
+    </div>
+
+<!-- 04/ Fabrication: Fixture, Lathe, Mill, Weld -->
+
+    <div class="chapter" id="ch04">
+      <div class="chapter-header">
+        <span class="chapter-num">04 /</span>
         <h2 class="chapter-title">Fabrication: Fixture, Lathe, Mill, Weld</h2>
       </div>    
       <div class="photo-trio">
@@ -203,7 +219,7 @@
              data-lightbox="tacoma"
              data-caption="SolidWorks suspension geometry model — stock height vs lifted position showing caster angle change and the calculated corrected ball joint location"
              alt="Suspension Geometry Correction — SolidWorks suspension geometry model comparing stock and lifted positions to determine correction delta">
-            </div>
+      </div>
       <p>The ball joint mount needed to be turned on the lathe to produce the correct taper for proper fitment. That part was straightforward: turned from mild steel bar stock to my calculated dimensions, taper angle matched to factory spec using the compound slide on the lathe.</p>
       <div class="photo-single" style="max-width:900px;margin:2rem auto;">
         <img src="../images/tacoma-geometry-09.webp"
@@ -256,12 +272,12 @@
       <p>I only had a MIG welder in my shop, but I knew the application warranted TIG. The stamped steel control arm was significantly thinner than the solid mild steel ball joint disk I had turned on the lathe. Managing the heat input between these disparate thermal masses would have been difficult with MIG. There was a high risk of burning through the thin stamping before achieving adequate penetration on the solid disk. I outsourced the welding to a local welder to ensure structural integrity of the joint. He was impressed enough to ask about the process. The TIG welds came out perfect. Cleaned and painted both arms to a factory flat black finish.</p>
     </div>
 
-<!-- 04/ Installation and Alignment Validation -->
+<!-- 05/ Installation and Alignment Validation -->
 
   <span id="alignment-validation" class="scroll-target"></span>
-    <div class="chapter" id="ch04">
+    <div class="chapter" id="ch05">
       <div class="chapter-header">
-        <span class="chapter-num">04 /</span>
+        <span class="chapter-num">05 /</span>
         <h2 class="chapter-title">Installation and Alignment Validation</h2>
       </div>
       <p>Installed both modified arms on the truck. Drove directly to the alignment shop and explained to the tech what had been done. <strong>Caster, camber, and toe all came into factory specification, with every adjustment bolt sitting in the middle of its adjustment range.</strong> Confirming the geometry correction worked exactly as expected.</p>
