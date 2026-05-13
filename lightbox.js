@@ -195,7 +195,7 @@
     const next = document.getElementById('lb-next');
     const entry = currentGroup[currentIndex];
 
-    caption.textContent = entry.caption || entry.alt || '';
+    caption.textContent = entry.caption || '';
     prev.classList.toggle('hidden', currentIndex === 0);
     next.classList.toggle('hidden', currentIndex === currentGroup.length - 1);
 
@@ -317,7 +317,7 @@
       groups[group].push({
         src,
         alt: el.getAttribute('alt') || '',
-        caption: el.getAttribute('data-caption') || el.getAttribute('alt') || '',
+        caption: el.getAttribute('data-caption') || '',
         type: youtubeId ? 'youtube' : (isVideo ? 'video' : 'image'),
         youtubeId,
         startTime
