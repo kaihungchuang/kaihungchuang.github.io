@@ -84,7 +84,7 @@
          loading="eager"
          data-lightbox="printhead"
          data-caption="Production printhead assembled and ready for shipping — drop-in replacement for LulzBot TAZ with full plug-and-play compatibility"
-         alt="LulzBot Printhead — Completed production printhead assembled and ready for shipping">
+         alt="">
   </div>
 
   <div class="stats-bar">
@@ -129,26 +129,26 @@
         <img src="../images/printhead-175head-10.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-11.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-12.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead installed and running on the LulzBot TAZ — full plug-and-play fitment, validated before any scaling decisions were made"
-             alt="LulzBot Printhead — First 1.75mm printhead installed and printing on LulzBot TAZ for initial validation">
+             data-caption=""
+             alt="">
       </div>
       <p>It started with a simpler frustration: the stock cooling fan blocked direct nozzle visibility during printing, particularly on the critical initial layers when the printhead is closest to the bed. I redesigned the fan duct in SolidWorks, repositioning the fan as high as the geometry allowed and opening the front face completely. <strong>The nozzle was now fully visible with enough clearance to manually tweezer away stray filament extrusions during the initial layer.</strong> That modification was the door into the machine. The TAZ had an interchangeable printhead system, and once inside it became clear the filament constraint was solvable too. The architecture for a solution already existed. It just needed someone to build it.</p>
       <div class="photo-single" style="max-width:900px;margin:2rem auto;">
         <img src="../images/printhead-175head-03.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="LulzBot TAZ with the first 1.75mm printhead installed and printing — full plug-and-play compatibility with no machine modification required"
-             alt="LulzBot Printhead — First 1.75mm replacement printhead installed and printing on LulzBot TAZ"
+             data-caption=""
+             alt=""
              style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
       </div>
       <p>LulzBot's open-source commitment meant every component STL was publicly available. Useful for self-repair, but not useful for parametric design work. Knowing I would be modifying and developing against this platform extensively, I downloaded every STL and recreated the printhead and the entire X-axis gantry as a fully parametric SolidWorks assembly (later exported to Fusion360), cross-referenced against physical measurements from the machine sitting next to me.</p>
@@ -174,7 +174,7 @@
               data-lightbox="printhead"
               data-youtube="vRbP8Hy-N5E"
               data-caption="Hobbed bolt machining on the manual mill"
-              alt="LulzBot Printhead — hobbed bolt being machined"
+              alt=""
               style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
             <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
@@ -186,7 +186,7 @@
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
         </div>
       <p>I set up a crude rotating fixture by clamping two skateboard bearings directly into the mill vise, which held the bolt and allowed it to be rotated between passes. Using <strong>every thread tap from M2 to M10, I systematically worked through tooth depth, count, and profile combinations, isolating one variable at a time.</strong> The iteration was entirely physical. Each variant went into a test printhead, ran filament at multiple temperatures and feed rates, and was evaluated for grip consistency and filament marking pattern. The winning geometry was clear within the test matrix. Getting to that answer required building the tooling first, not just modeling geometry in CAD.</p>
   <span id="ptfe-path" class="scroll-target"></span>
@@ -194,13 +194,13 @@
         <img src="../images/printhead-175head-08.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-09.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead installed and running on the LulzBot TAZ — full plug-and-play fitment, validated before any scaling decisions were made"
-             alt="LulzBot Printhead — First 1.75mm printhead installed and printing on LulzBot TAZ for initial validation">
+             data-caption=""
+             alt="">
       </div>
       <p>The hobbed drive bolt doesn't feed filament directly into the hotend. There is a short gap between the bolt and the hotend entry. In the original design that gap was not tightly constrained, allowing filament to buckle under drive pressure, particularly with flexible materials. I redesigned this section to incorporate a strategically cut PTFE tube liner bridging the full path from drive bolt to hotend entry. This also reduced friction in addition to fully constrained the filament path, and made the printhead capable of running flexible filaments reliably, something notoriously difficult to achieve in 1.75mm filaments.</p>
     </div>
@@ -218,12 +218,12 @@
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
         <img src="../images/printhead-175head-17.webp"
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
       </div>
       <p>Once the winning tooth geometry was established, the next problem was repeatability at scale. The skateboard bearing fixture was a proof-of-concept, not a production tool. The first proper jig was milled from scrap aluminum and designed to hold multiple bolts simultaneously, one setup: cut all bolts to correct length in one pass, then clamp the same jig into the mill from the other end to hob the teeth. One fixture, two operations, consistent geometry across every bolt in the batch. The hobbing step still required holding a powered drill to rotate the bolt at a steady speed while the mill cut the tooth profile, repeatable enough, but a manual operation that capped throughput.</p>
       <div class="photo-duo">
@@ -231,12 +231,12 @@
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
         <img src="../images/printhead-175head-20.webp"
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
       </div>
       <p>The PTFE tube that constrains the filament path between drive bolt and hotend entry also required custom tooling. The tube needed two precise angle cuts to minimize the unsupported filament gap as tightly as possible, critical for driving flexible filaments without buckling. I designed and 3D printed a four-slot cutting jig with a skateboard bearing on the cutting arm to eliminate lateral slop in the blade, ensuring each cut lands at the same location and angle every time. Two slots per side: the right side cuts PTFE tube to spec for 1.75mm filament, the left side for 2.85mm. First slot on each side cuts to length and makes the first angle cut. Second slot makes the final angle cut. One jig, both filament sizes.</p>
       <div class="photo-duo">
@@ -244,19 +244,19 @@
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
         <img src="../images/printhead-175head-06.webp"
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
       </div>
       <div class="photo-duo">
         <img src="../images/printhead-175head-07.webp"
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
         <video autoplay loop muted playsinline
              preload="none" 
              poster="../images/printhead-175head-21.webp"
@@ -273,12 +273,12 @@
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
         <img src="../images/printhead-175head-24.webp"
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="LulzBot Printhead — ">
+             alt="">
       </div>
       <p>A fourth jig addressed a separate production step: drilling recessed pockets for fan mounting screw heads. Sourcing a more cost-effective fan required drilling new mounting holes into the printhead body. I designed the jig as a combination of off-the-shelf bolts and nuts threaded into a machined acrylic plate, allowing fans to snapping into accurate repeateable position and held under tension without tools for drilling. The jig clamps into the drill press table slot using 3D printed tightening knobs, no tools required. Four custom jigs in total to produce one printhead: two 3D printed, two machined aluminum.</p>
 
@@ -296,13 +296,13 @@
         <img src="../images/printhead-175head-02.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-22.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead installed and running on the LulzBot TAZ — full plug-and-play fitment, validated before any scaling decisions were made"
-             alt="LulzBot Printhead — First 1.75mm printhead installed and printing on LulzBot TAZ for initial validation">
+             data-caption=""
+             alt="">
       </div>
       <p>The first validation units went straight into hundreds of hours of continuous torture testing. The most useful test prints were the printhead revision parts themselves — each iteration printing its own replacement components for the next version, stress testing geometry, fit, and thermal behavior simultaneously under real production conditions. Failures pointed directly at what needed to change. The design converged quickly because the feedback loop had no slack in it.</p>
     </div>
@@ -319,8 +319,8 @@
         <img src="../images/printhead-175head-13.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="LulzBot TAZ with the first 1.75mm printhead installed and printing — full plug-and-play compatibility with no machine modification required"
-             alt="LulzBot Printhead — First 1.75mm replacement printhead installed and printing on LulzBot TAZ"
+             data-caption=""
+             alt=""
              style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
       </div>
   <span id="fan-fix" class="scroll-target"></span>
@@ -330,13 +330,13 @@
         <img src="../images/printhead-175head-14.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-15.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
       </div>
       <p>The solution was picking an appropriate diode wired in series with the fan supply to drop the 24V potential into the 12V operating range. This was a simple, low-cost fix that made sense for the application. However, the diode generated considerable heat during operation. <strong>Rather than treating that as a thermal problem to manage separately, I redesigned the fan duct in CAD to position the diode directly in the fan's own airpath.</strong> This created a self-contained thermal management system where the fan actively cools the diode that enables it to operate reliably.</p>
     </div>
@@ -353,8 +353,8 @@
         <img src="../images/printhead-175head-16.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="LulzBot TAZ with the first 1.75mm printhead installed and printing — full plug-and-play compatibility with no machine modification required"
-             alt="LulzBot Printhead — First 1.75mm replacement printhead installed and printing on LulzBot TAZ"
+             data-caption="V2 Fusion360 assembly — complete redesign around E3D V6 geometry while holding external dimensions to match the V1 envelope for customer familiarity"
+             alt=""
              style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
       </div>
       <p>The hard constraint from customer feedback was clear. The external appearance was a highly valued selling point and had to remain as close to the original as possible. Customers appreciated the familiarity and the reliability the design provided. <strong>I renegotiated every internal component shape and mounting geometry against the V6 dimensions to fit the longer hotend inside the original external footprint.</strong> The result was a meaningfully better hotend under the hood with no visible change to the machine and no slicer profile updates required.</p>
@@ -362,20 +362,20 @@
         <img src="../images/printhead-175head-25.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="V2 Fusion360 assembly — complete redesign around E3D V6 geometry while holding external dimensions to match the V1 envelope for customer familiarity"
-             alt="LulzBot Printhead — V2 Fusion360 full assembly designed around E3D V6 while matching V1 external envelope">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-26.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="V2 production printhead — external appearance held nearly identical to V1 despite a completely redesigned internal architecture around the E3D V6 hotend"
-             alt="LulzBot Printhead — V2 production printhead with original-style external appearance over redesigned internal E3D V6 architecture">
+             data-cap`tion=""
+             alt="">
         <div style="position:relative;">
           <img src="https://img.youtube.com/vi/c3OgQTJlUGY/hqdefault.jpg"
               loading="lazy"
               data-lightbox="printhead"
               data-youtube="c3OgQTJlUGY"
-              data-caption="Hobbed bolt machining on the manual mill"
-              alt="LulzBot Printhead — hobbed bolt being machined"
+              data-caption=""
+              alt=""
               style="width:100%;aspect-ratio:3/2;object-fit:cover;display:block;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
             <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
@@ -400,26 +400,26 @@
         <img src="../images/printhead-175head-30.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="LulzBot TAZ with the first 1.75mm printhead installed and printing — full plug-and-play compatibility with no machine modification required"
-             alt="LulzBot Printhead — First 1.75mm replacement printhead installed and printing on LulzBot TAZ"
+             data-caption=""
+             alt=""
              style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
       </div>
       <div class="photo-trio">
         <img src="../images/printhead-175head-28.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-29.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
         <img src="../images/printhead-175head-31.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="First 1.75mm printhead assembly — prototype build using the Hexagon hotend, incorporating redesigned fan duct and PTFE-lined filament path"
-             alt="LulzBot Printhead — First 1.75mm printhead prototype assembled with redesigned fan duct and PTFE-lined filament path">
+             data-caption=""
+             alt="">
       </div>
 
       <p>Alongside the V2 redesign, I built out a complete testing and calibration workflow. Purpose-built calibration stations designed in Fusion360 and 3D printed, each printhead calibrated and validated against a known standard before shipping. The stations carry only the bare minimum hardware required, with firmware configured and compiled to mimic exactly how the TAZ hardware behaves. From the printhead's perspective there is no difference between the calibration station and the actual printer. Custom G-code sequences run full verification cycles and calibrate E-steps to confirm each unit behaves exactly as commanded in the physical world before it leaves. The calibration station went through multiple design iterations to improve throughput and reduce setup time per unit. <strong>Every single unit shipped went through this process.</strong> Across 2,000+ units sold, not one complaint about print performance was ever received — eBay feedback from customers consistently praised print quality specifically.</p>
@@ -429,8 +429,8 @@
         <img src="../images/printhead-175head-27.webp"
              loading="lazy"
              data-lightbox="printhead"
-             data-caption="30+ improvements documented across the full printhead design — some significant and visible, most subtle and invisible, all improvements nonetheless"
-             alt="LulzBot Printhead — Composite showing 30+ design improvements documented across the full printhead development lifecycle"
+             data-caption=""
+             alt=""
              style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
       </div>
       <p>LulzBot's internal engineering team privately reached out and publicly commented on my YouTube channel commending the work. When LulzBot later released their own official 1.75mm printhead, customers who tried both often reported preferring the simpler, original-style architecture: more reliable, easier to unjam, and significantly easier to service.</p>
@@ -441,8 +441,8 @@
               loading="lazy"
               data-lightbox="printhead"
               data-youtube="d4nXL2vzksg"
-              data-caption="Hobbed bolt machining on the manual mill"
-              alt="LulzBot Printhead — hobbed bolt being machined"
+              data-caption=""
+              alt=""
               style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
             <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">

@@ -85,7 +85,7 @@
          loading="eager"
          data-lightbox="nozzlecam"
          data-caption="Nozzle camera system fully integrated into Voron printhead carriage — camera module, macro lens, LED illumination, all within the existing printhead geometry"
-         alt="final completed nozzle cam discreet integrated into my Voron carriage, flood LED lights and lens visible">
+         alt="">
   </div>
 
   <div class="stats-bar">
@@ -148,7 +148,7 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Examples of early community attempt at real-time nozzle monitoring"
-             alt="photo collage of 4 pictures of other peoples' attempt at putting camera onto the print head for video feed"
+             alt=""
              style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
       </div>
       <p>Nozzle cameras weren't entirely unknown in the DIY community. A few people had strapped USB endoscopes to their printhead pointing at the nozzle. The results were poor: focus too long, lighting inadequate. The endoscope body hanging in front of the printhead also added cantilevered mass on a fast-moving carriage, which compounds on a printer axis that is rarely perfectly rigid. <strong>The concept was right. The implementation needed a complete rethink.</strong></p>
@@ -168,7 +168,7 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Side-by-side video output comparison — part of the systematic evaluation of 25 endoscopes"
-             alt="two endoscope video output quality is being compared side by side visually"
+             alt=""
              style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
       </div>
       <p>Patterns emerged quickly. Many different-branded models share identical internal electronics and image sensors, same resolution, same output, same limitations, just different housings at different prices. Those were grouped and the higher-cost duplicates eliminated. Some endoscopes output higher resolution than their packaging advertises. Some support 4:3 aspect ratio in addition to 16:9, providing more vertical resolution, useful for looking down at a nozzle. Higher resolution models need more light to perform well, which makes sense given the same sensor size spread across more pixels. They also have slower sensor readout speeds relative to their pixel count, which in a high-acceleration motion environment like a printhead produces more rolling shutter jelly effect. Not ideal. After this testing I narrowed the field to three candidate models worth opening.</p>
@@ -214,7 +214,7 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Budget cell phone camera clip on accessory lens"
-             alt="cheap Amazon cell phone lenses no one wants, showing all 3 lenses out of box">
+             alt="">
         <video autoplay loop muted playsinline
              preload="none" 
              poster="../images/nozzlecam-ch3-07.webp"
@@ -248,7 +248,7 @@
              data-lightbox="nozzlecam"
              data-caption="Lens profile reconstructed in Fusion 360 — dimensions and curvature reverse engineered to identify exact optical specification for AliExpress sourcing"
              aria-label="CAD profile drawing of discontinued lens element with dimensions and curvature labeled for optical spec identification"
-             alt="CAD drawing of profile of the lens element, dimensions and curvature labeled to figure out specs to find direct replacements">
+             alt="">
       </div>
       <p>When it came time to make another lens for myself, I photographed the original element in side profile using a mirrorless camera macro lens, recreated the profile in Fusion 360 to extract its optical geometry in numbers, used optical formulas to identify the exact specification, then searched AliExpress extensively for a matching glass element. <strong>Found one: an actual optical-grade glass element at the correct spec, which produced better image quality than the original plastic element.</strong> That's the permanent solution for anyone building their own.</p>
 
@@ -267,12 +267,12 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="First generation nozzlecam integrated into part cooling fan duct — the quickest way to impliment for testing"
-             alt="head on picture of the modified fan duct with nozzlecam integrated dirctly facing the viewer">
+             alt="">
         <img src="../images/nozzlecam-ch4-11.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="First generation nozzlecam assembled into print head — nozzlecam pointed directly at nozzle"
-             alt="fully assembled print head with first generation nozzle cam showing camera positioned right next to and pointing at the hotend nozzle">
+             alt="">
       </div>
       <p>The first prototype integrated the camera module into the right side part cooling fan duct, the fastest way to validate the concept without redesigning anything else. It worked well enough to confirm the approach, but obstructed cooling performance and required a dedicated camera module for each modular printhead. Neither was acceptable for a permanent installation.</p>
       <div class="photo-duo">
@@ -280,24 +280,24 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Second generation rendering in Fusion 360 CAD — nozzlecam relocated onto printhead carriage"
-             alt="3D rendering showing the new carriage with newly iterated nozzle cam pointed towards where the nozzle would be if installed">
+             alt="">
         <img src="../images/nozzlecam-ch4-13.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Assembled carriage with integrated nozzle cam — physical build matching the Fusion 360 CAD design"
-             alt="3D printed and assembled new gantry with integrated nozzle cam sitting on tabletop">
+             alt="">
       </div>
       <div class="photo-duo">
         <img src="../images/nozzlecam-ch4-14.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Carriage with printhead attached — camera angle and proximity to hotend confirmed before installing the module"
-             alt="3D printed and assembled new gantry with integrated nozzle cam and printhead attached, camera module not yet installed">
+             alt="">
         <img src="../images/nozzlecam-ch4-15.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Camera mounting cavity — nozzle visible through the empty installation hole, confirming sight line geometry"
-             alt="looking through the space where the camera module would be installed, empty see-through hole, nozzle visible through the hole">
+             alt="">
       </div>
       <p>The permanent solution placed the camera module into the printhead carriage rather than the printhead itself. The carriage is shared across all printhead configurations. Each individual printhead only needs the lighting assembly, cheap, durable, and requiring only two additional wires in the harness. One camera serves every modular printhead combination without duplication.</p>
       <div class="photo-duo">
@@ -305,12 +305,12 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Field of view plotted in Fusion 360 CAD — camera modules with macro lens at final geometry: 37.5° lateral, 17.5° down, aimed 4.75mm ahead of nozzle tip"
-             alt="Fusion 360 CAD showing camera and lens placement geometry relative to the hotend">
+             alt="">
         <img src="../images/nozzlecam-ch4-17.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Camera module temporarily taped in position — live feed confirming ideal nozzle view before permanent installation"
-             alt="assembled gantry with camera module and lens temporarily installed by tape, camera feed showing ideal view of the nozzle">
+             alt="">
       </div>
       <p>Camera positioning was planned in Fusion 360 by plotting the field of view cone of the camera module with and without the added lens element against the CAD assembly. <strong>The final geometry: 37.5 degrees to the side from dead center on the hotend, 17.5 degrees downward, aimed approximately 4.75mm in front of the nozzle tip.</strong> This provides a view of two sides of the heating block plus the nozzle and the immediate deposition zone. Confirmed physically by holding the assembly against the printhead and capturing footage in OBS before committing to fabrication.</p>
     </div>
@@ -328,19 +328,19 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Fusion 360 rendering — revised carriage with integrated nozzle cam and three-point LED flood light system"
-             alt="3D rendering showing the new carriage with nozzle cam, revised printhead with LED flood light system">
+             alt="">
         <img src="../images/nozzlecam-ch4-19_0.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Partly assembled printhead with two LED flood lights installed — below is the cheap LED strip they were scavenged from"
-             alt="3D printed and partly assembled new printhead design with two LED modules installed, section of donor LED strip below">
+             alt="">
       </div>        
       <div class="photo-single" style="max-width:900px;margin:2rem auto;">
         <img src="../images/nozzlecam-ch4-20.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Completed LED flood light system test — hotend and nozzle fully covered by light"
-             alt="first full floodlight system being tested on table top being powered by a portable USB powerbank">
+             alt="">
       </div>
       <p>Scavenged 5050 LED units off cheap generic LED strip lights, chose 5V specifically because the Voron runs three separate voltage rails and only the 5V stays live when the printer is powered off, meaning the nozzle light can be switched on independently for printhead swaps. LED placement is deliberate: one LED mirrored low on the opposite side from the camera, two more higher up on each side of the hotend. The goal is coverage from multiple heights and angles simultaneously to flood the nozzle area without shadows. The result from the first test was immediately excellent, sharp, clear, real-time visibility directly at and under the nozzle.</p>
       <div class="photo-duo">
@@ -348,12 +348,12 @@
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Extracted endoscope camera module and bare circuit board - wired for quick USB disconnect for testing"
-             alt="picture showing the bare camera module and circuit board wired with quick disconnect for USB connection">
+             alt="">
         <img src="../images/nozzlecam-ch4-22.webp"
              loading="lazy"
              data-lightbox="nozzlecam"
              data-caption="Camera module PCB wrapped in Kapton tape and aluminum tape — insulation and EMI shielding before permanent installation"
-             alt="circuitry of the camera module covered in Kapton tape and aluminum tape for shielding">
+             alt="">
       </div>
       <p>The camera PCB was prepared for the environment inside a running 3D printer: Kapton tape for insulation, then wrapped in aluminum tape for EMI shielding against stepper motor signals, heater PWM, and the various other noise sources packed into a small space. A printer has a lot of high-frequency electrical activity in a very confined area. Better safe than sorry when the whole assembly is permanent.</p>
 
@@ -378,7 +378,7 @@
                data-lightbox="nozzlecam"
                data-youtube="ZsNGCMx14ow"
                data-caption="Development test footage — posted without expectation, community response drove enough questions to prompt the full how-to guide"
-               alt="Development stage test footage posted to YouTube, unexpectedly gained popularity and questions, which prompted the complete how-to video"
+               alt=""
                style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
             <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
@@ -408,7 +408,7 @@
                data-lightbox="nozzlecam"
                data-youtube="GAp23w_dnNc"
                data-caption="3D Printer Nozzle Cam — Complete How To using endoscope — full methodology guide published openly on YouTube"
-               alt="my popular complete how to guide on nozzle cam published to YouTube"
+               alt=""
                style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
             <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
@@ -427,7 +427,7 @@
                data-youtube="btOORPWcdcQ"
                data-yt-start="41"
                data-caption="Voron high-speed printing showcase — high quality nozzle cam footage showing the final optimized system in action"
-               alt="YouTube video showing off tuned Voron print speed with high quality nozzle cam footage as a showcase of the final system"
+               alt=""
                style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
             <div style="width:48px;height:48px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
