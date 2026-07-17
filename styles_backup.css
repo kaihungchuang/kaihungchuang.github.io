@@ -382,43 +382,6 @@ nav {
   margin: 0 !important;
 }
 
-/* ── TIMELINE ── */
-.timeline {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  column-gap: 1.75rem;
-  row-gap: 0.9rem;
-  align-items: baseline;
-  margin: 2rem 0 2.5rem;
-  padding-left: 1.25rem;
-  border-left: 1px solid var(--border);
-}
-.tl-time {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.tl-event {
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-.tl-event strong {
-  color: var(--text);
-  font-weight: 500;
-}
-
-@media (max-width: 600px) {
-  .timeline {
-    grid-template-columns: 1fr;
-    row-gap: 0.3rem;
-  }
-  .tl-time { margin-top: 0.75rem; }
-}
-
 /* ── ALBUM / TRACEABILITY LINK ── */
 .album-link {
   display: flex;
