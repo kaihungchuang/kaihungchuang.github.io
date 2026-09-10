@@ -9,27 +9,17 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 
-/* LANDING GRID — HD left, intro right */
-.landing-grid {
+/* HERO */
+.hero {
+  padding: 5rem 0 4rem;
+  border-bottom: 1px solid var(--border);
   display: grid;
-  grid-template-columns: 65fr 35fr;
-  gap: 0 3.5rem;
-  padding: 1rem 0 0;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
 }
-.landing-hd { min-width: 0; }
-.landing-intro {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding-top: 0;
-  position: sticky;
-  top: 5rem;
-}
-
-/* HERO (now right column of landing-grid) */
 .hero-left { display: flex; flex-direction: column; gap: 0.5rem; }
-.hero-right { display: flex; flex-direction: column; gap: 1.75rem; }
+.hero-right { display: flex; flex-direction: column; gap: 1.75rem; justify-content: center; }
 .hero-tag { font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--accent); text-transform:uppercase; margin-bottom:0.5rem; display:flex; align-items:center; gap:.75rem; }
 .hero-tag::before { content:''; display:block; width:24px; height:1px; background:var(--accent); }
 .hero-name { font-family:var(--cond); font-size:clamp(3.5rem,7vw,6.5rem); font-weight:700; line-height:.92; letter-spacing:-.01em; color:var(--text); }
@@ -91,7 +81,7 @@
 .hd-clickable:hover { background: rgba(232,135,10,0.03); }
 
 
-.hd-section { padding:0; }
+.hd-section { padding:2rem 0 0; }
 
 .hd-section-header {
   display:flex; align-items:baseline; gap:1rem;
@@ -102,14 +92,14 @@
   letter-spacing:.1em; color:var(--accent); text-transform:uppercase;
 }
 .hd-section-title {
-  font-family:var(--cond); font-size:2rem; font-weight:600;
+  font-family:var(--cond); font-size:1.8rem; font-weight:600;
   letter-spacing:.02em; color:var(--text);
 }
 .hd-stats { display:flex; border:1px solid var(--border); border-top:none; }
-.hd-stat { flex:1; padding:0.55rem 0.75rem; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:.15rem; }
+.hd-stat { flex:1; padding:1.25rem 1.5rem; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:.25rem; }
 .hd-stat:last-child { border-right:none; }
-.hd-stat-num { font-family:var(--cond); font-size:1.1rem; font-weight:700; color:var(--accent); line-height:1; }
-.hd-stat-label { font-family:var(--mono); font-size:9px; letter-spacing:.05em; color:var(--text-muted); text-transform:uppercase; }
+.hd-stat-num { font-family:var(--cond); font-size:1.8rem; font-weight:700; color:var(--accent); line-height:1; }
+.hd-stat-label { font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--text-muted); text-transform:uppercase; }
 
 /* Stacked full-width layout */
 .hd-content {
@@ -151,10 +141,10 @@
 
 /* Text below, headline full width, then two columns */
 .hd-left {
-  padding: 1.25rem 1.75rem;
+  padding: 2.5rem 3rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.25rem;
   position: relative;
   z-index: 1;
 }
@@ -166,7 +156,7 @@
 }
 .hd-left-text { display:flex; flex-direction:column; gap:1rem; }
 .hd-left-actions { display:flex; flex-direction:column; gap:1rem; justify-content:flex-start; padding-top:0.25rem; }
-.hd-headline { font-family:var(--cond); font-size:1.8rem; font-weight:700; line-height:1.05; color:var(--text); letter-spacing:-.01em; }
+.hd-headline { font-family:var(--cond); font-size:clamp(1.8rem,3vw,2.8rem); font-weight:700; line-height:1.05; color:var(--text); letter-spacing:-.01em; }
 .hd-sub { font-size:16px; color:var(--text-secondary); line-height:1.8; }
 .hd-sub strong { color:var(--text); font-weight:500; }
 .hd-ctas { display:flex; gap:1rem; flex-wrap:wrap; }
@@ -176,8 +166,7 @@
 .hd-btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
 
 /* PROJECTS GRID */
-.section { padding:0 0 3rem; border-top: none !important; }
-.section-header { border-bottom: none !important; padding-bottom: 0.75rem; }
+.section { padding:3rem 0; }
 .projects-grid {
   display:grid; grid-template-columns:repeat(12,1fr);
   gap:1px; background:var(--border); border:1px solid var(--border);
@@ -381,9 +370,7 @@
 /* Responsive */
 @media (max-width:1100px) { .build-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:900px) {
-  .landing-grid { grid-template-columns:1fr; gap:2.5rem; padding:3rem 0; }
-  .landing-intro { position:static; order:-1; }
-  .landing-hd { order:0; }
+  .hero { grid-template-columns:1fr; gap:2rem; padding:4rem 0 3rem; }
   .card-half, .card-md { grid-column:span 12; }
   .hd-content { grid-template-columns:1fr; }
   .hd-image-col { aspect-ratio: 16/10; }
@@ -406,7 +393,7 @@
   .hd-stat-num { font-size:1.3rem; }
 }
 </style>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="27501c45-943f-4557-8636-2e5eaac3228f"></script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
 
@@ -424,51 +411,14 @@
 
 <main class="wrap">
 
-  <!-- LANDING GRID: HD left, intro right -->
-  <div class="landing-grid">
-
-    <!-- LEFT: 00 / HUNTER DOUGLAS -->
-    <section class="hd-section landing-hd" id="case-study">
-      <div class="hd-section-header">
-        <span class="hd-section-num">00 /</span>
-        <a href="projects/hunterdouglas.html" class="hd-section-title-link">
-          <h2 class="hd-section-title">Hunter Douglas, $6M Program Rescue</h2>
-        </a>
-      </div>
-      <a href="projects/hunterdouglas.html" class="hd-stats hd-stats-link">
-        <div class="hd-stat"><span class="hd-stat-num">7</span><span class="hd-stat-label">Days to functional prototype</span></div>
-        <div class="hd-stat"><span class="hd-stat-num">14</span><span class="hd-stat-label">Days to production approval</span></div>
-        <div class="hd-stat"><span class="hd-stat-num">$0</span><span class="hd-stat-label">New tooling or CapEx</span></div>
-        <div class="hd-stat"><span class="hd-stat-num">$600K</span><span class="hd-stat-label">Contribution margin added</span></div>
-        <div class="hd-stat"><span class="hd-stat-num">24,000</span><span class="hd-stat-label">Units shipped on schedule</span></div>
-      </a>
-      <div class="hd-content hd-clickable">
-        <div class="hd-image-col">
-          <img src="images/hero-hd-window-cling-deployed-01.webp"
-               loading="eager"
-               alt="">
-        </div>
-        <div class="hd-left">
-          <h2 class="hd-headline">$6M launch. 60 days out.<br>Client design failed. No CAD. No budget.</h2>
-          <p class="hd-sub">
-            Hunter Douglas's halo product was 60 days from a nationwide retail launch.
-            24,000 books mid-production. The accessory they'd developed for two years
-            failed validation at the final hour with no native CAD and no specs provided.
-            <strong>The Business Administration degree kept the solution grounded in
-            economic reality. The engineering background built it. Both were required to ship.</strong>
-          </p>
-          <div class="hd-ctas">
-            <a href="projects/hunterdouglas.html" class="hd-btn-primary">Full Project + Documentation →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RIGHT: intro -->
-    <div class="landing-intro">
-      <div class="hero-tag">Prototyper · Hardware Builder · NPI Engineer</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Hardware Builder · NPI Engineer · Irvine, CA</div>
       <h1 class="hero-name">Kai-Hung<br><span class="dim">Chuang</span></h1>
       <div class="hero-title">Builder Who Closes the Gap</div>
+    </div>
+    <div class="hero-right">
       <p class="hero-desc">
         A decade of independent execution owning the gap between new designs and first working hardware.
         <strong>Self-funded from day one</strong>, every prototype had real consequences, every
@@ -482,8 +432,60 @@
         <a href="https://linkedin.com/in/kaihungchuang" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
       </div>
     </div>
+  </section>
 
-  </div>
+  <!-- 00 / HUNTER DOUGLAS -->
+  <section class="hd-section" id="case-study">
+    <div class="hd-section-header">
+      <span class="hd-section-num">00 /</span>
+      <a href="projects/hunterdouglas.html" class="hd-section-title-link">
+        <h2 class="hd-section-title">Hunter Douglas, $6M Program Rescue →</h2>
+      </a>
+    </div>
+    <a href="projects/hunterdouglas.html" class="hd-stats hd-stats-link">
+      <div class="hd-stat"><span class="hd-stat-num">7</span><span class="hd-stat-label">Days to functional prototype</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">14</span><span class="hd-stat-label">Days to production approval</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">$0</span><span class="hd-stat-label">New tooling or CapEx</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">$600K</span><span class="hd-stat-label">Contribution margin added</span></div>
+      <div class="hd-stat"><span class="hd-stat-num">24,000</span><span class="hd-stat-label">Units shipped on schedule</span></div>
+    </a>
+    <div class="hd-content hd-clickable">
+      <div class="hd-image-col">
+        <div class="hd-content hd-clickable">
+          <div class="hd-image-col">
+            <img src="images/hero-hd-window-cling-deployed-01.webp"
+                 loading="eager"
+                 alt="">
+            </div>
+          </div>
+        </div>
+      <div class="hd-left">
+        <h2 class="hd-headline">$6M launch. 60 days out.<br>Client design failed. No CAD. No budget.</h2>
+        <div class="hd-left-inner">
+          <div class="hd-left-text">
+            <p class="hd-sub">
+              Hunter Douglas's halo product was 60 days from a nationwide retail launch.
+              24,000 books mid-production. The accessory they'd developed for two years
+              failed validation at the final hour with no native CAD and no specs provided.
+              <strong>The Business Administration degree kept the solution grounded in
+              economic reality. The engineering background built it. Both were required to ship.</strong>
+            </p>
+          </div>
+          <div class="hd-left-actions">
+            <p class="hd-sub">
+              Full documentation: every prototype stage, the 20+ failed concepts, the parking lot
+              breakthrough, the 20-minute proof-of-concept, and the path from physics validation
+              to 24,000 production units.
+            </p>
+            <div class="hd-ctas">
+              <a href="projects/hunterdouglas.html" class="hd-btn-primary">Full Project + Documentation →</a>
+              <a href="projects/case-study.html" class="hd-btn-secondary" target="_blank" rel="noopener noreferrer">Download PDF →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- 01 / CORE PROJECTS -->
   <section class="section" id="projects">
