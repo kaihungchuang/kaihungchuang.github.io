@@ -40,7 +40,7 @@
   .pni-title { font-size: 0.85rem; line-height: 1.3; }
 }
 </style>
-  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4dc05dbd2ebb45c0bc868449e7a619d6"}'></script><!-- End Cloudflare Web Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="27501c45-943f-4557-8636-2e5eaac3228f"></script>
 </head>
 <body>
 <nav>
@@ -79,7 +79,7 @@
     </div>
   </section>
 
-  <div style="max-width:85%;margin:2rem auto;">
+  <div style="max-width:85%;margin:2rem auto;aspect-ratio:3/2;">
     <img src="../images/printhead-175head-01.webp"
          loading="eager"
          data-lightbox="printhead"
@@ -108,7 +108,7 @@
 
   <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin:0.25rem 0 3rem;">
     <a href="#hobbed-iteration" class="tag-shortcut">Hobbed Drive Iteration ↓</a>
-    <a href="#jig-evolution" class="tag-shortcut">3-Generation Jig Evolution ↓</a>
+    <a href="#jig-evolution" class="tag-shortcut">4 Custom Jig System ↓</a>
     <a href="#ptfe-path" class="tag-shortcut">PTFE Filament Path ↓</a>
     <a href="#fan-fix" class="tag-shortcut">24V→12V Diode Workaround ↓</a>
   </div>
@@ -149,7 +149,7 @@
              data-lightbox="printhead"
              data-caption=""
              alt=""
-             style="width:100%;height:auto;object-fit:unset;aspect-ratio:unset;display:block;">
+             style="width:100%;aspect-ratio:2/1;object-fit:cover;display:block;">
       </div>
       <p>LulzBot's open-source commitment meant every component STL was publicly available. Useful for self-repair, but not useful for parametric design work. Knowing I would be modifying and developing against this platform extensively, I downloaded every STL and recreated the printhead and the entire X-axis gantry as a fully parametric SolidWorks assembly (later exported to Fusion360), cross-referenced against physical measurements from the machine sitting next to me.</p>
 
@@ -186,7 +186,8 @@
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="">
+             alt=""
+             style="aspect-ratio:3/2;width:100%;object-fit:cover;">
         </div>
       <p>I set up a crude rotating fixture by clamping two skateboard bearings directly into the mill vise, which held the bolt and allowed it to be rotated between passes. Using <strong>every thread tap from M2 to M10, I systematically worked through tooth depth, count, and profile combinations, isolating one variable at a time.</strong> The iteration was entirely physical. Each variant went into a test printhead, ran filament at multiple temperatures and feed rates, and was evaluated for grip consistency and filament marking pattern. The winning geometry was clear within the test matrix. Getting to that answer required building the tooling first, not just modeling geometry in CAD.</p>
   <span id="ptfe-path" class="scroll-target"></span>
@@ -200,7 +201,8 @@
              loading="lazy"
              data-lightbox="printhead"
              data-caption=""
-             alt="">
+             alt=""
+             style="aspect-ratio:3/2;width:100%;object-fit:cover;">
       </div>
       <p>The hobbed drive bolt doesn't feed filament directly into the hotend. There is a short gap between the bolt and the hotend entry. In the original design that gap was not tightly constrained, allowing filament to buckle under drive pressure, particularly with flexible materials. I redesigned this section to incorporate a strategically cut PTFE tube liner bridging the full path from drive bolt to hotend entry. This also reduced friction in addition to fully constrained the filament path, and made the printhead capable of running flexible filaments reliably, something notoriously difficult to achieve in 1.75mm filaments.</p>
     </div>
@@ -211,7 +213,7 @@
     <div class="chapter" id="ch_jig">
       <div class="chapter-header">
         <span class="chapter-num">03 /</span>
-        <h2 class="chapter-title">The Jig Evolution: Three Generations of Production Tooling</h2>
+        <h2 class="chapter-title">The Jig System: Four Purpose-Built Production Tools</h2>
       </div>
       <div class="photo-duo">
         <img src="../images/printhead-175head-18.webp"
