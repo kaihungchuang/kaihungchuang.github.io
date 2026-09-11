@@ -163,9 +163,9 @@ nav {
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  margin-bottom: 3rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: none;
 }
 .section-label {
   font-family: var(--mono);
