@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Redirecting — Kai-Hung Chuang</title>
+</head>
+<body>
+<script>
+(function() {
+  var dest = 'projects/fpv.html';
+  if (typeof umami !== 'undefined') {
+    umami.track('redirect', { destination: dest });
+  }
+  setTimeout(function() {
+    window.location.replace(dest);
+  }, 300);
+})();
+</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="27501c45-943f-4557-8636-2e5eaac3228f"></script>
+</body>
+</html>
